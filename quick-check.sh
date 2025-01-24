@@ -98,6 +98,10 @@ NUM_STATUS=$(grep -c "^ *(set-info :status" "$BENCHMARK")
 [ "$NUM_CHECK_SAT" = "1" ] && TYPE="non-incremental" || TYPE="incremental"
 info "Type of file" "$TYPE"
 
+# Check the order of headers
+HEADER_ORDER=$(grep -lPz "(?s).*smt-lib-version.*set-logic.*:source.*:license.*:category.*:status" "$BENCHMARK")
+[ -z "$HEADER_ORDER" ] && print_error "Header fields are in the wrong order."
+
 # Non-incremental vs. incremental checks
 [ "$TYPE" != "$PATH_TYPE" ] && \
   print_error "Benchmark appears to be $TYPE but is in $PATH_TYPE path."
