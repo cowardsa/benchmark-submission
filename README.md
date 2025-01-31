@@ -144,7 +144,7 @@ set directory.  The nesting should be sensible.
 
 ## Contact
 
-SMT-LIB releases are available on [Zonodo](https://zenodo.org/communities/smt-lib/).
+SMT-LIB releases are available on [Zenodo](https://zenodo.org/communities/smt-lib/).
 
 The benchmark library is co-maintained by:
 
@@ -153,4 +153,4 @@ The benchmark library is co-maintained by:
 - Clark Barrett <barrett@cs.stanford.edu>
 - Pascal Fontaine <pascal.fontaine@uliege.be>
 - Aina Niemetz <niemetz@cs.stanford.edu>
-
+- Cesare Tinelli <cesare-tinelli@uiowa.edu>
