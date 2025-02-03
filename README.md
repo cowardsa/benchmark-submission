@@ -3,7 +3,7 @@
 This repository serves as a staging repository for benchmarks submitted
 for inclusion in the [SMT-LIB](https://smt-lib.org/) library.  Benchmarks
 submitted to this repository before **April 12** will be included in
-the May 2025 release.
+the 2025 release.
 
 To submit new benchmarks, fork this repository, add the benchmarks, and
 create a pull request.  The added files must be valid SMT-LIB files with
