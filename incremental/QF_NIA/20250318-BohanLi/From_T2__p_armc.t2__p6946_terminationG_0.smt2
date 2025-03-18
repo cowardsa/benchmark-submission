@@ -1502,3 +1502,5 @@ We observe that such incremental instances present notable computational challen
 (set-info :status unknown)
  (check-sat)
  (pop 1)
+
+(exit)
