@@ -99,8 +99,9 @@ NUM_STATUS=$(grep -c "^ *(set-info :status" "$BENCHMARK")
 info "Type of file" "$TYPE"
 
 # Check the order of headers
-HEADER_ORDER=$(grep -lPz "(?s).*smt-lib-version.*set-logic.*:source.*:license.*:category.*:status" "$BENCHMARK")
-[ -z "$HEADER_ORDER" ] && print_error "Header fields are in the wrong order."
+# Note: this check is disabled, because it is unreliable on larger benchmarks.
+# HEADER_ORDER=$(grep -lPz "(?s).*smt-lib-version.*set-logic.*:source.*:license.*:category.*:status" "$BENCHMARK")
+# [ -z "$HEADER_ORDER" ] && print_error "Header fields are in the wrong order."
 
 # Non-incremental vs. incremental checks
 [ "$TYPE" != "$PATH_TYPE" ] && \
