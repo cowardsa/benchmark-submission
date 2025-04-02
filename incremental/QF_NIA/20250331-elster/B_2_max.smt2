@@ -7,7 +7,10 @@ Generator: mgm A12 Test Data Generator
 Application: ELSTER
 Target solver: Z3, Yices2, CVC5
 Script is based on the ELSTER form: revenue surplus calculation (B / E77)
+Characteristic of the form: Medium-sized with several calculations.
 This script contains terms of the form (* x1 x2 x3 ...) and terms of the form (div x y) where x, y and x1, x2, x3 ... are free constants.
+The script starts with the base constraints, which define a valid data set for the corresponding form. After the first (push 1), control constraints follow.
+The goal of the control constraints in this script is to have as many fields filled as possible. We call it a maximal data set.
 number variables: 5986, number constraints: 7142
 "https://www.elster.de/eportal/start?locale=en_US"
 "https://www.mgm-tp.com/q12-tdg.html"

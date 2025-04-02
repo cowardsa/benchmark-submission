@@ -8,7 +8,9 @@ Generator: mgm A12 Test Data Generator
 Application: ELSTER
 Target solver: Z3, Yices2, CVC5
 Script is based on the ELSTER form: determination according to § 51 Investment Tax Act (C / InvStG51Feststellung)
+Characteristic of the form: Hard.
 This script contains terms of the form (* x1 x2 x3 ...) and terms of the form (div x y) where x, y and x1, x2, x3 ... are free constants.
+The script only contains base constraints, which define a valid data set for the form. It results in a random data set.
 number variables: 4507, number constraints: 7539
 "https://www.elster.de/eportal/start?locale=en_US"
 "https://www.mgm-tp.com/q12-tdg.html"

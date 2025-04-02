@@ -8,7 +8,9 @@ Generator: mgm A12 Test Data Generator
 Application: ELSTER
 Target solver: Z3, Yices2, CVC5
 Script is based on the ELSTER form: income tax return (E / E10)
+Characteristic of the form: Very hard, with calculations in some slightly connected clusters.
 This script contains terms of the form (* x1 x2 x3 ...) and terms of the form (div x y) where x, y and x1, x2, x3 ... are free constants.
+The script only contains base constraints, which define a valid data set for the form. It results in a random data set.
 number variables: 12821, number constraints: 12724
 "https://www.elster.de/eportal/start?locale=en_US"
 "https://www.mgm-tp.com/q12-tdg.html"

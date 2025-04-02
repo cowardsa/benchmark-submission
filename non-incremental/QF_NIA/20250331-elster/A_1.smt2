@@ -8,6 +8,11 @@ Generator: mgm A12 Test Data Generator
 Application: ELSTER
 Target solver: Z3, Yices2, CVC5
 Script is based on the ELSTER form: capital gains tax registration (A / KapEStInvStG)
+Characteristic of the form: easy
+In this script, all terms of the form (* x1 x2 x3 ...) are in the form (* x1 c2 c3 ...),
+all terms of the form (div x y) are in the form (div x c) and the symbol mod is exclusively used in the form (mod x c),
+where x, y, and x1, x2, x3 ... are free constants and c, c2, c3 ... are terms in the form n or (-n) for some numeral n.
+The script only contains base constraints, which define a valid data set for the form. It results in a random data set.
 number variables: 270, number constraints: 252
 "https://www.elster.de/eportal/start?locale=en_US"
 "https://www.mgm-tp.com/q12-tdg.html"

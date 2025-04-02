@@ -7,9 +7,12 @@ Generator: mgm A12 Test Data Generator
 Application: ELSTER
 Target solver: Z3, Yices2, CVC5
 Script is based on the ELSTER form: corporate income tax return (D / E30)
+Characteristic of the form: Very hard, with many connected calculations.
 This script is the result of a preprocessing step: All original terms of the form (* x1 x2 x3 ...) were replaced by (* x1 c2 c3 ...),
 all terms of the form (div x y) were replaced by (div x c) and the symbol mod is exclusively used in the form (mod x c),
 where x, y, and x1, x2, x3 ... are free constants and c, c2, c3 ... are terms in the form n or (-n) for some numeral n.
+The script starts with the base constraints, which define a valid data set for the corresponding form. After the first (push 1), control constraints follow.
+The goal of the control constraints in this script is to place different characteristics into the data set, such as minimal or maximal values. We call it a data set with high test coverage.
 number variables: 7355, number constraints: 9936
 "https://www.elster.de/eportal/start?locale=en_US"
 "https://www.mgm-tp.com/q12-tdg.html"
