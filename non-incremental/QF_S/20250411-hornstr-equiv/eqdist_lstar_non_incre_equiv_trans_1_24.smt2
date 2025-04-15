@@ -9,6 +9,9 @@ Time limit: 60.0
 Benchmarks are extracted by running HornStr https://arg-git.informatik.uni-kl.de/pub/string-chc-lib on all benchmarks
 provided in the repository and gathering the string queries sent to the string solvers.
 |)
+(set-info :license "https://creativecommons.org/licenses/by/4.0/")
+(set-info :category "industrial")
+(set-info :status unknown)
 (declare-fun varout () String)
 (assert (let ((a!1 (re.* (re.union (re.union (str.to_re "r") (str.to_re "n"))
                            (str.to_re "b")))))
@@ -191,3 +194,4 @@ provided in the repository and gathering the string queries sent to the string s
       (a!16 (re.++ a!15 (re.++ (str.to_re "n") (re.++ (str.to_re "n") a!11)))))
   (str.in_re varout (re.union (re.union a!13 a!16) (re.++ a!18 a!19))))))))
 (check-sat)
+(exit)
