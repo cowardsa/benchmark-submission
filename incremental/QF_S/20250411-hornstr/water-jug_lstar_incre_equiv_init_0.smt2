@@ -121,5 +121,6 @@ provided in the repository and gathering the string queries sent to the string s
 (let ((a!30 (re.++ (re.* (re.union a!25 a!27))
                    (re.union (re.union (str.to_re "") a!28) a!29))))
   (str.in_re varout (re.union a!16 (re.++ a!21 a!30))))))))))))))))
+(set-info :status unknown)
 (check-sat)
 (exit)

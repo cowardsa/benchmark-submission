@@ -421,5 +421,6 @@ provided in the repository and gathering the string queries sent to the string s
 (check-sat)
 (assert (distinct X "1acgd"))
 (get-model)
+(set-info :status unknown)
 (check-sat)
 (exit)

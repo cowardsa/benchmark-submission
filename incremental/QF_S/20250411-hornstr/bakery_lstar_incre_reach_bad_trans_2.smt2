@@ -353,5 +353,6 @@ provided in the repository and gathering the string queries sent to the string s
 (set-info :status unknown)
 (check-sat)
 (pop 1)
+(set-info :status unknown)
 (check-sat)
 (exit)

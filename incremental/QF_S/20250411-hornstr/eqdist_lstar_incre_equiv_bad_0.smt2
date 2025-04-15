@@ -1993,5 +1993,6 @@ provided in the repository and gathering the string queries sent to the string s
 (let ((a!45 (re.union a!44 (re.++ (re.++ a!37 (str.to_re "b")) a!10))))
 (let ((a!56 (re.union (re.union (re.union (re.union a!45 a!48) a!49) a!52) a!55)))
   (str.in_re varin a!56)))))))))))))))))))
+(set-info :status unknown)
 (check-sat)
 (exit)
