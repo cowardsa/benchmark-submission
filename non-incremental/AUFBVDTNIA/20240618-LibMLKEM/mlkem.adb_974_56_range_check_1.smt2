@@ -138,7 +138,7 @@ Publications: https://github.com/awslabs/LibMLKEM
 ;; Nth_bv_is_nth2
 (assert
   (forall ((x (_ BitVec 8)) (i Int))
-    (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+    (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 ;; min
 (define-fun min ((x Int) (y Int)) Int
@@ -227,7 +227,7 @@ Publications: https://github.com/awslabs/LibMLKEM
   (forall ((x (_ BitVec 16)) (i Int))
     (=>
       (and (<= 0 i) (< i 65536))
-      (= (nth_bv1 x ((_ int2bv 16) i)) (nth1 x i)))))
+      (= (nth_bv1 x ((_ int_to_bv 16) i)) (nth1 x i)))))
 
 (declare-sort u8_bit 0)
 
@@ -292,16 +292,16 @@ Publications: https://github.com/awslabs/LibMLKEM
         (bvult t #x0D01)
         (forall ((o (_ BitVec 16)))
           (=>
-            (ite (< 11 16) (= o (bvlshr t ((_ int2bv 16) 11))) (= o #x0000))
+            (ite (< 11 16) (= o (bvlshr t ((_ int_to_bv 16) 11))) (= o #x0000))
             (forall ((o1 (_ BitVec 16)))
               (=>
                 (ite (< 10 16)
-                  (= o1 (bvlshr t ((_ int2bv 16) 10)))
+                  (= o1 (bvlshr t ((_ int_to_bv 16) 10)))
                   (= o1 #x0000))
                 (forall ((o2 (_ BitVec 16)))
                   (=>
                     (ite (< 9 16)
-                      (= o2 (bvlshr t ((_ int2bv 16) 9)))
+                      (= o2 (bvlshr t ((_ int_to_bv 16) 9)))
                       (= o2 #x0000))
                     (let ((o3 (bvand o2 #x0001)))
                       (and

@@ -138,7 +138,7 @@ Publications: https://github.com/awslabs/LibMLKEM
 ;; Nth_bv_is_nth2
 (assert
   (forall ((x (_ BitVec 8)) (i Int))
-    (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+    (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 ;; min
 (define-fun min ((x Int) (y Int)) Int
@@ -231,7 +231,7 @@ Publications: https://github.com/awslabs/LibMLKEM
   (forall ((x (_ BitVec 64)) (i Int))
     (=>
       (and (<= 0 i) (< i 18446744073709551616))
-      (= (nth_bv1 x ((_ int2bv 64) i)) (nth1 x i)))))
+      (= (nth_bv1 x ((_ int_to_bv 64) i)) (nth1 x i)))))
 
 (declare-datatypes ((t__ref 0))
   (((t__refqtmk (t__content (_ BitVec 64))))))
@@ -295,7 +295,7 @@ Publications: https://github.com/awslabs/LibMLKEM
   (forall ((x (_ BitVec 16)) (i Int))
     (=>
       (and (<= 0 i) (< i 65536))
-      (= (nth_bv2 x ((_ int2bv 16) i)) (nth2 x i)))))
+      (= (nth_bv2 x ((_ int_to_bv 16) i)) (nth2 x i)))))
 
 (declare-const x (_ BitVec 16))
 
@@ -336,7 +336,7 @@ Publications: https://github.com/awslabs/LibMLKEM
                 (= t3 (bvmul t2 #x000000009D7DBB41))
                 (forall ((t4 (_ BitVec 64)))
                   (=>
-                    (= t4 (bvlshr t3 ((_ int2bv 64) 43)))
+                    (= t4 (bvlshr t3 ((_ int_to_bv 64) 43)))
                     (forall ((t5 (_ BitVec 64)))
                       (=>
                         (= t5 (bvurem t4 #x0000000000000002))

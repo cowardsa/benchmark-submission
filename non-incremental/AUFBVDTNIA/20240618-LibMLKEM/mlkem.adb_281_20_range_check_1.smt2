@@ -140,7 +140,7 @@ Publications: https://github.com/awslabs/LibMLKEM
   (forall ((x (_ BitVec 16)) (i Int))
     (=>
       (and (<= 0 i) (< i 65536))
-      (= (nth_bv x ((_ int2bv 16) i)) (nth x i)))))
+      (= (nth_bv x ((_ int_to_bv 16) i)) (nth x i)))))
 
 ;; min
 (define-fun min ((x Int) (y Int)) Int
@@ -188,7 +188,7 @@ Publications: https://github.com/awslabs/LibMLKEM
     (=>
       (in_range right)
       (=>
-        (ite (< 1 16) (= o (bvlshr right ((_ int2bv 16) 1))) (= o #x0000))
+        (ite (< 1 16) (= o (bvlshr right ((_ int_to_bv 16) 1))) (= o #x0000))
         (in_range o))))))
 
 (check-sat)

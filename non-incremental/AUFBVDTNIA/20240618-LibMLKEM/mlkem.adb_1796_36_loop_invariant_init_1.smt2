@@ -141,7 +141,7 @@ Publications: https://github.com/awslabs/LibMLKEM
 ;; Nth_bv_is_nth2
 (assert
   (forall ((x (_ BitVec 8)) (i Int))
-    (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+    (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 ;; min
 (define-fun min ((x Int) (y Int)) Int
@@ -230,7 +230,7 @@ Publications: https://github.com/awslabs/LibMLKEM
   (forall ((x (_ BitVec 16)) (i Int))
     (=>
       (and (<= 0 i) (< i 65536))
-      (= (nth_bv1 x ((_ int2bv 16) i)) (nth1 x i)))))
+      (= (nth_bv1 x ((_ int_to_bv 16) i)) (nth1 x i)))))
 
 (declare-sort t 0)
 
@@ -556,8 +556,8 @@ Publications: https://github.com/awslabs/LibMLKEM
                     (= r1 (store r i (store (select r i) j (convert
                                                              (xof_then_samplentt
                                                                rho
-                                                               ((_ int2bv 8) j)
-                                                               ((_ int2bv 8) i))))))
+                                                               ((_ int_to_bv 8) j)
+                                                               ((_ int_to_bv 8) i))))))
                     (=>
                       (=>
                         (<= 0 j)

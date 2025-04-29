@@ -141,7 +141,7 @@ Publications: https://github.com/awslabs/LibMLKEM
 ;; Nth_bv_is_nth2
 (assert
   (forall ((x (_ BitVec 8)) (i Int))
-    (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+    (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-datatypes ((t__ref 0))
   (((t__refqtmk (t__content (_ BitVec 8))))))
@@ -233,7 +233,7 @@ Publications: https://github.com/awslabs/LibMLKEM
   (forall ((x (_ BitVec 16)) (i Int))
     (=>
       (and (<= 0 i) (< i 65536))
-      (= (nth_bv1 x ((_ int2bv 16) i)) (nth1 x i)))))
+      (= (nth_bv1 x ((_ int_to_bv 16) i)) (nth1 x i)))))
 
 (declare-sort t 0)
 
@@ -718,7 +718,7 @@ Publications: https://github.com/awslabs/LibMLKEM
                                                                 false)) true)
                             (forall ((n1 (_ BitVec 8)) (s1 (Array Int (Array Int t))) (i1 Int))
                               (=>
-                                (= n1 ((_ int2bv 8) i1))
+                                (= n1 ((_ int_to_bv 8) i1))
                                 (=>
                                   (= (and (ite (and
                                                  (in_range3 i1)
@@ -754,7 +754,7 @@ Publications: https://github.com/awslabs/LibMLKEM
                                             (forall ((i2 Int))
                                               (=>
                                                 (= i2 (+ i1 1))
-                                                (= n2 ((_ int2bv 8) i2)))))))))))))))))))))))))))
+                                                (= n2 ((_ int_to_bv 8) i2)))))))))))))))))))))))))))
 
 (check-sat)
 (exit)

@@ -138,7 +138,7 @@ Publications: https://github.com/awslabs/LibMLKEM
 ;; Nth_bv_is_nth2
 (assert
   (forall ((x (_ BitVec 8)) (i Int))
-    (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+    (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 ;; min
 (define-fun min ((x Int) (y Int)) Int
@@ -227,7 +227,7 @@ Publications: https://github.com/awslabs/LibMLKEM
   (forall ((x (_ BitVec 16)) (i Int))
     (=>
       (and (<= 0 i) (< i 65536))
-      (= (nth_bv1 x ((_ int2bv 16) i)) (nth1 x i)))))
+      (= (nth_bv1 x ((_ int_to_bv 16) i)) (nth1 x i)))))
 
 (declare-sort u8_bit 0)
 
@@ -413,57 +413,57 @@ Publications: https://github.com/awslabs/LibMLKEM
         (bvult t #x0D01)
         (forall ((o (_ BitVec 16)))
           (=>
-            (ite (< 11 16) (= o (bvlshr t ((_ int2bv 16) 11))) (= o #x0000))
+            (ite (< 11 16) (= o (bvlshr t ((_ int_to_bv 16) 11))) (= o #x0000))
             (forall ((o1 (_ BitVec 16)))
               (=>
                 (ite (< 10 16)
-                  (= o1 (bvlshr t ((_ int2bv 16) 10)))
+                  (= o1 (bvlshr t ((_ int_to_bv 16) 10)))
                   (= o1 #x0000))
                 (forall ((o2 (_ BitVec 16)))
                   (=>
                     (ite (< 9 16)
-                      (= o2 (bvlshr t ((_ int2bv 16) 9)))
+                      (= o2 (bvlshr t ((_ int_to_bv 16) 9)))
                       (= o2 #x0000))
                     (forall ((o3 (_ BitVec 16)))
                       (=>
                         (ite (< 8 16)
-                          (= o3 (bvlshr t ((_ int2bv 16) 8)))
+                          (= o3 (bvlshr t ((_ int_to_bv 16) 8)))
                           (= o3 #x0000))
                         (forall ((o4 (_ BitVec 16)))
                           (=>
                             (ite (< 7 16)
-                              (= o4 (bvlshr t ((_ int2bv 16) 7)))
+                              (= o4 (bvlshr t ((_ int_to_bv 16) 7)))
                               (= o4 #x0000))
                             (forall ((o5 (_ BitVec 16)))
                               (=>
                                 (ite (< 6 16)
-                                  (= o5 (bvlshr t ((_ int2bv 16) 6)))
+                                  (= o5 (bvlshr t ((_ int_to_bv 16) 6)))
                                   (= o5 #x0000))
                                 (forall ((o6 (_ BitVec 16)))
                                   (=>
                                     (ite (< 5 16)
-                                      (= o6 (bvlshr t ((_ int2bv 16) 5)))
+                                      (= o6 (bvlshr t ((_ int_to_bv 16) 5)))
                                       (= o6 #x0000))
                                     (forall ((o7 (_ BitVec 16)))
                                       (=>
                                         (ite (< 4 16)
-                                          (= o7 (bvlshr t ((_ int2bv 16) 4)))
+                                          (= o7 (bvlshr t ((_ int_to_bv 16) 4)))
                                           (= o7 #x0000))
                                         (forall ((o8 (_ BitVec 16)))
                                           (=>
                                             (ite (< 3 16)
-                                              (= o8 (bvlshr t ((_ int2bv 16) 3)))
+                                              (= o8 (bvlshr t ((_ int_to_bv 16) 3)))
                                               (= o8 #x0000))
                                             (forall ((o9 (_ BitVec 16)))
                                               (=>
                                                 (ite (< 2 16)
-                                                  (= o9 (bvlshr t ((_ int2bv 16) 2)))
+                                                  (= o9 (bvlshr t ((_ int_to_bv 16) 2)))
                                                   (= o9 #x0000))
                                                 (forall ((o10 (_ BitVec 16)))
                                                   (=>
                                                     (ite (< 1 16)
                                                       (= o10 (bvlshr 
-                                                      t ((_ int2bv 16) 1)))
+                                                      t ((_ int_to_bv 16) 1)))
                                                       (= o10 #x0000))
                                                     (forall ((mlkem__zq_to_bits_12__result (Array Int u8_bit)))
                                                       (=>

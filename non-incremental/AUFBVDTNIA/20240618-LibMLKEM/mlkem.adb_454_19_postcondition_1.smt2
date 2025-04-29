@@ -143,7 +143,7 @@ Publications: https://github.com/awslabs/LibMLKEM
   (forall ((x (_ BitVec 16)) (i Int))
     (=>
       (and (<= 0 i) (< i 65536))
-      (= (nth_bv x ((_ int2bv 16) i)) (nth x i)))))
+      (= (nth_bv x ((_ int_to_bv 16) i)) (nth x i)))))
 
 ;; min
 (define-fun min ((x Int) (y Int)) Int
@@ -293,7 +293,7 @@ Publications: https://github.com/awslabs/LibMLKEM
            (=>
              (oadd__function_guard result param__left param__right)
              (and
-               (= result ((_ int2bv 16) (mod2
+               (= result ((_ int_to_bv 16) (mod2
                                           (+ (ubv_to_int param__left) (ubv_to_int param__right))
                                           3329)))
                (in_range result))))) :pattern ((oadd
@@ -404,7 +404,7 @@ Publications: https://github.com/awslabs/LibMLKEM
                                   (oadd__function_guard o2 o1 o)
                                   (and
                                     (in_range o2)
-                                    (= o2 ((_ int2bv 16) (mod2
+                                    (= o2 ((_ int_to_bv 16) (mod2
                                                            (+ (ubv_to_int o1) (ubv_to_int o))
                                                            3329)))))
                                 (exists ((o3 t))

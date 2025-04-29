@@ -235,7 +235,7 @@ Publications: https://github.com/awslabs/LibMLKEM
 ;; Nth_bv_is_nth2
 (assert
   (forall ((x (_ BitVec 8)) (i Int))
-    (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+    (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 ;; min
 (define-fun min ((x Int) (y Int)) Int
@@ -357,7 +357,7 @@ Publications: https://github.com/awslabs/LibMLKEM
                   (=>
                     (let ((temp___2407 (mod2 i1 8)))
                       (ite (< temp___2407 256)
-                        (= o (bvshl #x01 ((_ int2bv 8) temp___2407)))
+                        (= o (bvshl #x01 ((_ int_to_bv 8) temp___2407)))
                         (= o #x00)))
                     (forall ((o1 (_ BitVec 8)))
                       (=> (= (to_rep (select b i1)) o1) (not (= 8 0)))))))))))))))

@@ -141,7 +141,7 @@ Publications: https://github.com/awslabs/LibMLKEM
 ;; Nth_bv_is_nth2
 (assert
   (forall ((x (_ BitVec 8)) (i Int))
-    (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+    (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 ;; min
 (define-fun min ((x Int) (y Int)) Int
@@ -230,7 +230,7 @@ Publications: https://github.com/awslabs/LibMLKEM
   (forall ((x (_ BitVec 16)) (i Int))
     (=>
       (and (<= 0 i) (< i 65536))
-      (= (nth_bv1 x ((_ int2bv 16) i)) (nth1 x i)))))
+      (= (nth_bv1 x ((_ int_to_bv 16) i)) (nth1 x i)))))
 
 (declare-datatypes ((t__ref 0))
   (((t__refqtmk (t__content (_ BitVec 16))))))
@@ -406,7 +406,7 @@ Publications: https://github.com/awslabs/LibMLKEM
                                 (forall ((o1 (_ BitVec 16)))
                                   (=>
                                     (ite (< bit 65536)
-                                      (= o1 (bvshl #x0001 ((_ int2bv 16) bit)))
+                                      (= o1 (bvshl #x0001 ((_ int_to_bv 16) bit)))
                                       (= o1 #x0000))
                                     (forall ((o2 (_ BitVec 8)))
                                       (=>
@@ -417,7 +417,7 @@ Publications: https://github.com/awslabs/LibMLKEM
                                             (= t1 (bvadd t (bvmul ((_ zero_extend 8) o2) o1)))
                                             (bvule t1 (bvsub (let ((temp___2768 (+ bit 1)))
                                                                (ite (< temp___2768 65536)
-                                                                 (bvshl #x0001 ((_ int2bv 16) temp___2768))
+                                                                 (bvshl #x0001 ((_ int_to_bv 16) temp___2768))
                                                                  #x0000)) #x0001)))))))))))))))))))))))))
 
 (check-sat)

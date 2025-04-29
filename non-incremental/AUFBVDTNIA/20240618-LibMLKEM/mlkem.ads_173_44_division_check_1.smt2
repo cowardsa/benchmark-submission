@@ -140,7 +140,7 @@ Publications: https://github.com/awslabs/LibMLKEM
   (forall ((x (_ BitVec 16)) (i Int))
     (=>
       (and (<= 0 i) (< i 65536))
-      (= (nth_bv x ((_ int2bv 16) i)) (nth x i)))))
+      (= (nth_bv x ((_ int_to_bv 16) i)) (nth x i)))))
 
 (declare-datatypes ((t__ref 0))
   (((t__refqtmk (t__content (_ BitVec 16))))))
@@ -236,7 +236,7 @@ Publications: https://github.com/awslabs/LibMLKEM
   (forall ((x (_ BitVec 64)) (i Int))
     (=>
       (and (<= 0 i) (< i 18446744073709551616))
-      (= (nth_bv1 x ((_ int2bv 64) i)) (nth1 x i)))))
+      (= (nth_bv1 x ((_ int_to_bv 64) i)) (nth1 x i)))))
 
 (declare-datatypes ((t__ref1 0))
   (((t__refqtmk1 (t__content1 (_ BitVec 64))))))
@@ -298,7 +298,7 @@ Publications: https://github.com/awslabs/LibMLKEM
                                         (bvule r #x0000000000000D01)
                                         (forall ((r5 (_ BitVec 64)))
                                           (=>
-                                            (= r5 (bvmul ((_ int2bv 64) (ite 
+                                            (= r5 (bvmul ((_ int_to_bv 64) (ite 
                                             (ite (not
                                                    (= r #x0000000000000D01))
                                               true

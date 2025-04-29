@@ -237,7 +237,7 @@ Publications: https://github.com/awslabs/LibMLKEM
   (forall ((x (_ BitVec 16)) (i Int))
     (=>
       (and (<= 0 i) (< i 65536))
-      (= (nth_bv x ((_ int2bv 16) i)) (nth x i)))))
+      (= (nth_bv x ((_ int_to_bv 16) i)) (nth x i)))))
 
 ;; min
 (define-fun min ((x Int) (y Int)) Int
@@ -510,7 +510,7 @@ Publications: https://github.com/awslabs/LibMLKEM
                                                                     (not
                                                                     (= 
                                                                     right #x0000)))
-                                                                    (= ((_ int2bv 16) r5) ((_ int2bv 16) 
+                                                                    (= ((_ int_to_bv 16) r5) ((_ int_to_bv 16) 
                                                                     (mod2
                                                                     r11
                                                                     3329))))

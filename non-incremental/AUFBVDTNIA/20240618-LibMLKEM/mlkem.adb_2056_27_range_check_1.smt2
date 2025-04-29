@@ -141,7 +141,7 @@ Publications: https://github.com/awslabs/LibMLKEM
 ;; Nth_bv_is_nth2
 (assert
   (forall ((x (_ BitVec 8)) (i Int))
-    (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+    (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-datatypes ((t__ref 0))
   (((t__refqtmk (t__content (_ BitVec 8))))))
@@ -210,7 +210,7 @@ Publications: https://github.com/awslabs/LibMLKEM
 (declare-const dummy1 index_32)
 
 ;; c__def_axiom
-(assert (= c (bvmul #xFF ((_ int2bv 8) (ite swap 1 0)))))
+(assert (= c (bvmul #xFF ((_ int_to_bv 8) (ite swap 1 0)))))
 
 ;; Goal def'vc
 ;; File "mlkem.adb", line 2033, characters 0-0
@@ -218,7 +218,7 @@ Publications: https://github.com/awslabs/LibMLKEM
   (not
   (forall ((p (Array Int byte)) (q (Array Int byte)))
     (=>
-      (= (bvmul #xFF ((_ int2bv 8) (ite swap 1 0))) c)
+      (= (bvmul #xFF ((_ int_to_bv 8) (ite swap 1 0))) c)
       (forall ((i Int))
         (=>
           (= i 0)
