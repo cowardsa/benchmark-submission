@@ -126,37 +126,37 @@ Target solver: CVC4
 (declare-fun pow2 (Int) Int)
 
 (define-fun to_int1 ((x (_ BitVec 16))) Int (ite (bvsge x (_ bv0 16))
-                                            (bv2nat x)
-                                            (- (- 65536 (bv2nat x)))))
+                                            (ubv_to_int x)
+                                            (- (- 65536 (ubv_to_int x)))))
 
 (define-fun uint_in_range ((i Int)) Bool (and (<= 0 i) (<= i 65535)))
 
 ;; lsr_bv_is_lsr
   (assert
   (forall ((x (_ BitVec 16)) (n (_ BitVec 16)))
-  (= (bvlshr x n) (lsr x (bv2nat n)))))
+  (= (bvlshr x n) (lsr x (ubv_to_int n)))))
 
 ;; asr_bv_is_asr
   (assert
   (forall ((x (_ BitVec 16)) (n (_ BitVec 16)))
-  (= (bvashr x n) (asr x (bv2nat n)))))
+  (= (bvashr x n) (asr x (ubv_to_int n)))))
 
 ;; lsl_bv_is_lsl
   (assert
   (forall ((x (_ BitVec 16)) (n (_ BitVec 16)))
-  (= (bvshl x n) (lsl x (bv2nat n)))))
+  (= (bvshl x n) (lsl x (ubv_to_int n)))))
 
 ;; rotate_left_bv_is_rotate_left
   (assert
   (forall ((v (_ BitVec 16)) (n (_ BitVec 16)))
   (= (bvor (bvshl v (bvurem n (_ bv16 16))) (bvlshr v (bvsub (_ bv16 16) (bvurem n (_ bv16 16))))) 
-  (rotate_left1 v (bv2nat n)))))
+  (rotate_left1 v (ubv_to_int n)))))
 
 ;; rotate_right_bv_is_rotate_right
   (assert
   (forall ((v (_ BitVec 16)) (n (_ BitVec 16)))
   (= (bvor (bvlshr v (bvurem n (_ bv16 16))) (bvshl v (bvsub (_ bv16 16) (bvurem n (_ bv16 16))))) 
-  (rotate_right1 v (bv2nat n)))))
+  (rotate_right1 v (ubv_to_int n)))))
 
 (declare-fun nth_bv ((_ BitVec 16) (_ BitVec 16)) Bool)
 
@@ -168,7 +168,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth
   (assert
   (forall ((x (_ BitVec 16)) (i (_ BitVec 16)))
-  (= (nth x (bv2nat i)) (nth_bv x i))))
+  (= (nth x (ubv_to_int i)) (nth_bv x i))))
 
 ;; Nth_bv_is_nth2
   (assert
@@ -193,7 +193,7 @@ Target solver: CVC4
   (assert
   (forall ((a (_ BitVec 16)) (b (_ BitVec 16)) (i (_ BitVec 16))
   (n (_ BitVec 16)))
-  (= (eq_sub a b (bv2nat i) (bv2nat n)) (eq_sub_bv a b i n))))
+  (= (eq_sub a b (ubv_to_int i) (ubv_to_int n)) (eq_sub_bv a b i n))))
 
 (declare-datatypes ((t__ref 0))
 (((t__refqtmk (t__content (_ BitVec 16))))))
@@ -321,7 +321,7 @@ Target solver: CVC4
      (=> (in_range1 y) (= (to_rep (of_rep x)) y))) :pattern ((to_rep
                                                              (of_rep x))) )))
 
-(define-fun to_int2 ((x log_index)) Int (bv2nat (to_rep x)))
+(define-fun to_int2 ((x log_index)) Int (ubv_to_int (to_rep x)))
 
 ;; range_int_axiom
   (assert
@@ -401,7 +401,7 @@ Target solver: CVC4
   (forall ((x (_ BitVec 16)))
   (! (= (to_rep2 (of_rep2 x)) x) :pattern ((to_rep2 (of_rep2 x))) )))
 
-(define-fun to_int3 ((x unsigned_16)) Int (bv2nat (to_rep2 x)))
+(define-fun to_int3 ((x unsigned_16)) Int (ubv_to_int (to_rep2 x)))
 
 ;; range_int_axiom
   (assert
@@ -844,7 +844,7 @@ Target solver: CVC4
                                                      (us_repqtmk1
                                                      logger__event_log__fields))) true)
                                              0
-                                             (+ (bv2nat (let ((temp___213 (bvsub 
+                                             (+ (ubv_to_int (let ((temp___213 (bvsub 
                                                         (to_rep
                                                         (rec__logger__log_database__last
                                                         (us_split_fields3
@@ -949,7 +949,7 @@ Target solver: CVC4
 (define-fun last1 ((a us_t)) (_ BitVec 16) (to_rep (last (rt a))))
 
 (define-fun length1 ((a us_t)) Int (ite (bvule (first1 a) (last1 a))
-                                   (+ (- (bv2nat (last1 a)) (bv2nat (first1
+                                   (+ (- (ubv_to_int (last1 a)) (ubv_to_int (first1
                                                                     a))) 1)
                                    0))
 
@@ -1199,7 +1199,7 @@ Target solver: CVC4
   (and (dynamic_invariant o true false true true)
   (= o (ite (= (rec__logger__log_database__empty event_log__split_fields) true)
        0
-       (+ (bv2nat (let ((temp___210 (bvsub (to_rep
+       (+ (ubv_to_int (let ((temp___210 (bvsub (to_rep
                                            (rec__logger__log_database__last
                                            event_log__split_fields)) 
                   (to_rep
@@ -1293,10 +1293,10 @@ Target solver: CVC4
   (ite (= (length1 temp___257) 0)
   (= temp___259 (of_array (to_array temp___258) (first1 temp___258)
                 (last1 temp___258)))
-  (let ((o4 (- (+ (bv2nat (first1 temp___257)) (+ (length
-                                                  (bv2nat (first1 temp___257))
-                                                  (bv2nat (last1 temp___257))) 
-  (length (bv2nat (first1 temp___258)) (bv2nat (last1 temp___258))))) 1)))
+  (let ((o4 (- (+ (ubv_to_int (first1 temp___257)) (+ (length
+                                                  (ubv_to_int (first1 temp___257))
+                                                  (ubv_to_int (last1 temp___257))) 
+  (length (ubv_to_int (first1 temp___258)) (ubv_to_int (last1 temp___258))))) 1)))
   (and (in_range_int o4)
   (= temp___259 (of_array
                 (concat1 (to_array temp___257) (first1 temp___257)
@@ -1329,7 +1329,7 @@ Target solver: CVC4
   (and (dynamic_invariant o true false true true)
   (= o (ite (= (rec__logger__log_database__empty event_log__split_fields) true)
        0
-       (+ (bv2nat (let ((temp___210 (bvsub (to_rep
+       (+ (ubv_to_int (let ((temp___210 (bvsub (to_rep
                                            (rec__logger__log_database__last
                                            event_log__split_fields)) 
                   (to_rep

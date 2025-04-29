@@ -121,36 +121,36 @@ Target solver: CVC4
 (declare-fun pow2 (Int) Int)
 
 (define-fun to_int1 ((x (_ BitVec 8))) Int (ite (bvsge x (_ bv0 8))
-                                           (bv2nat x) (- (- 256 (bv2nat x)))))
+                                           (ubv_to_int x) (- (- 256 (ubv_to_int x)))))
 
 (define-fun uint_in_range ((i Int)) Bool (and (<= 0 i) (<= i 255)))
 
 ;; lsr_bv_is_lsr
   (assert
   (forall ((x (_ BitVec 8)) (n (_ BitVec 8)))
-  (= (bvlshr x n) (lsr x (bv2nat n)))))
+  (= (bvlshr x n) (lsr x (ubv_to_int n)))))
 
 ;; asr_bv_is_asr
   (assert
   (forall ((x (_ BitVec 8)) (n (_ BitVec 8)))
-  (= (bvashr x n) (asr x (bv2nat n)))))
+  (= (bvashr x n) (asr x (ubv_to_int n)))))
 
 ;; lsl_bv_is_lsl
   (assert
   (forall ((x (_ BitVec 8)) (n (_ BitVec 8)))
-  (= (bvshl x n) (lsl x (bv2nat n)))))
+  (= (bvshl x n) (lsl x (ubv_to_int n)))))
 
 ;; rotate_left_bv_is_rotate_left
   (assert
   (forall ((v (_ BitVec 8)) (n (_ BitVec 8)))
   (= (bvor (bvshl v (bvurem n (_ bv8 8))) (bvlshr v (bvsub (_ bv8 8) (bvurem n (_ bv8 8))))) 
-  (rotate_left1 v (bv2nat n)))))
+  (rotate_left1 v (ubv_to_int n)))))
 
 ;; rotate_right_bv_is_rotate_right
   (assert
   (forall ((v (_ BitVec 8)) (n (_ BitVec 8)))
   (= (bvor (bvlshr v (bvurem n (_ bv8 8))) (bvshl v (bvsub (_ bv8 8) (bvurem n (_ bv8 8))))) 
-  (rotate_right1 v (bv2nat n)))))
+  (rotate_right1 v (ubv_to_int n)))))
 
 (declare-fun nth_bv ((_ BitVec 8) (_ BitVec 8)) Bool)
 
@@ -162,7 +162,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth
   (assert
   (forall ((x (_ BitVec 8)) (i (_ BitVec 8)))
-  (= (nth x (bv2nat i)) (nth_bv x i))))
+  (= (nth x (ubv_to_int i)) (nth_bv x i))))
 
 ;; Nth_bv_is_nth2
   (assert
@@ -187,7 +187,7 @@ Target solver: CVC4
   (assert
   (forall ((a (_ BitVec 8)) (b (_ BitVec 8)) (i (_ BitVec 8))
   (n (_ BitVec 8)))
-  (= (eq_sub a b (bv2nat i) (bv2nat n)) (eq_sub_bv a b i n))))
+  (= (eq_sub a b (ubv_to_int i) (ubv_to_int n)) (eq_sub_bv a b i n))))
 
 (declare-datatypes ((t__ref 0))
 (((t__refqtmk (t__content (_ BitVec 8))))))
@@ -236,37 +236,37 @@ Target solver: CVC4
 (declare-fun rotate_left2 ((_ BitVec 32) Int) (_ BitVec 32))
 
 (define-fun to_int2 ((x (_ BitVec 32))) Int (ite (bvsge x (_ bv0 32))
-                                            (bv2nat x)
-                                            (- (- 4294967296 (bv2nat x)))))
+                                            (ubv_to_int x)
+                                            (- (- 4294967296 (ubv_to_int x)))))
 
 (define-fun uint_in_range1 ((i Int)) Bool (and (<= 0 i) (<= i 4294967295)))
 
 ;; lsr_bv_is_lsr
   (assert
   (forall ((x (_ BitVec 32)) (n (_ BitVec 32)))
-  (= (bvlshr x n) (lsr1 x (bv2nat n)))))
+  (= (bvlshr x n) (lsr1 x (ubv_to_int n)))))
 
 ;; asr_bv_is_asr
   (assert
   (forall ((x (_ BitVec 32)) (n (_ BitVec 32)))
-  (= (bvashr x n) (asr1 x (bv2nat n)))))
+  (= (bvashr x n) (asr1 x (ubv_to_int n)))))
 
 ;; lsl_bv_is_lsl
   (assert
   (forall ((x (_ BitVec 32)) (n (_ BitVec 32)))
-  (= (bvshl x n) (lsl1 x (bv2nat n)))))
+  (= (bvshl x n) (lsl1 x (ubv_to_int n)))))
 
 ;; rotate_left_bv_is_rotate_left
   (assert
   (forall ((v (_ BitVec 32)) (n (_ BitVec 32)))
   (= (bvor (bvshl v (bvurem n (_ bv32 32))) (bvlshr v (bvsub (_ bv32 32) (bvurem n (_ bv32 32))))) 
-  (rotate_left2 v (bv2nat n)))))
+  (rotate_left2 v (ubv_to_int n)))))
 
 ;; rotate_right_bv_is_rotate_right
   (assert
   (forall ((v (_ BitVec 32)) (n (_ BitVec 32)))
   (= (bvor (bvlshr v (bvurem n (_ bv32 32))) (bvshl v (bvsub (_ bv32 32) (bvurem n (_ bv32 32))))) 
-  (rotate_right2 v (bv2nat n)))))
+  (rotate_right2 v (ubv_to_int n)))))
 
 (declare-fun nth_bv1 ((_ BitVec 32) (_ BitVec 32)) Bool)
 
@@ -279,7 +279,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth
   (assert
   (forall ((x (_ BitVec 32)) (i (_ BitVec 32)))
-  (= (nth1 x (bv2nat i)) (nth_bv1 x i))))
+  (= (nth1 x (ubv_to_int i)) (nth_bv1 x i))))
 
 ;; Nth_bv_is_nth2
   (assert
@@ -305,7 +305,7 @@ Target solver: CVC4
   (assert
   (forall ((a (_ BitVec 32)) (b (_ BitVec 32)) (i (_ BitVec 32))
   (n (_ BitVec 32)))
-  (= (eq_sub1 a b (bv2nat i) (bv2nat n)) (eq_sub_bv1 a b i n))))
+  (= (eq_sub1 a b (ubv_to_int i) (ubv_to_int n)) (eq_sub_bv1 a b i n))))
 
 (declare-datatypes ((t__ref1 0))
 (((t__refqtmk1 (t__content1 (_ BitVec 32))))))
@@ -397,7 +397,7 @@ Target solver: CVC4
   (forall ((x (_ BitVec 32)))
   (! (= (to_rep1 (of_rep1 x)) x) :pattern ((to_rep1 (of_rep1 x))) )))
 
-(define-fun to_int3 ((x nat)) Int (bv2nat (to_rep1 x)))
+(define-fun to_int3 ((x nat)) Int (ubv_to_int (to_rep1 x)))
 
 ;; range_int_axiom
   (assert
@@ -678,7 +678,7 @@ Target solver: CVC4
   (forall ((x (_ BitVec 8)))
   (! (= (to_rep2 (of_rep2 x)) x) :pattern ((to_rep2 (of_rep2 x))) )))
 
-(define-fun to_int4 ((x storage_element)) Int (bv2nat (to_rep2 x)))
+(define-fun to_int4 ((x storage_element)) Int (ubv_to_int (to_rep2 x)))
 
 ;; range_int_axiom
   (assert
@@ -1885,8 +1885,8 @@ Target solver: CVC4
   (=> (= spark__branch (ite (bvule x6 #x7FFFFFFF) true false))
   (=>
   (ite (= spark__branch true)
-  (let ((o29 (bv2nat x6))) (and (in_range o29) (= y6 o29)))
-  (let ((o29 (bv2nat (bvnot x6))))
+  (let ((o29 (ubv_to_int x6))) (and (in_range o29) (= y6 o29)))
+  (let ((o29 (ubv_to_int (bvnot x6))))
   (and (in_range o29)
   (let ((o30 (- (- o29) 1))) (and (in_range1 o30) (= y6 o30))))))
   (=> (= (to_rep o4) y6)
@@ -1907,8 +1907,8 @@ Target solver: CVC4
   (=> (= spark__branch1 (ite (bvule x7 #x7FFFFFFF) true false))
   (=>
   (ite (= spark__branch1 true)
-  (let ((o29 (bv2nat x7))) (and (in_range o29) (= y7 o29)))
-  (let ((o29 (bv2nat (bvnot x7))))
+  (let ((o29 (ubv_to_int x7))) (and (in_range o29) (= y7 o29)))
+  (let ((o29 (ubv_to_int (bvnot x7))))
   (and (in_range o29)
   (let ((o30 (- (- o29) 1))) (and (in_range1 o30) (= y7 o30))))))
   (=> (= (to_rep o9) y7)
@@ -1934,8 +1934,8 @@ Target solver: CVC4
   (=> (= spark__branch2 (ite (bvule x8 #x7FFFFFFF) true false))
   (=>
   (ite (= spark__branch2 true)
-  (let ((o29 (bv2nat x8))) (and (in_range o29) (= y8 o29)))
-  (let ((o29 (bv2nat (bvnot x8))))
+  (let ((o29 (ubv_to_int x8))) (and (in_range o29) (= y8 o29)))
+  (let ((o29 (ubv_to_int (bvnot x8))))
   (and (in_range o29)
   (let ((o30 (- (- o29) 1))) (and (in_range1 o30) (= y8 o30))))))
   (=> (= (to_rep o14) y8)
@@ -1961,8 +1961,8 @@ Target solver: CVC4
   (=> (= spark__branch3 (ite (bvule x9 #x7FFFFFFF) true false))
   (=>
   (ite (= spark__branch3 true)
-  (let ((o29 (bv2nat x9))) (and (in_range o29) (= y9 o29)))
-  (let ((o29 (bv2nat (bvnot x9))))
+  (let ((o29 (ubv_to_int x9))) (and (in_range o29) (= y9 o29)))
+  (let ((o29 (ubv_to_int (bvnot x9))))
   (and (in_range o29)
   (let ((o30 (- (- o29) 1))) (and (in_range1 o30) (= y9 o30))))))
   (=> (= (to_rep o19) y9)
@@ -1988,8 +1988,8 @@ Target solver: CVC4
   (=> (= spark__branch4 (ite (bvule x10 #x7FFFFFFF) true false))
   (=>
   (ite (= spark__branch4 true)
-  (let ((o29 (bv2nat x10))) (and (in_range o29) (= y10 o29)))
-  (let ((o29 (bv2nat (bvnot x10))))
+  (let ((o29 (ubv_to_int x10))) (and (in_range o29) (= y10 o29)))
+  (let ((o29 (ubv_to_int (bvnot x10))))
   (and (in_range o29)
   (let ((o30 (- (- o29) 1))) (and (in_range1 o30) (= y10 o30))))))
   (=> (= (to_rep o24) y10)
@@ -2014,7 +2014,7 @@ Target solver: CVC4
   (= x11 (bvor (bvor (bvor ((_ zero_extend 24) o28) (bvshl ((_ zero_extend 24) o27) ((_ int2bv 32) 8))) (bvshl ((_ zero_extend 24) o26) ((_ int2bv 32) 16))) (bvshl ((_ zero_extend 24) o25) ((_ int2bv 32) 24))))
   (=> (= spark__branch5 (ite (bvule x11 #x7FFFFFFF) true false))
   (=> (not (= spark__branch5 true))
-  (let ((o29 (bv2nat (bvnot x11))))
+  (let ((o29 (ubv_to_int (bvnot x11))))
   (=> (in_range o29) (in_range1 (- (- o29) 1))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
 (check-sat)
 (exit)
