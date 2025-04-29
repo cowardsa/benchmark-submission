@@ -225,7 +225,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -741,7 +741,7 @@ Target solver: CVC4
                                    (let ((temp___236 (rec__ordering_buffers__ordering_buffer_type__ring
                                                      (us_split_fields1
                                                      buffer))))
-                                   (select temp___236 ((_ int2bv 8) (mod2
+                                   (select temp___236 ((_ int_to_bv 8) (mod2
                                                                     index
                                                                     256))))))) :pattern (
   (get_message buffer index)) ))))
@@ -921,7 +921,7 @@ Target solver: CVC4
   (and (dynamic_invariant2 o11 true false true true)
   (= o11 (to_rep1
          (select (rec__ordering_buffers__ordering_buffer_type__ring
-                 buffer__split_fields) ((_ int2bv 8) (mod2 usf1 256)))))))
+                 buffer__split_fields) ((_ int_to_bv 8) (mod2 usf1 256)))))))
   (=> (in_range3 usf1)
   (=> (forall ((o12 us_rep)) (first__function_guard (first o12) o12))
   (<= (first (us_repqtmk buffer__split_fields1)) usf1)))))))))))))))))))))))))))))))))))))))))))

@@ -194,7 +194,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv x ((_ int2bv 32) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 32) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -698,7 +698,7 @@ Target solver: CVC4
   (assert
   (forall ((s Int))
   (! (=> (dynamic_invariant2 s true true true true)
-     (= (to_state s) ((_ int2bv 32) s))) :pattern ((to_state s)) )))
+     (= (to_state s) ((_ int_to_bv 32) s))) :pattern ((to_state s)) )))
 
 (declare-fun to_state1 (Int) (_ BitVec 32))
 
@@ -716,7 +716,7 @@ Target solver: CVC4
   (assert
   (forall ((s Int))
   (! (=> (dynamic_invariant s true true true true)
-     (= (to_state1 s) ((_ int2bv 32) s))) :pattern ((to_state1 s)) )))
+     (= (to_state1 s) ((_ int_to_bv 32) s))) :pattern ((to_state1 s)) )))
 
 (declare-const attr__ATTRIBUTE_ADDRESS1 Int)
 
@@ -837,7 +837,7 @@ Target solver: CVC4
   (let ((o (to_state1 j)))
   (=>
   (and (to_state__function_guard1 o j)
-  (and (dynamic_invariant1 o true false true true) (= o ((_ int2bv 32) j))))
+  (and (dynamic_invariant1 o true false true true) (= o ((_ int_to_bv 32) j))))
   (=> (and (<= (first1 initiator) j) (<= j (last1 initiator)))
   (forall ((o1 (_ BitVec 32)))
   (=> (= (to_rep1 (select (to_array initiator) j)) o1)
@@ -858,7 +858,7 @@ Target solver: CVC4
   (= (to_rep1 (select (rec__random__generator__state g__split_fields) i)) o4)
   (forall ((o5 unsigned_32))
   (=>
-  (= (to_rep1 o5) (bvadd (bvadd (bvxor o4 (bvmul (bvxor o3 (bvlshr o2 ((_ int2bv 32) 30))) #x0019660D)) o1) o))
+  (= (to_rep1 o5) (bvadd (bvadd (bvxor o4 (bvmul (bvxor o3 (bvlshr o2 ((_ int_to_bv 32) 30))) #x0019660D)) o1) o))
   (forall ((g__split_fields1 us_split_fields))
   (=>
   (= g__split_fields1 (us_split_fieldsqtmk
@@ -905,7 +905,7 @@ Target solver: CVC4
   (=>
   (and (to_state__function_guard1 o7 j2)
   (and (dynamic_invariant1 o7 true false true true)
-  (= o7 ((_ int2bv 32) j2))))
+  (= o7 ((_ int_to_bv 32) j2))))
   (=> (and (<= (first1 initiator) j2) (<= j2 (last1 initiator)))
   (forall ((o8 (_ BitVec 32)))
   (=> (= (to_rep1 (select (to_array initiator) j2)) o8)
@@ -926,7 +926,7 @@ Target solver: CVC4
   (= (to_rep1 (select (rec__random__generator__state g__split_fields3) i2)) o11)
   (forall ((o12 unsigned_32))
   (=>
-  (= (to_rep1 o12) (bvadd (bvadd (bvxor o11 (bvmul (bvxor o10 (bvlshr o9 ((_ int2bv 32) 30))) #x0019660D)) o8) o7))
+  (= (to_rep1 o12) (bvadd (bvadd (bvxor o11 (bvmul (bvxor o10 (bvlshr o9 ((_ int_to_bv 32) 30))) #x0019660D)) o8) o7))
   (forall ((g__split_fields4 us_split_fields))
   (=>
   (= g__split_fields4 (us_split_fieldsqtmk

@@ -226,7 +226,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv x ((_ int2bv 64) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 64) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -895,7 +895,7 @@ Target solver: CVC4
   (=> (dynamic_invariant previous true false true true)
   (=> (<= (first1 powers) temp___301)
   (=> (<= temp___301 (last1 powers))
-  (bvule #x0000000000000000 ((_ int2bv 64) (power 2
+  (bvule #x0000000000000000 ((_ int_to_bv 64) (power 2
                                            (to_rep
                                            (select (to_array powers) temp___301)))))))))))))))
 (check-sat)

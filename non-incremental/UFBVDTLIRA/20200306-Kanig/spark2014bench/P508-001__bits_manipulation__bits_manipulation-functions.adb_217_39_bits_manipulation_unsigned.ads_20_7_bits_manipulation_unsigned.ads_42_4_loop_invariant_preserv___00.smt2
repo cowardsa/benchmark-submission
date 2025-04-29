@@ -167,7 +167,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -338,7 +338,7 @@ Target solver: CVC4
      (forall ((size Int))
      (=> (and (<= 1 size) (<= size 7))
      (= (make_mask size) (bvsub (ite (< size 256)
-                                (bvshl #x01 ((_ int2bv 8) size)) #x00) #x01))))) :pattern (
+                                (bvshl #x01 ((_ int_to_bv 8) size)) #x00) #x01))))) :pattern (
   (lemma2 us_void_param)) )))
 
 (declare-fun lemma2_goal (tuple0) Bool)
@@ -469,7 +469,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 16)) (i Int))
   (=> (and (<= 0 i) (< i 65536))
-  (= (nth_bv1 x ((_ int2bv 16) i)) (nth1 x i)))))
+  (= (nth_bv1 x ((_ int_to_bv 16) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 16) (_ BitVec 16) (_ BitVec 16)
   (_ BitVec 16)) Bool)
@@ -563,7 +563,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv2 x ((_ int2bv 32) i)) (nth2 x i)))))
+  (= (nth_bv2 x ((_ int_to_bv 32) i)) (nth2 x i)))))
 
 (declare-fun eq_sub_bv2 ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -658,7 +658,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv3 x ((_ int2bv 64) i)) (nth3 x i)))))
+  (= (nth_bv3 x ((_ int_to_bv 64) i)) (nth3 x i)))))
 
 (declare-fun eq_sub_bv3 ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -708,14 +708,14 @@ Target solver: CVC4
      amount true true true true))
      (= (shift_right v amount) (ite (and (<= 1 8) (<= 8 8))
                                (ite (< amount 8)
-                               (bvlshr v ((_ int2bv 8) amount)) #x00)
+                               (bvlshr v ((_ int_to_bv 8) amount)) #x00)
                                (ite (and (<= 9 8) (<= 8 16))
                                ((_ extract 7 0) (ite (< amount 16)
-                                                (bvlshr ((_ zero_extend 8) v) ((_ int2bv 16) amount))
+                                                (bvlshr ((_ zero_extend 8) v) ((_ int_to_bv 16) amount))
                                                 #x0000))
                                (ite (and (<= 17 8) (<= 8 32))
-                               ((_ extract 7 0) (bvlshr ((_ zero_extend 24) v) ((_ int2bv 32) amount)))
-                               ((_ extract 7 0) (bvlshr ((_ zero_extend 56) v) ((_ int2bv 64) amount)))))))) :pattern (
+                               ((_ extract 7 0) (bvlshr ((_ zero_extend 24) v) ((_ int_to_bv 32) amount)))
+                               ((_ extract 7 0) (bvlshr ((_ zero_extend 56) v) ((_ int_to_bv 64) amount)))))))) :pattern (
   (shift_right v amount)) ))))
 
 ;; lemma8__post_axiom
@@ -730,7 +730,7 @@ Target solver: CVC4
      (forall ((n Int))
      (=> (and (<= 1 n) (<= n 7))
      (bvult (shift_right val__ (- 8 n)) (ite (< n 256)
-                                        (bvshl #x01 ((_ int2bv 8) n)) #x00))))))) :pattern (
+                                        (bvshl #x01 ((_ int_to_bv 8) n)) #x00))))))) :pattern (
   (lemma81 us_void_param)) )))
 
 (assert
@@ -743,11 +743,11 @@ Target solver: CVC4
   (=> (= i 2)
   (=> (= (and (ite (<= 2 i) true false) (ite (<= i 7) true false)) true)
   (=>
-  (= (make_mask i) (bvsub (ite (< i 256) (bvshl #x01 ((_ int2bv 8) i)) #x00) #x01))
+  (= (make_mask i) (bvsub (ite (< i 256) (bvshl #x01 ((_ int_to_bv 8) i)) #x00) #x01))
   (=>
   (forall ((j1 Int))
   (=> (and (<= 1 j1) (<= j1 (- i1 1)))
-  (= (make_mask j1) (bvsub (ite (< j1 256) (bvshl #x01 ((_ int2bv 8) j1))
+  (= (make_mask j1) (bvsub (ite (< j1 256) (bvshl #x01 ((_ int_to_bv 8) j1))
                            #x00) #x01))))
   (=>
   (= (and (ite (in_range2 i1) true false) (ite (and (<= 2 i1) (<= i1 7)) true
@@ -755,10 +755,10 @@ Target solver: CVC4
   (=> (not (= i1 7))
   (=> (= i2 (+ i1 1))
   (=>
-  (= (make_mask i2) (bvsub (ite (< i2 256) (bvshl #x01 ((_ int2bv 8) i2))
+  (= (make_mask i2) (bvsub (ite (< i2 256) (bvshl #x01 ((_ int_to_bv 8) i2))
                            #x00) #x01))
   (=> (<= 1 j)
   (=> (<= j (- i2 1))
-  (= (make_mask j) (bvsub (ite (< j 256) (bvshl #x01 ((_ int2bv 8) j)) #x00) #x01)))))))))))))))))
+  (= (make_mask j) (bvsub (ite (< j 256) (bvshl #x01 ((_ int_to_bv 8) j)) #x00) #x01)))))))))))))))))
 (check-sat)
 (exit)

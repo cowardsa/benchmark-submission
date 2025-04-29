@@ -167,7 +167,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -284,7 +284,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 16)) (i Int))
   (=> (and (<= 0 i) (< i 65536))
-  (= (nth_bv1 x ((_ int2bv 16) i)) (nth1 x i)))))
+  (= (nth_bv1 x ((_ int_to_bv 16) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 16) (_ BitVec 16) (_ BitVec 16)
   (_ BitVec 16)) Bool)
@@ -792,7 +792,7 @@ Target solver: CVC4
      (=> (shift_right__function_guard result value count)
      (and
      (= result (bvudiv value (ite (< count 65536)
-                             (bvshl #x0001 ((_ int2bv 16) count)) #x0000)))
+                             (bvshl #x0001 ((_ int_to_bv 16) count)) #x0000)))
      (dynamic_invariant2 result true false true true))))) :pattern ((shift_right
                                                                     value
                                                                     count)) ))))
@@ -1141,7 +1141,7 @@ Target solver: CVC4
   (and
   (and (shift_right__function_guard o4 sum2 8)
   (and (dynamic_invariant2 o4 true false true true)
-  (= o4 (bvudiv sum2 (ite (< 8 65536) (bvshl #x0001 ((_ int2bv 16) 8))
+  (= o4 (bvudiv sum2 (ite (< 8 65536) (bvshl #x0001 ((_ int_to_bv 16) 8))
                      #x0000)))))
   (let ((o5 (takelsb_from16 sum2)))
   (and

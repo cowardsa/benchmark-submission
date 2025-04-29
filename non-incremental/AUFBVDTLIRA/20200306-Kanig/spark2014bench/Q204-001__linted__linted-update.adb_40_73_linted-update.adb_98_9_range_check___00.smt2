@@ -169,7 +169,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -287,7 +287,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv1 x ((_ int2bv 32) i)) (nth1 x i)))))
+  (= (nth_bv1 x ((_ int_to_bv 32) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -1441,17 +1441,17 @@ Target solver: CVC4
   (ite (= spark__branch true)
   (let ((o (- c206b (- 2147483648))))
   (and (in_range1 o)
-  (and (uint_in_range1 o) (= y5 (bvsub ((_ int2bv 32) o) #x80000000)))))
-  (let ((o c206b)) (and (uint_in_range1 o) (= y5 ((_ int2bv 32) o)))))
+  (and (uint_in_range1 o) (= y5 (bvsub ((_ int_to_bv 32) o) #x80000000)))))
+  (let ((o c206b)) (and (uint_in_range1 o) (= y5 ((_ int_to_bv 32) o)))))
   (=> (= c207b1 y5)
   (=> (= c207b1 c210b)
   (=> (dynamic_invariant1 c210b true false true true)
   (forall ((c211b (Array Int storage_element)))
   (=>
   (= c211b (temp_____aggregate_def_249
-           ((_ extract 7 0) (bvand (bvlshr c210b ((_ int2bv 32) 24)) #x000000FF))
-           ((_ extract 7 0) (bvand (bvlshr c210b ((_ int2bv 32) 16)) #x000000FF))
-           ((_ extract 7 0) (bvand (bvlshr c210b ((_ int2bv 32) 8)) #x000000FF))
+           ((_ extract 7 0) (bvand (bvlshr c210b ((_ int_to_bv 32) 24)) #x000000FF))
+           ((_ extract 7 0) (bvand (bvlshr c210b ((_ int_to_bv 32) 16)) #x000000FF))
+           ((_ extract 7 0) (bvand (bvlshr c210b ((_ int_to_bv 32) 8)) #x000000FF))
            ((_ extract 7 0) (bvand c210b #x000000FF))))
   (forall ((ada___linted__update__to_storage__C216b__assume Int))
   (=>
@@ -1467,8 +1467,8 @@ Target solver: CVC4
   (ite (= spark__branch1 true)
   (let ((o (- c216b (- 2147483648))))
   (and (in_range1 o)
-  (and (uint_in_range1 o) (= y6 (bvsub ((_ int2bv 32) o) #x80000000)))))
-  (let ((o c216b)) (and (uint_in_range1 o) (= y6 ((_ int2bv 32) o))))))
+  (and (uint_in_range1 o) (= y6 (bvsub ((_ int_to_bv 32) o) #x80000000)))))
+  (let ((o c216b)) (and (uint_in_range1 o) (= y6 ((_ int_to_bv 32) o))))))
   (forall ((c217b1 (_ BitVec 32)))
   (=> (= c217b1 y6)
   (=> (= c217b1 c220b)
@@ -1476,9 +1476,9 @@ Target solver: CVC4
   (forall ((c221b (Array Int storage_element)))
   (=>
   (= c221b (temp_____aggregate_def_256
-           ((_ extract 7 0) (bvand (bvlshr c220b ((_ int2bv 32) 24)) #x000000FF))
-           ((_ extract 7 0) (bvand (bvlshr c220b ((_ int2bv 32) 16)) #x000000FF))
-           ((_ extract 7 0) (bvand (bvlshr c220b ((_ int2bv 32) 8)) #x000000FF))
+           ((_ extract 7 0) (bvand (bvlshr c220b ((_ int_to_bv 32) 24)) #x000000FF))
+           ((_ extract 7 0) (bvand (bvlshr c220b ((_ int_to_bv 32) 16)) #x000000FF))
+           ((_ extract 7 0) (bvand (bvlshr c220b ((_ int_to_bv 32) 8)) #x000000FF))
            ((_ extract 7 0) (bvand c220b #x000000FF))))
   (forall ((ada___linted__update__to_storage__C226b__assume Int))
   (=>
@@ -1494,8 +1494,8 @@ Target solver: CVC4
   (ite (= spark__branch2 true)
   (let ((o (- c226b (- 2147483648))))
   (and (in_range1 o)
-  (and (uint_in_range1 o) (= y7 (bvsub ((_ int2bv 32) o) #x80000000)))))
-  (let ((o c226b)) (and (uint_in_range1 o) (= y7 ((_ int2bv 32) o))))))
+  (and (uint_in_range1 o) (= y7 (bvsub ((_ int_to_bv 32) o) #x80000000)))))
+  (let ((o c226b)) (and (uint_in_range1 o) (= y7 ((_ int_to_bv 32) o))))))
   (forall ((c227b1 (_ BitVec 32)))
   (=> (= c227b1 y7)
   (=> (= c227b1 c230b)
@@ -1503,9 +1503,9 @@ Target solver: CVC4
   (forall ((c231b (Array Int storage_element)))
   (=>
   (= c231b (temp_____aggregate_def_263
-           ((_ extract 7 0) (bvand (bvlshr c230b ((_ int2bv 32) 24)) #x000000FF))
-           ((_ extract 7 0) (bvand (bvlshr c230b ((_ int2bv 32) 16)) #x000000FF))
-           ((_ extract 7 0) (bvand (bvlshr c230b ((_ int2bv 32) 8)) #x000000FF))
+           ((_ extract 7 0) (bvand (bvlshr c230b ((_ int_to_bv 32) 24)) #x000000FF))
+           ((_ extract 7 0) (bvand (bvlshr c230b ((_ int_to_bv 32) 16)) #x000000FF))
+           ((_ extract 7 0) (bvand (bvlshr c230b ((_ int_to_bv 32) 8)) #x000000FF))
            ((_ extract 7 0) (bvand c230b #x000000FF))))
   (forall ((ada___linted__update__to_storage__C236b__assume Int))
   (=>
@@ -1521,8 +1521,8 @@ Target solver: CVC4
   (ite (= spark__branch3 true)
   (let ((o (- c236b (- 2147483648))))
   (and (in_range1 o)
-  (and (uint_in_range1 o) (= y8 (bvsub ((_ int2bv 32) o) #x80000000)))))
-  (let ((o c236b)) (and (uint_in_range1 o) (= y8 ((_ int2bv 32) o))))))
+  (and (uint_in_range1 o) (= y8 (bvsub ((_ int_to_bv 32) o) #x80000000)))))
+  (let ((o c236b)) (and (uint_in_range1 o) (= y8 ((_ int_to_bv 32) o))))))
   (forall ((c237b1 (_ BitVec 32)))
   (=> (= c237b1 y8)
   (=> (= c237b1 c240b)
@@ -1530,9 +1530,9 @@ Target solver: CVC4
   (forall ((c241b (Array Int storage_element)))
   (=>
   (= c241b (temp_____aggregate_def_270
-           ((_ extract 7 0) (bvand (bvlshr c240b ((_ int2bv 32) 24)) #x000000FF))
-           ((_ extract 7 0) (bvand (bvlshr c240b ((_ int2bv 32) 16)) #x000000FF))
-           ((_ extract 7 0) (bvand (bvlshr c240b ((_ int2bv 32) 8)) #x000000FF))
+           ((_ extract 7 0) (bvand (bvlshr c240b ((_ int_to_bv 32) 24)) #x000000FF))
+           ((_ extract 7 0) (bvand (bvlshr c240b ((_ int_to_bv 32) 16)) #x000000FF))
+           ((_ extract 7 0) (bvand (bvlshr c240b ((_ int_to_bv 32) 8)) #x000000FF))
            ((_ extract 7 0) (bvand c240b #x000000FF))))
   (forall ((ada___linted__update__to_storage__C246b__assume Int))
   (=>
@@ -1548,12 +1548,12 @@ Target solver: CVC4
   (ite (= spark__branch4 true)
   (let ((o (- c246b (- 2147483648))))
   (and (in_range1 o)
-  (and (uint_in_range1 o) (= y9 (bvsub ((_ int2bv 32) o) #x80000000)))))
-  (let ((o c246b)) (and (uint_in_range1 o) (= y9 ((_ int2bv 32) o))))))
+  (and (uint_in_range1 o) (= y9 (bvsub ((_ int_to_bv 32) o) #x80000000)))))
+  (let ((o c246b)) (and (uint_in_range1 o) (= y9 ((_ int_to_bv 32) o))))))
   (forall ((c247b1 (_ BitVec 32)))
   (=> (= c247b1 y9)
   (=> (= c247b1 c250b)
   (=> (dynamic_invariant1 c250b true false true true)
-  (bvule ((_ zero_extend 24) #x00) (bvand (bvlshr c250b ((_ int2bv 32) 8)) #x000000FF)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+  (bvule ((_ zero_extend 24) #x00) (bvand (bvlshr c250b ((_ int_to_bv 32) 8)) #x000000FF)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
 (check-sat)
 (exit)

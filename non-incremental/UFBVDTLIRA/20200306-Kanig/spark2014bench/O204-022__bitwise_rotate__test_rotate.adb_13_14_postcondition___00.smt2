@@ -171,7 +171,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv x ((_ int2bv 64) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 64) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -305,8 +305,8 @@ Target solver: CVC4
   (=> (in_range o)
   (forall ((test_rotate__r__result (_ BitVec 64)))
   (=>
-  (= test_rotate__r__result (bvor (bvshl a (bvurem ((_ int2bv 64) o) (_ bv64 64))) (bvlshr 
-  a (bvsub (_ bv64 64) (bvurem ((_ int2bv 64) o) (_ bv64 64))))))
+  (= test_rotate__r__result (bvor (bvshl a (bvurem ((_ int_to_bv 64) o) (_ bv64 64))) (bvlshr 
+  a (bvsub (_ bv64 64) (bvurem ((_ int_to_bv 64) o) (_ bv64 64))))))
   (not (= test_rotate__r__result #x0000000000000000)))))))))))))
 (check-sat)
 (exit)

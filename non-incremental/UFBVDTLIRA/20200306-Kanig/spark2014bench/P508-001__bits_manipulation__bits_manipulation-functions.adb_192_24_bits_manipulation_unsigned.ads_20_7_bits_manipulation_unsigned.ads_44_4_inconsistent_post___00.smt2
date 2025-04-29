@@ -170,7 +170,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv x ((_ int2bv 32) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 32) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -240,11 +240,11 @@ Target solver: CVC4
   (forall ((n Int))
   (=> (and (<= 0 n) (<= n 31))
   (=>
-  (= (bvand v (ite (< n 4294967296) (bvshl #x00000001 ((_ int2bv 32) n))
+  (= (bvand v (ite (< n 4294967296) (bvshl #x00000001 ((_ int_to_bv 32) n))
               #x00000000)) #x00000000)
   (= (bvand (bvadd v (ite (< n 4294967296)
-                     (bvshl #x00000001 ((_ int2bv 32) n)) #x00000000)) 
-  (ite (< n 4294967296) (bvshl #x00000001 ((_ int2bv 32) n)) #x00000000)) 
-  (ite (< n 4294967296) (bvshl #x00000001 ((_ int2bv 32) n)) #x00000000))))))))))))
+                     (bvshl #x00000001 ((_ int_to_bv 32) n)) #x00000000)) 
+  (ite (< n 4294967296) (bvshl #x00000001 ((_ int_to_bv 32) n)) #x00000000)) 
+  (ite (< n 4294967296) (bvshl #x00000001 ((_ int_to_bv 32) n)) #x00000000))))))))))))
 (check-sat)
 (exit)

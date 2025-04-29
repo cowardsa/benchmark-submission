@@ -167,7 +167,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -286,7 +286,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv1 x ((_ int2bv 64) i)) (nth1 x i)))))
+  (= (nth_bv1 x ((_ int_to_bv 64) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -421,7 +421,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv2 x ((_ int2bv 32) i)) (nth2 x i)))))
+  (= (nth_bv2 x ((_ int_to_bv 32) i)) (nth2 x i)))))
 
 (declare-fun eq_sub_bv2 ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -1240,10 +1240,10 @@ Target solver: CVC4
   (=> (dynamic_invariant1 buf_addr true false true true)
   (=> (<= length 65536)
   (=>
-  (= (bvudiv buf_addr #x0000000000010000) (bvudiv (bvsub (bvadd buf_addr ((_ int2bv 64) 
+  (= (bvudiv buf_addr #x0000000000010000) (bvudiv (bvsub (bvadd buf_addr ((_ int_to_bv 64) 
   length)) #x0000000000000001) #x0000000000010000))
   (=>
-  (bvule (bvsub (bvadd buf_addr ((_ int2bv 64) length)) #x0000000000000001) #xFFFFFFFFFFFFFFFF)
+  (bvule (bvsub (bvadd buf_addr ((_ int_to_bv 64) length)) #x0000000000000001) #xFFFFFFFFFFFFFFFF)
   (=>
   (= (to_rep3
      (rec__ada___ada___hw__dbc__transfer_rings__transfer_pointers__enqueue

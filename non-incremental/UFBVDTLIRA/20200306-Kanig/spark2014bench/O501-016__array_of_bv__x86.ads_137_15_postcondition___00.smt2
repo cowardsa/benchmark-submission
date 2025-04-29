@@ -167,7 +167,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -284,7 +284,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 16)) (i Int))
   (=> (and (<= 0 i) (< i 65536))
-  (= (nth_bv1 x ((_ int2bv 16) i)) (nth1 x i)))))
+  (= (nth_bv1 x ((_ int_to_bv 16) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 16) (_ BitVec 16) (_ BitVec 16)
   (_ BitVec 16)) Bool)
@@ -379,7 +379,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv2 x ((_ int2bv 64) i)) (nth2 x i)))))
+  (= (nth_bv2 x ((_ int_to_bv 64) i)) (nth2 x i)))))
 
 (declare-fun eq_sub_bv2 ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -478,7 +478,7 @@ Target solver: CVC4
      (let ((result (dh x86__rdx)))
      (=> (dh__function_guard result x86__rdx)
      (and
-     (= result ((_ extract 7 0) (bvurem (bvudiv (bvand x86__rdx #x000000000000FF00) #x0000000000000100) ((_ int2bv 64) 256))))
+     (= result ((_ extract 7 0) (bvurem (bvudiv (bvand x86__rdx #x000000000000FF00) #x0000000000000100) ((_ int_to_bv 64) 256))))
      (dynamic_invariant1 result true false true true))))) :pattern ((dh
                                                                     x86__rdx)) )))
 

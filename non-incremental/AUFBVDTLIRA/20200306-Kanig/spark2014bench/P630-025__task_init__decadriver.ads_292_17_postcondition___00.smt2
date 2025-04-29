@@ -167,7 +167,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -284,7 +284,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 16)) (i Int))
   (=> (and (<= 0 i) (< i 65536))
-  (= (nth_bv1 x ((_ int2bv 16) i)) (nth1 x i)))))
+  (= (nth_bv1 x ((_ int_to_bv 16) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 16) (_ BitVec 16) (_ BitVec 16)
   (_ BitVec 16)) Bool)
@@ -1976,7 +1976,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv2 x ((_ int2bv 32) i)) (nth2 x i)))))
+  (= (nth_bv2 x ((_ int_to_bv 32) i)) (nth2 x i)))))
 
 (declare-fun eq_sub_bv2 ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -3996,7 +3996,7 @@ Target solver: CVC4
      (rec__decadriver__configuration_type__phr_mode
      (us_split_fields1 config))) o4)
   (forall ((o5 bits_2))
-  (=> (= (to_rep10 o5) ((_ int2bv 8) o4))
+  (=> (= (to_rep10 o5) ((_ int_to_bv 8) o4))
   (forall ((self__3 us_split_fields4))
   (=>
   (= self__3 (us_split_fieldsqtmk2
@@ -4106,14 +4106,14 @@ Target solver: CVC4
      (rec__decadriver__configuration_type__rx_preamble_code
      (us_split_fields1 config))) o8)
   (forall ((o9 bits_5))
-  (=> (= (to_rep8 o9) ((_ int2bv 8) o8))
+  (=> (= (to_rep8 o9) ((_ int_to_bv 8) o8))
   (forall ((o10 Int))
   (=>
   (= (to_rep4
      (rec__decadriver__configuration_type__tx_preamble_code
      (us_split_fields1 config))) o10)
   (forall ((o11 bits_5))
-  (=> (= (to_rep8 o11) ((_ int2bv 8) o10))
+  (=> (= (to_rep8 o11) ((_ int_to_bv 8) o10))
   (forall ((o12 bits_1))
   (=>
   (ite (= (rec__decadriver__configuration_type__use_nonstandard_sfd
@@ -4141,13 +4141,13 @@ Target solver: CVC4
   (= (to_rep
      (rec__decadriver__configuration_type__channel (us_split_fields1 config))) o16)
   (forall ((o17 bits_4))
-  (=> (= (to_rep14 o17) ((_ int2bv 8) o16))
+  (=> (= (to_rep14 o17) ((_ int_to_bv 8) o16))
   (forall ((o18 Int))
   (=>
   (= (to_rep
      (rec__decadriver__configuration_type__channel (us_split_fields1 config))) o18)
   (forall ((o19 bits_4))
-  (=> (= (to_rep14 o19) ((_ int2bv 8) o18))
+  (=> (= (to_rep14 o19) ((_ int_to_bv 8) o18))
   (forall ((o20 bits_8))
   (=> (= (to_rep16 o20) #x00)
   (forall ((o21 bits_10))
@@ -4253,7 +4253,7 @@ Target solver: CVC4
      (rec__decadriver__configuration_type__data_rate
      (us_split_fields1 config))) o26)
   (forall ((o27 bits_2))
-  (=> (= (to_rep10 o27) ((_ int2bv 8) o26))
+  (=> (= (to_rep10 o27) ((_ int_to_bv 8) o26))
   (forall ((o28 bits_3))
   (=> (= (to_rep11 o28) #x00)
   (forall ((o29 bits_3))

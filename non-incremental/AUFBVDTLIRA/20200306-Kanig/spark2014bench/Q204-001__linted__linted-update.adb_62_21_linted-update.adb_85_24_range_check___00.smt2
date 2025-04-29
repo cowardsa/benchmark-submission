@@ -167,7 +167,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -285,7 +285,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv1 x ((_ int2bv 32) i)) (nth1 x i)))))
+  (= (nth_bv1 x ((_ int_to_bv 32) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -1881,7 +1881,7 @@ Target solver: CVC4
   (=> (=> (<= 1 4) (and (and (<= 1 1) (<= 1 32)) (and (<= 1 4) (<= 4 32))))
   (=> (= (to_rep2 (select s 4)) o3)
   (=>
-  (= x6 (bvor (bvor (bvor ((_ zero_extend 24) o3) (bvshl ((_ zero_extend 24) o2) ((_ int2bv 32) 8))) (bvshl ((_ zero_extend 24) o1) ((_ int2bv 32) 16))) (bvshl ((_ zero_extend 24) o) ((_ int2bv 32) 24))))
+  (= x6 (bvor (bvor (bvor ((_ zero_extend 24) o3) (bvshl ((_ zero_extend 24) o2) ((_ int_to_bv 32) 8))) (bvshl ((_ zero_extend 24) o1) ((_ int_to_bv 32) 16))) (bvshl ((_ zero_extend 24) o) ((_ int_to_bv 32) 24))))
   (=> (= spark__branch (ite (bvule x6 #x7FFFFFFF) true false))
   (=>
   (ite (= spark__branch true)
@@ -1903,7 +1903,7 @@ Target solver: CVC4
   (=> (=> (<= 5 8) (and (and (<= 1 5) (<= 5 32)) (and (<= 1 8) (<= 8 32))))
   (=> (= (to_rep2 (select (slide s 5 1) 4)) o8)
   (=>
-  (= x7 (bvor (bvor (bvor ((_ zero_extend 24) o8) (bvshl ((_ zero_extend 24) o7) ((_ int2bv 32) 8))) (bvshl ((_ zero_extend 24) o6) ((_ int2bv 32) 16))) (bvshl ((_ zero_extend 24) o5) ((_ int2bv 32) 24))))
+  (= x7 (bvor (bvor (bvor ((_ zero_extend 24) o8) (bvshl ((_ zero_extend 24) o7) ((_ int_to_bv 32) 8))) (bvshl ((_ zero_extend 24) o6) ((_ int_to_bv 32) 16))) (bvshl ((_ zero_extend 24) o5) ((_ int_to_bv 32) 24))))
   (=> (= spark__branch1 (ite (bvule x7 #x7FFFFFFF) true false))
   (=>
   (ite (= spark__branch1 true)
@@ -1930,7 +1930,7 @@ Target solver: CVC4
   (=> (<= 9 12) (and (and (<= 1 9) (<= 9 32)) (and (<= 1 12) (<= 12 32))))
   (=> (= (to_rep2 (select (slide s 9 1) 4)) o13)
   (=>
-  (= x8 (bvor (bvor (bvor ((_ zero_extend 24) o13) (bvshl ((_ zero_extend 24) o12) ((_ int2bv 32) 8))) (bvshl ((_ zero_extend 24) o11) ((_ int2bv 32) 16))) (bvshl ((_ zero_extend 24) o10) ((_ int2bv 32) 24))))
+  (= x8 (bvor (bvor (bvor ((_ zero_extend 24) o13) (bvshl ((_ zero_extend 24) o12) ((_ int_to_bv 32) 8))) (bvshl ((_ zero_extend 24) o11) ((_ int_to_bv 32) 16))) (bvshl ((_ zero_extend 24) o10) ((_ int_to_bv 32) 24))))
   (=> (= spark__branch2 (ite (bvule x8 #x7FFFFFFF) true false))
   (=>
   (ite (= spark__branch2 true)
@@ -1957,7 +1957,7 @@ Target solver: CVC4
   (=> (<= 13 16) (and (and (<= 1 13) (<= 13 32)) (and (<= 1 16) (<= 16 32))))
   (=> (= (to_rep2 (select (slide s 13 1) 4)) o18)
   (=>
-  (= x9 (bvor (bvor (bvor ((_ zero_extend 24) o18) (bvshl ((_ zero_extend 24) o17) ((_ int2bv 32) 8))) (bvshl ((_ zero_extend 24) o16) ((_ int2bv 32) 16))) (bvshl ((_ zero_extend 24) o15) ((_ int2bv 32) 24))))
+  (= x9 (bvor (bvor (bvor ((_ zero_extend 24) o18) (bvshl ((_ zero_extend 24) o17) ((_ int_to_bv 32) 8))) (bvshl ((_ zero_extend 24) o16) ((_ int_to_bv 32) 16))) (bvshl ((_ zero_extend 24) o15) ((_ int_to_bv 32) 24))))
   (=> (= spark__branch3 (ite (bvule x9 #x7FFFFFFF) true false))
   (=>
   (ite (= spark__branch3 true)
@@ -1984,7 +1984,7 @@ Target solver: CVC4
   (=> (<= 17 20) (and (and (<= 1 17) (<= 17 32)) (and (<= 1 20) (<= 20 32))))
   (=> (= (to_rep2 (select (slide s 17 1) 4)) o23)
   (=>
-  (= x10 (bvor (bvor (bvor ((_ zero_extend 24) o23) (bvshl ((_ zero_extend 24) o22) ((_ int2bv 32) 8))) (bvshl ((_ zero_extend 24) o21) ((_ int2bv 32) 16))) (bvshl ((_ zero_extend 24) o20) ((_ int2bv 32) 24))))
+  (= x10 (bvor (bvor (bvor ((_ zero_extend 24) o23) (bvshl ((_ zero_extend 24) o22) ((_ int_to_bv 32) 8))) (bvshl ((_ zero_extend 24) o21) ((_ int_to_bv 32) 16))) (bvshl ((_ zero_extend 24) o20) ((_ int_to_bv 32) 24))))
   (=> (= spark__branch4 (ite (bvule x10 #x7FFFFFFF) true false))
   (=>
   (ite (= spark__branch4 true)
@@ -2011,7 +2011,7 @@ Target solver: CVC4
   (=> (<= 21 24) (and (and (<= 1 21) (<= 21 32)) (and (<= 1 24) (<= 24 32))))
   (=> (= (to_rep2 (select (slide s 21 1) 4)) o28)
   (=>
-  (= x11 (bvor (bvor (bvor ((_ zero_extend 24) o28) (bvshl ((_ zero_extend 24) o27) ((_ int2bv 32) 8))) (bvshl ((_ zero_extend 24) o26) ((_ int2bv 32) 16))) (bvshl ((_ zero_extend 24) o25) ((_ int2bv 32) 24))))
+  (= x11 (bvor (bvor (bvor ((_ zero_extend 24) o28) (bvshl ((_ zero_extend 24) o27) ((_ int_to_bv 32) 8))) (bvshl ((_ zero_extend 24) o26) ((_ int_to_bv 32) 16))) (bvshl ((_ zero_extend 24) o25) ((_ int_to_bv 32) 24))))
   (=> (= spark__branch5 (ite (bvule x11 #x7FFFFFFF) true false))
   (=> (not (= spark__branch5 true)) (in_range (ubv_to_int (bvnot x11)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
 (check-sat)

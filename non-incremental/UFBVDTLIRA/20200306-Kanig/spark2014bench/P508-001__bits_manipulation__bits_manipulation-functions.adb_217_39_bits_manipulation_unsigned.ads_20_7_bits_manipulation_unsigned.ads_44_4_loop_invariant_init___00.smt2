@@ -170,7 +170,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv x ((_ int2bv 32) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 32) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -341,7 +341,7 @@ Target solver: CVC4
      (forall ((size Int))
      (=> (and (<= 1 size) (<= size 31))
      (= (make_mask size) (bvsub (ite (< size 4294967296)
-                                (bvshl #x00000001 ((_ int2bv 32) size))
+                                (bvshl #x00000001 ((_ int_to_bv 32) size))
                                 #x00000000) #x00000001))))) :pattern (
   (lemma2 us_void_param)) )))
 
@@ -471,7 +471,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv1 x ((_ int2bv 8) i)) (nth1 x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv1 x ((_ int_to_bv 8) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -564,7 +564,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 16)) (i Int))
   (=> (and (<= 0 i) (< i 65536))
-  (= (nth_bv2 x ((_ int2bv 16) i)) (nth2 x i)))))
+  (= (nth_bv2 x ((_ int_to_bv 16) i)) (nth2 x i)))))
 
 (declare-fun eq_sub_bv2 ((_ BitVec 16) (_ BitVec 16) (_ BitVec 16)
   (_ BitVec 16)) Bool)
@@ -659,7 +659,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv3 x ((_ int2bv 64) i)) (nth3 x i)))))
+  (= (nth_bv3 x ((_ int_to_bv 64) i)) (nth3 x i)))))
 
 (declare-fun eq_sub_bv3 ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -709,15 +709,15 @@ Target solver: CVC4
      amount true true true true))
      (= (shift_right v amount) (ite (and (<= 1 32) (<= 32 8))
                                ((_ zero_extend 24) (ite (< amount 8)
-                                                   (bvlshr ((_ extract 7 0) v) ((_ int2bv 8) amount))
+                                                   (bvlshr ((_ extract 7 0) v) ((_ int_to_bv 8) amount))
                                                    #x00))
                                (ite (and (<= 9 32) (<= 32 16))
                                ((_ zero_extend 16) (ite (< amount 16)
-                                                   (bvlshr ((_ extract 15 0) v) ((_ int2bv 16) amount))
+                                                   (bvlshr ((_ extract 15 0) v) ((_ int_to_bv 16) amount))
                                                    #x0000))
                                (ite (and (<= 17 32) (<= 32 32))
-                               (bvlshr v ((_ int2bv 32) amount))
-                               ((_ extract 31 0) (bvlshr ((_ zero_extend 32) v) ((_ int2bv 64) amount)))))))) :pattern (
+                               (bvlshr v ((_ int_to_bv 32) amount))
+                               ((_ extract 31 0) (bvlshr ((_ zero_extend 32) v) ((_ int_to_bv 64) amount)))))))) :pattern (
   (shift_right v amount)) ))))
 
 ;; lemma8__post_axiom
@@ -732,7 +732,7 @@ Target solver: CVC4
      (forall ((n Int))
      (=> (and (<= 1 n) (<= n 31))
      (bvult (shift_right val__ (- 32 n)) (ite (< n 4294967296)
-                                         (bvshl #x00000001 ((_ int2bv 32) n))
+                                         (bvshl #x00000001 ((_ int_to_bv 32) n))
                                          #x00000000))))))) :pattern (
   (lemma81 us_void_param)) )))
 
@@ -747,10 +747,10 @@ Target solver: CVC4
   (=> (= (and (ite (<= 2 i) true false) (ite (<= i 31) true false)) true)
   (=>
   (= (make_mask i) (bvsub (ite (< i 4294967296)
-                          (bvshl #x00000001 ((_ int2bv 32) i)) #x00000000) #x00000001))
+                          (bvshl #x00000001 ((_ int_to_bv 32) i)) #x00000000) #x00000001))
   (=> (<= 1 j)
   (=> (<= j (- i 1))
   (= (make_mask j) (bvsub (ite (< j 4294967296)
-                          (bvshl #x00000001 ((_ int2bv 32) j)) #x00000000) #x00000001))))))))))))
+                          (bvshl #x00000001 ((_ int_to_bv 32) j)) #x00000000) #x00000001))))))))))))
 (check-sat)
 (exit)

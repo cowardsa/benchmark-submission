@@ -240,7 +240,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -359,7 +359,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv1 x ((_ int2bv 64) i)) (nth1 x i)))))
+  (= (nth_bv1 x ((_ int_to_bv 64) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -997,7 +997,7 @@ Target solver: CVC4
   (=> (= (to_rep2 (select (to_array data) o5)) o6)
   (forall ((lane1 (_ BitVec 64)))
   (=>
-  (= lane1 (bvor lane (bvshl ((_ zero_extend 56) o6) ((_ int2bv 64) o3))))
+  (= lane1 (bvor lane (bvshl ((_ zero_extend 56) o6) ((_ int_to_bv 64) o3))))
   (forall ((i1 Int))
   (=> (= i1 1)
   (let ((o7 (* i1 8)))
@@ -1012,7 +1012,7 @@ Target solver: CVC4
   (=> (= (to_rep2 (select (to_array data) o9)) o10)
   (forall ((lane2 (_ BitVec 64)))
   (=>
-  (= lane2 (bvor lane1 (bvshl ((_ zero_extend 56) o10) ((_ int2bv 64) o7))))
+  (= lane2 (bvor lane1 (bvshl ((_ zero_extend 56) o10) ((_ int_to_bv 64) o7))))
   (forall ((i2 Int))
   (=> (= i2 2)
   (let ((o11 (* i2 8)))
@@ -1027,7 +1027,7 @@ Target solver: CVC4
   (=> (= (to_rep2 (select (to_array data) o13)) o14)
   (forall ((lane3 (_ BitVec 64)))
   (=>
-  (= lane3 (bvor lane2 (bvshl ((_ zero_extend 56) o14) ((_ int2bv 64) o11))))
+  (= lane3 (bvor lane2 (bvshl ((_ zero_extend 56) o14) ((_ int_to_bv 64) o11))))
   (forall ((i3 Int))
   (=> (= i3 3)
   (let ((o15 (* i3 8)))
@@ -1042,7 +1042,7 @@ Target solver: CVC4
   (=> (= (to_rep2 (select (to_array data) o17)) o18)
   (forall ((lane4 (_ BitVec 64)))
   (=>
-  (= lane4 (bvor lane3 (bvshl ((_ zero_extend 56) o18) ((_ int2bv 64) o15))))
+  (= lane4 (bvor lane3 (bvshl ((_ zero_extend 56) o18) ((_ int_to_bv 64) o15))))
   (forall ((i4 Int))
   (=> (= i4 4)
   (let ((o19 (* i4 8)))
@@ -1057,7 +1057,7 @@ Target solver: CVC4
   (=> (= (to_rep2 (select (to_array data) o21)) o22)
   (forall ((lane5 (_ BitVec 64)))
   (=>
-  (= lane5 (bvor lane4 (bvshl ((_ zero_extend 56) o22) ((_ int2bv 64) o19))))
+  (= lane5 (bvor lane4 (bvshl ((_ zero_extend 56) o22) ((_ int_to_bv 64) o19))))
   (forall ((i5 Int))
   (=> (= i5 5)
   (let ((o23 (* i5 8)))
@@ -1072,7 +1072,7 @@ Target solver: CVC4
   (=> (= (to_rep2 (select (to_array data) o25)) o26)
   (forall ((lane6 (_ BitVec 64)))
   (=>
-  (= lane6 (bvor lane5 (bvshl ((_ zero_extend 56) o26) ((_ int2bv 64) o23))))
+  (= lane6 (bvor lane5 (bvshl ((_ zero_extend 56) o26) ((_ int_to_bv 64) o23))))
   (forall ((i6 Int))
   (=> (= i6 6)
   (let ((o27 (* i6 8)))
@@ -1087,7 +1087,7 @@ Target solver: CVC4
   (=> (= (to_rep2 (select (to_array data) o29)) o30)
   (forall ((lane7 (_ BitVec 64)))
   (=>
-  (= lane7 (bvor lane6 (bvshl ((_ zero_extend 56) o30) ((_ int2bv 64) o27))))
+  (= lane7 (bvor lane6 (bvshl ((_ zero_extend 56) o30) ((_ int_to_bv 64) o27))))
   (forall ((i7 Int))
   (=> (= i7 7)
   (let ((o31 (* i7 8)))
@@ -1102,7 +1102,7 @@ Target solver: CVC4
   (=> (= (to_rep2 (select (to_array data) o33)) o34)
   (forall ((lane8 (_ BitVec 64)))
   (=>
-  (= lane8 (bvor lane7 (bvshl ((_ zero_extend 56) o34) ((_ int2bv 64) o31))))
+  (= lane8 (bvor lane7 (bvshl ((_ zero_extend 56) o34) ((_ int_to_bv 64) o31))))
   (forall ((o35 (_ BitVec 64)))
   (=> (= (to_rep (get a x1 y1)) o35)
   (forall ((o36 lane_type))

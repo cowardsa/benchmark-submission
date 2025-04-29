@@ -167,7 +167,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -671,7 +671,7 @@ Target solver: CVC4
      (=> (shift_right__function_guard result value count)
      (and
      (= result (bvudiv value (ite (< count 256)
-                             (bvshl #x01 ((_ int2bv 8) count)) #x00)))
+                             (bvshl #x01 ((_ int_to_bv 8) count)) #x00)))
      (dynamic_invariant2 result true false true true))))) :pattern ((shift_right
                                                                     value
                                                                     count)) ))))
@@ -753,7 +753,7 @@ Target solver: CVC4
   (=> (dynamic_invariant2 new_overflow false false true true)
   (=> (dynamic_invariant2 overflow_mask false false true true)
   (=>
-  (ite (< (- 8 distance) 8) (= o (bvshl #xFF ((_ int2bv 8) (- 8 distance))))
+  (ite (< (- 8 distance) 8) (= o (bvshl #xFF ((_ int_to_bv 8) (- 8 distance))))
   (= o #x00))
   (=> (= overflow_mask1 o)
   (=> (= (last1 number__split_fields) r120b)
@@ -795,7 +795,7 @@ Target solver: CVC4
   (=>
   (and (shift_right__function_guard o4 o3 o1)
   (and (dynamic_invariant2 o4 true false true true)
-  (= o4 (bvudiv o3 (ite (< o1 256) (bvshl #x01 ((_ int2bv 8) o1)) #x00)))))
+  (= o4 (bvudiv o3 (ite (< o1 256) (bvshl #x01 ((_ int_to_bv 8) o1)) #x00)))))
   (forall ((new_overflow2 (_ BitVec 8)))
   (=> (= new_overflow2 o4)
   (forall ((o5 (_ BitVec 8)))
@@ -806,7 +806,7 @@ Target solver: CVC4
   (<= i1 (last1 number__split_fields1)))
   (exists ((o6 (_ BitVec 8)))
   (and (= (to_rep2 (select (to_array number__split_fields1) i1)) o6)
-  (= o5 (bvshl o6 ((_ int2bv 8) distance)))))) (= o5 #x00))
+  (= o5 (bvshl o6 ((_ int_to_bv 8) distance)))))) (= o5 #x00))
   (forall ((o6 octet))
   (=> (= (to_rep2 o6) o5)
   (=>

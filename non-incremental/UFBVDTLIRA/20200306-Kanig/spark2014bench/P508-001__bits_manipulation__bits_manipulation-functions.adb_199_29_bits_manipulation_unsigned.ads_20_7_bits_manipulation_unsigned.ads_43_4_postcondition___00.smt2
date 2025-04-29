@@ -168,7 +168,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 16)) (i Int))
-  (=> (and (<= 0 i) (< i 65536)) (= (nth_bv x ((_ int2bv 16) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 65536)) (= (nth_bv x ((_ int_to_bv 16) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 16) (_ BitVec 16) (_ BitVec 16)
   (_ BitVec 16)) Bool)
@@ -245,11 +245,11 @@ Target solver: CVC4
      (forall ((n Int))
      (=> (and (<= 0 n) (<= n 15))
      (=>
-     (= (bvand v (ite (< n 65536) (bvshl #x0001 ((_ int2bv 16) n)) #x0000)) #x0000)
-     (= (bvand (bvadd v (ite (< n 65536) (bvshl #x0001 ((_ int2bv 16) n))
+     (= (bvand v (ite (< n 65536) (bvshl #x0001 ((_ int_to_bv 16) n)) #x0000)) #x0000)
+     (= (bvand (bvadd v (ite (< n 65536) (bvshl #x0001 ((_ int_to_bv 16) n))
                         #x0000)) (ite (< n 65536)
-                                 (bvshl #x0001 ((_ int2bv 16) n)) #x0000)) 
-     (ite (< n 65536) (bvshl #x0001 ((_ int2bv 16) n)) #x0000)))))))) :pattern (
+                                 (bvshl #x0001 ((_ int_to_bv 16) n)) #x0000)) 
+     (ite (< n 65536) (bvshl #x0001 ((_ int_to_bv 16) n)) #x0000)))))))) :pattern (
   (axiom__ us_void_param)) )))
 
 (declare-const amount Int)
@@ -405,27 +405,27 @@ Target solver: CVC4
   (exists ((o (_ BitVec 16)))
   (and
   (let ((temp___575 (- i1 1)))
-  (ite (< temp___575 65536) (= o (bvshl #x0001 ((_ int2bv 16) temp___575)))
+  (ite (< temp___575 65536) (= o (bvshl #x0001 ((_ int_to_bv 16) temp___575)))
   (= o #x0000)))
   (exists ((result__2 (_ BitVec 16)))
   (and (= result__2 (bvadd result__ o))
   (exists ((o1 (_ BitVec 16)))
   (and
   (let ((temp___580 (- i1 1)))
-  (ite (< temp___580 65536) (= o1 (bvshl #x0001 ((_ int2bv 16) temp___580)))
+  (ite (< temp___580 65536) (= o1 (bvshl #x0001 ((_ int_to_bv 16) temp___580)))
   (= o1 #x0000)))
   (exists ((o2 (_ BitVec 16)))
   (and
   (let ((temp___579 (- i1 1)))
-  (ite (< temp___579 65536) (= o2 (bvshl #x0001 ((_ int2bv 16) temp___579)))
+  (ite (< temp___579 65536) (= o2 (bvshl #x0001 ((_ int_to_bv 16) temp___579)))
   (= o2 #x0000)))
   (exists ((i2 Int))
   (and
   (= (bvand result__1 (let ((temp___581 (- i2 1)))
                       (ite (< temp___581 65536)
-                      (bvshl #x0001 ((_ int2bv 16) temp___581)) #x0000))) 
+                      (bvshl #x0001 ((_ int_to_bv 16) temp___581)) #x0000))) 
   (let ((temp___582 (- i2 1)))
-  (ite (< temp___582 65536) (bvshl #x0001 ((_ int2bv 16) temp___582)) #x0000)))
+  (ite (< temp___582 65536) (bvshl #x0001 ((_ int_to_bv 16) temp___582)) #x0000)))
   (and
   (= (and (ite (and (dynamic_invariant result__1 true true true true)
                (dynamic_property 1 amount i2))
@@ -437,8 +437,8 @@ Target solver: CVC4
   (=> (<= i amount)
   (= (bvand bits_manipulation_unsigned__unsigned_16__functions__proofs__make_mask__lemma2__ones__result 
   (let ((temp___587 (- i 1)))
-  (ite (< temp___587 65536) (bvshl #x0001 ((_ int2bv 16) temp___587)) #x0000))) 
+  (ite (< temp___587 65536) (bvshl #x0001 ((_ int_to_bv 16) temp___587)) #x0000))) 
   (let ((temp___588 (- i 1)))
-  (ite (< temp___588 65536) (bvshl #x0001 ((_ int2bv 16) temp___588)) #x0000))))))))))))))
+  (ite (< temp___588 65536) (bvshl #x0001 ((_ int_to_bv 16) temp___588)) #x0000))))))))))))))
 (check-sat)
 (exit)

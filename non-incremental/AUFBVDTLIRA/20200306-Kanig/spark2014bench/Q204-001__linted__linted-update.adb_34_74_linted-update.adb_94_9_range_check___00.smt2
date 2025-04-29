@@ -169,7 +169,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -287,7 +287,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv1 x ((_ int2bv 32) i)) (nth1 x i)))))
+  (= (nth_bv1 x ((_ int_to_bv 32) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -1439,11 +1439,11 @@ Target solver: CVC4
   (ite (= spark__branch true)
   (let ((o (- c206b (- 2147483648))))
   (and (in_range1 o)
-  (and (uint_in_range1 o) (= y1 (bvsub ((_ int2bv 32) o) #x80000000)))))
-  (let ((o c206b)) (and (uint_in_range1 o) (= y1 ((_ int2bv 32) o)))))
+  (and (uint_in_range1 o) (= y1 (bvsub ((_ int_to_bv 32) o) #x80000000)))))
+  (let ((o c206b)) (and (uint_in_range1 o) (= y1 ((_ int_to_bv 32) o)))))
   (=> (= c207b1 y1)
   (=> (= c207b1 c210b)
   (=> (dynamic_invariant1 c210b true false true true)
-  (bvule ((_ zero_extend 24) #x00) (bvand (bvlshr c210b ((_ int2bv 32) 24)) #x000000FF)))))))))))))))
+  (bvule ((_ zero_extend 24) #x00) (bvand (bvlshr c210b ((_ int_to_bv 32) 24)) #x000000FF)))))))))))))))
 (check-sat)
 (exit)

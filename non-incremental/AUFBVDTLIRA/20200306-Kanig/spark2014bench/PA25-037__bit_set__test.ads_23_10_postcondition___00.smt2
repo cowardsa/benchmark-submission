@@ -170,7 +170,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv x ((_ int2bv 32) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 32) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -289,7 +289,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv1 x ((_ int2bv 64) i)) (nth1 x i)))))
+  (= (nth_bv1 x ((_ int_to_bv 64) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -667,11 +667,11 @@ Target solver: CVC4
   (=> (<= (first1 a) a_first)
   (=> (<= a_first (last1 a))
   (=>
-  (bvule (bvudiv i #x0000000000000020) ((_ int2bv 64) (- (last1 a) a_first)))
+  (bvule (bvudiv i #x0000000000000020) ((_ int_to_bv 64) (- (last1 a) a_first)))
   (=>
   (let ((o1 (ubv_to_int (bvurem i #x0000000000000020))))
   (and (in_range2 o1)
-  (ite (< o1 4294967296) (= o (bvshl #x00000001 ((_ int2bv 32) o1)))
+  (ite (< o1 4294967296) (= o (bvshl #x00000001 ((_ int_to_bv 32) o1)))
   (= o #x00000000))))
   (let ((o1 (ubv_to_int (bvudiv i #x0000000000000020))))
   (=> (in_range2 o1)
@@ -689,6 +689,6 @@ Target solver: CVC4
             (select (to_array a) (+ a_first (ubv_to_int (bvudiv i #x0000000000000020))))) 
   (let ((temp___202 (ubv_to_int (bvurem i #x0000000000000020))))
   (ite (< temp___202 4294967296)
-  (bvshl #x00000001 ((_ int2bv 32) temp___202)) #x00000000))) #x00000000))))))))))))))))))))))
+  (bvshl #x00000001 ((_ int_to_bv 32) temp___202)) #x00000000))) #x00000000))))))))))))))))))))))
 (check-sat)
 (exit)

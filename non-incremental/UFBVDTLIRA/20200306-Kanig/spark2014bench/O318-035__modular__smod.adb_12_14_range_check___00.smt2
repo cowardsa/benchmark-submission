@@ -167,7 +167,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -353,10 +353,10 @@ Target solver: CVC4
                                      first last temp___expr_186)))
 
 ;; first__def_axiom
-  (assert (= first ((_ int2bv 8) x)))
+  (assert (= first ((_ int_to_bv 8) x)))
 
 ;; last__def_axiom
-  (assert (= last ((_ int2bv 8) y)))
+  (assert (= last ((_ int_to_bv 8) y)))
 
 (define-fun dynamic_invariant2 ((temp___expr_179 (_ BitVec 8))
   (temp___is_init_175 Bool) (temp___skip_constant_176 Bool)

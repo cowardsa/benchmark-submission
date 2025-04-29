@@ -171,7 +171,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv x ((_ int2bv 64) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 64) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -777,8 +777,8 @@ Target solver: CVC4
   (exists ((temp___269 Int))
   (and (= (to_rep (select (to_array powers) c5b1)) temp___269)
   (ite (< temp___269 18446744073709551616)
-  (= o (bvshl #x0000000000000001 ((_ int2bv 64) temp___269)))
+  (= o (bvshl #x0000000000000001 ((_ int_to_bv 64) temp___269)))
   (= o #x0000000000000000)))))
-  (=> (not (bvugt ((_ int2bv 64) i) o)) (<= (first1 powers) c5b1))))))))))))))))))
+  (=> (not (bvugt ((_ int_to_bv 64) i) o)) (<= (first1 powers) c5b1))))))))))))))))))
 (check-sat)
 (exit)

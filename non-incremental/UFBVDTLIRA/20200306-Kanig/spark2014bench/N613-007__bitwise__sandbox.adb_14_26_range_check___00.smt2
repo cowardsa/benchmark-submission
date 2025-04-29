@@ -170,7 +170,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv x ((_ int2bv 32) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 32) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -289,7 +289,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv1 x ((_ int2bv 64) i)) (nth1 x i)))))
+  (= (nth_bv1 x ((_ int_to_bv 64) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -383,6 +383,6 @@ Target solver: CVC4
   (=> (dynamic_invariant whole true false true true)
   (=> (dynamic_invariant1 msw false false true true)
   (=> (dynamic_invariant1 lsw false false true true)
-  (bvule ((_ zero_extend 32) #x00000000) (bvlshr whole ((_ int2bv 64) 32)))))))))
+  (bvule ((_ zero_extend 32) #x00000000) (bvlshr whole ((_ int_to_bv 64) 32)))))))))
 (check-sat)
 (exit)

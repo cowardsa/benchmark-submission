@@ -244,7 +244,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv x ((_ int2bv 64) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 64) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -372,7 +372,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv1 x ((_ int2bv 8) i)) (nth1 x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv1 x ((_ int_to_bv 8) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -465,7 +465,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 16)) (i Int))
   (=> (and (<= 0 i) (< i 65536))
-  (= (nth_bv2 x ((_ int2bv 16) i)) (nth2 x i)))))
+  (= (nth_bv2 x ((_ int_to_bv 16) i)) (nth2 x i)))))
 
 (declare-fun eq_sub_bv2 ((_ BitVec 16) (_ BitVec 16) (_ BitVec 16)
   (_ BitVec 16)) Bool)
@@ -559,7 +559,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv3 x ((_ int2bv 32) i)) (nth3 x i)))))
+  (= (nth_bv3 x ((_ int_to_bv 32) i)) (nth3 x i)))))
 
 (declare-fun eq_sub_bv3 ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -665,15 +665,15 @@ Target solver: CVC4
      amount true true true true))
      (= (shift_right v amount) (ite (and (<= 1 64) (<= 64 8))
                                ((_ zero_extend 56) (ite (< amount 8)
-                                                   (bvlshr ((_ extract 7 0) v) ((_ int2bv 8) amount))
+                                                   (bvlshr ((_ extract 7 0) v) ((_ int_to_bv 8) amount))
                                                    #x00))
                                (ite (and (<= 9 64) (<= 64 16))
                                ((_ zero_extend 48) (ite (< amount 16)
-                                                   (bvlshr ((_ extract 15 0) v) ((_ int2bv 16) amount))
+                                                   (bvlshr ((_ extract 15 0) v) ((_ int_to_bv 16) amount))
                                                    #x0000))
                                (ite (and (<= 17 64) (<= 64 32))
-                               ((_ zero_extend 32) (bvlshr ((_ extract 31 0) v) ((_ int2bv 32) amount)))
-                               (bvlshr v ((_ int2bv 64) amount))))))) :pattern (
+                               ((_ zero_extend 32) (bvlshr ((_ extract 31 0) v) ((_ int_to_bv 32) amount)))
+                               (bvlshr v ((_ int_to_bv 64) amount))))))) :pattern (
   (shift_right v amount)) ))))
 
 (declare-const value (_ BitVec 64))
@@ -758,15 +758,15 @@ Target solver: CVC4
   (and (dynamic_invariant1 o true false true true)
   (= o (ite (and (<= 1 64) (<= 64 8))
        ((_ zero_extend 56) (ite (< shift_amount1 8)
-                           (bvlshr ((_ extract 7 0) v1) ((_ int2bv 8) shift_amount1))
+                           (bvlshr ((_ extract 7 0) v1) ((_ int_to_bv 8) shift_amount1))
                            #x00))
        (ite (and (<= 9 64) (<= 64 16))
        ((_ zero_extend 48) (ite (< shift_amount1 16)
-                           (bvlshr ((_ extract 15 0) v1) ((_ int2bv 16) shift_amount1))
+                           (bvlshr ((_ extract 15 0) v1) ((_ int_to_bv 16) shift_amount1))
                            #x0000))
        (ite (and (<= 17 64) (<= 64 32))
-       ((_ zero_extend 32) (bvlshr ((_ extract 31 0) v1) ((_ int2bv 32) shift_amount1)))
-       (bvlshr v1 ((_ int2bv 64) shift_amount1)))))))
+       ((_ zero_extend 32) (bvlshr ((_ extract 31 0) v1) ((_ int_to_bv 32) shift_amount1)))
+       (bvlshr v1 ((_ int_to_bv 64) shift_amount1)))))))
   (exists ((new_v2 (_ BitVec 64)))
   (and (= new_v2 o)
   (exists ((v2 (_ BitVec 64)))

@@ -171,7 +171,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv x ((_ int2bv 64) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 64) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -308,7 +308,7 @@ Target solver: CVC4
      (not
      (= (bvand value (let ((temp___172 (ubv_to_int pos)))
                      (ite (< temp___172 18446744073709551616)
-                     (bvshl #x0000000000000001 ((_ int2bv 64) temp___172))
+                     (bvshl #x0000000000000001 ((_ int_to_bv 64) temp___172))
                      #x0000000000000000))) #x0000000000000000)))))) :pattern (
   (bit_test value pos)) )))
 
@@ -335,7 +335,7 @@ Target solver: CVC4
   (=>
   (let ((temp___180 (ubv_to_int pos)))
   (ite (< temp___180 18446744073709551616)
-  (= o (bvshl #x0000000000000001 ((_ int2bv 64) temp___180)))
+  (= o (bvshl #x0000000000000001 ((_ int_to_bv 64) temp___180)))
   (= o #x0000000000000000)))
   (=> (= res1 (bvor res o))
   (=> (= bitset__bit_set__result res1)

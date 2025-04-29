@@ -167,7 +167,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -840,8 +840,8 @@ Target solver: CVC4
   (! (=>
      (and (dynamic_invariant1 left true true true true) (dynamic_invariant2
      right true true true true))
-     (= (oadd left right) (let ((temp___341 (bvadd left (bvurem right ((_ int2bv 8) 256)))))
-                          (ite (bvule (bvsub #x03 left) (bvurem right ((_ int2bv 8) 256)))
+     (= (oadd left right) (let ((temp___341 (bvadd left (bvurem right ((_ int_to_bv 8) 256)))))
+                          (ite (bvule (bvsub #x03 left) (bvurem right ((_ int_to_bv 8) 256)))
                           (bvsub temp___341 #x03) temp___341)))) :pattern (
   (oadd left right)) )))
 
@@ -911,8 +911,8 @@ Target solver: CVC4
   (=>
   (and (oadd__function_guard o3 o2 o)
   (and (dynamic_invariant1 o3 true false true true)
-  (= o3 (let ((temp___340 (bvadd o2 (bvurem o ((_ int2bv 8) 256)))))
-        (ite (bvule (bvsub #x03 o2) (bvurem o ((_ int2bv 8) 256)))
+  (= o3 (let ((temp___340 (bvadd o2 (bvurem o ((_ int_to_bv 8) 256)))))
+        (ite (bvule (bvsub #x03 o2) (bvurem o ((_ int_to_bv 8) 256)))
         (bvsub temp___340 #x03) temp___340)))))
   (forall ((o4 Int))
   (=>

@@ -242,7 +242,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -928,6 +928,6 @@ Target solver: CVC4
   (forall ((o1 Int))
   (=> (= (to_rep (select (to_array s) o)) o1)
   (forall ((o2 byte))
-  (=> (= (to_rep2 o2) ((_ int2bv 8) o1)) (<= (to_rep1 b__first) i1))))))))))))))))))))
+  (=> (= (to_rep2 o2) ((_ int_to_bv 8) o1)) (<= (to_rep1 b__first) i1))))))))))))))))))))
 (check-sat)
 (exit)

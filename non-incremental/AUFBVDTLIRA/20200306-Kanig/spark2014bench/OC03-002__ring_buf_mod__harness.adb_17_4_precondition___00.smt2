@@ -218,7 +218,7 @@ Target solver: CVC4
   (assert
   (forall ((x1 (_ BitVec 16)) (i Int))
   (=> (and (<= 0 i) (< i 65536))
-  (= (nth_bv x1 ((_ int2bv 16) i)) (nth x1 i)))))
+  (= (nth_bv x1 ((_ int_to_bv 16) i)) (nth x1 i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 16) (_ BitVec 16) (_ BitVec 16)
   (_ BitVec 16)) Bool)
@@ -802,7 +802,7 @@ Target solver: CVC4
                      (to_rep2
                      (rec__ring_buf__ring_buffer__length
                      (us_split_fields1 r)))) 1))
-                     (let ((temp___227 (let ((temp___224 (bvsub (bvsub (bvadd #x0000 ((_ int2bv 16) 
+                     (let ((temp___227 (let ((temp___224 (bvsub (bvsub (bvadd #x0000 ((_ int_to_bv 16) 
                                        (to_rep2
                                        (rec__ring_buf__ring_buffer__length
                                        (us_split_fields1 r))))) (bvsub #xFFFF 
@@ -830,7 +830,7 @@ Target solver: CVC4
                      (last1 temp___226) (to_array temp___227)
                      (first1 temp___227) (last1 temp___227))
                      (first1 temp___226)
-                     ((_ int2bv 16) (- (+ (ubv_to_int (first1 temp___226)) (+ 
+                     ((_ int_to_bv 16) (- (+ (ubv_to_int (first1 temp___226)) (+ 
                      (length1 (ubv_to_int (first1 temp___226))
                      (ubv_to_int (last1 temp___226))) (length1
                                                   (ubv_to_int (first1 temp___227))
@@ -838,7 +838,7 @@ Target solver: CVC4
                      (let ((temp___231 (let ((temp___229 (bvsub (bvadd 
                                        (to_rep
                                        (rec__ring_buf__ring_buffer__first
-                                       (us_split_fields1 r))) ((_ int2bv 16) 
+                                       (us_split_fields1 r))) ((_ int_to_bv 16) 
                                        (to_rep2
                                        (rec__ring_buf__ring_buffer__length
                                        (us_split_fields1 r))))) #x0001)))
@@ -891,7 +891,7 @@ Target solver: CVC4
                          (of_array
                          (concat_singleton_right (to_array m) (first1 m)
                          (last1 m) (of_rep1 x1)) (first1 m)
-                         ((_ int2bv 16) (- (+ (ubv_to_int (first1 m)) (+ 
+                         ((_ int_to_bv 16) (- (+ (ubv_to_int (first1 m)) (+ 
                          (length1 (ubv_to_int (first1 m)) (ubv_to_int (last1 m))) 1)) 1)))))) :pattern (
   (func_push m x1)) ))))
 

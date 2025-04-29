@@ -171,7 +171,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv x ((_ int2bv 64) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 64) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -249,14 +249,14 @@ Target solver: CVC4
      (=> (and (<= 0 n) (<= n 63))
      (=>
      (= (bvand v (ite (< n 18446744073709551616)
-                 (bvshl #x0000000000000001 ((_ int2bv 64) n))
+                 (bvshl #x0000000000000001 ((_ int_to_bv 64) n))
                  #x0000000000000000)) #x0000000000000000)
      (= (bvand (bvadd v (ite (< n 18446744073709551616)
-                        (bvshl #x0000000000000001 ((_ int2bv 64) n))
+                        (bvshl #x0000000000000001 ((_ int_to_bv 64) n))
                         #x0000000000000000)) (ite (< n 18446744073709551616)
-                                             (bvshl #x0000000000000001 ((_ int2bv 64) n))
+                                             (bvshl #x0000000000000001 ((_ int_to_bv 64) n))
                                              #x0000000000000000)) (ite (< n 18446744073709551616)
-                                                                  (bvshl #x0000000000000001 ((_ int2bv 64) n))
+                                                                  (bvshl #x0000000000000001 ((_ int_to_bv 64) n))
                                                                   #x0000000000000000)))))))) :pattern (
   (axiom__ us_void_param)) )))
 
@@ -412,7 +412,7 @@ Target solver: CVC4
   (=>
   (let ((temp___637 (- i 1)))
   (ite (< temp___637 18446744073709551616)
-  (= o (bvshl #x0000000000000001 ((_ int2bv 64) temp___637)))
+  (= o (bvshl #x0000000000000001 ((_ int_to_bv 64) temp___637)))
   (= o #x0000000000000000)))
   (forall ((result__1 (_ BitVec 64)))
   (=> (= result__1 (bvadd result__ o))
@@ -420,22 +420,22 @@ Target solver: CVC4
   (=>
   (let ((temp___642 (- i 1)))
   (ite (< temp___642 18446744073709551616)
-  (= o1 (bvshl #x0000000000000001 ((_ int2bv 64) temp___642)))
+  (= o1 (bvshl #x0000000000000001 ((_ int_to_bv 64) temp___642)))
   (= o1 #x0000000000000000)))
   (forall ((o2 (_ BitVec 64)))
   (=>
   (let ((temp___641 (- i 1)))
   (ite (< temp___641 18446744073709551616)
-  (= o2 (bvshl #x0000000000000001 ((_ int2bv 64) temp___641)))
+  (= o2 (bvshl #x0000000000000001 ((_ int_to_bv 64) temp___641)))
   (= o2 #x0000000000000000)))
   (forall ((result__2 (_ BitVec 64)) (i1 Int))
   (=>
   (= (bvand result__2 (let ((temp___643 (- i1 1)))
                       (ite (< temp___643 18446744073709551616)
-                      (bvshl #x0000000000000001 ((_ int2bv 64) temp___643))
+                      (bvshl #x0000000000000001 ((_ int_to_bv 64) temp___643))
                       #x0000000000000000))) (let ((temp___644 (- i1 1)))
                                             (ite (< temp___644 18446744073709551616)
-                                            (bvshl #x0000000000000001 ((_ int2bv 64) temp___644))
+                                            (bvshl #x0000000000000001 ((_ int_to_bv 64) temp___644))
                                             #x0000000000000000)))
   (=>
   (= (and (ite (and (dynamic_invariant result__2 true true true true)
@@ -448,7 +448,7 @@ Target solver: CVC4
   (=>
   (let ((temp___637 (- i2 1)))
   (ite (< temp___637 18446744073709551616)
-  (= o3 (bvshl #x0000000000000001 ((_ int2bv 64) temp___637)))
+  (= o3 (bvshl #x0000000000000001 ((_ int_to_bv 64) temp___637)))
   (= o3 #x0000000000000000)))
   (forall ((result__3 (_ BitVec 64)))
   (=> (= result__3 (bvadd result__2 o3))
@@ -456,20 +456,20 @@ Target solver: CVC4
   (=>
   (let ((temp___642 (- i2 1)))
   (ite (< temp___642 18446744073709551616)
-  (= o4 (bvshl #x0000000000000001 ((_ int2bv 64) temp___642)))
+  (= o4 (bvshl #x0000000000000001 ((_ int_to_bv 64) temp___642)))
   (= o4 #x0000000000000000)))
   (forall ((o5 (_ BitVec 64)))
   (=>
   (let ((temp___641 (- i2 1)))
   (ite (< temp___641 18446744073709551616)
-  (= o5 (bvshl #x0000000000000001 ((_ int2bv 64) temp___641)))
+  (= o5 (bvshl #x0000000000000001 ((_ int_to_bv 64) temp___641)))
   (= o5 #x0000000000000000)))
   (= (bvand result__3 (let ((temp___643 (- i2 1)))
                       (ite (< temp___643 18446744073709551616)
-                      (bvshl #x0000000000000001 ((_ int2bv 64) temp___643))
+                      (bvshl #x0000000000000001 ((_ int_to_bv 64) temp___643))
                       #x0000000000000000))) (let ((temp___644 (- i2 1)))
                                             (ite (< temp___644 18446744073709551616)
-                                            (bvshl #x0000000000000001 ((_ int2bv 64) temp___644))
+                                            (bvshl #x0000000000000001 ((_ int_to_bv 64) temp___644))
                                             #x0000000000000000))))))))))))))))))))))))))))))))))))
 (check-sat)
 (exit)

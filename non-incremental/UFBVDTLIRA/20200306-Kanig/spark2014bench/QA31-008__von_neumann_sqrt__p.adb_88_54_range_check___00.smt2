@@ -171,7 +171,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv x ((_ int2bv 64) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 64) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -397,7 +397,7 @@ Target solver: CVC4
   (=> (dynamic_invariant1 b false false true true)
   (=> (= i #x0000000000000000)
   (=> (dynamic_invariant1 i true false true true)
-  (=> (= ux1 ((_ int2bv 64) x))
+  (=> (= ux1 ((_ int_to_bv 64) x))
   (=> (bvule ux1 #x000000007FFFFFFF)
   (=> (= m1 #x0000000040000000)
   (=> (= y1 #x0000000000000000)
@@ -416,7 +416,7 @@ Target solver: CVC4
   (let ((o (ubv_to_int bits)))
   (=> (in_range1 o)
   (forall ((left_x (_ BitVec 64)))
-  (=> (= left_x (bvlshr ((_ int2bv 64) x) ((_ int2bv 64) o)))
+  (=> (= left_x (bvlshr ((_ int_to_bv 64) x) ((_ int_to_bv 64) o)))
   (=> (dynamic_invariant1 left_x true false true true) (in_range1
   (ubv_to_int bits))))))))))))))))))))))))))))))
 (check-sat)

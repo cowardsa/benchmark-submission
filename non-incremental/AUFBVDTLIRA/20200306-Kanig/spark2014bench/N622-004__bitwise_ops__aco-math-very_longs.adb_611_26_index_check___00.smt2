@@ -240,7 +240,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -815,11 +815,11 @@ Target solver: CVC4
   (ite (= spark__branch true)
   (exists ((o2 (_ BitVec 8)))
   (and
-  (ite (< bit_position1 8) (= o2 (bvshl #x01 ((_ int2bv 8) bit_position1)))
+  (ite (< bit_position1 8) (= o2 (bvshl #x01 ((_ int_to_bv 8) bit_position1)))
   (= o2 #x00)) (= digit2 (bvor digit1 o2))))
   (exists ((o2 (_ BitVec 8)))
   (and
-  (ite (< bit_position1 8) (= o2 (bvshl #x01 ((_ int2bv 8) bit_position1)))
+  (ite (< bit_position1 8) (= o2 (bvshl #x01 ((_ int_to_bv 8) bit_position1)))
   (= o2 #x00)) (= digit2 (bvand digit1 (bvnot o2))))))))
   (=> (= (to_rep2 o1) digit2)
   (<= (first1 number__split_fields) digit_number1))))))))))))))))))

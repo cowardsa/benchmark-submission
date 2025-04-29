@@ -167,7 +167,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -284,7 +284,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 16)) (i Int))
   (=> (and (<= 0 i) (< i 65536))
-  (= (nth_bv1 x ((_ int2bv 16) i)) (nth1 x i)))))
+  (= (nth_bv1 x ((_ int_to_bv 16) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 16) (_ BitVec 16) (_ BitVec 16)
   (_ BitVec 16)) Bool)
@@ -381,11 +381,11 @@ Target solver: CVC4
   (forall ((fsthalf1 (_ BitVec 8)))
   (=> (= fsthalf1 ((_ extract 7 0) (bvand val__ #x00FF)))
   (forall ((o (_ BitVec 16)))
-  (=> (ite (< 8 16) (= o (bvlshr val__ ((_ int2bv 16) 8))) (= o #x0000))
+  (=> (ite (< 8 16) (= o (bvlshr val__ ((_ int_to_bv 16) 8))) (= o #x0000))
   (forall ((sndhalf1 (_ BitVec 8)))
   (=> (= sndhalf1 ((_ extract 7 0) (bvand o #x00FF)))
   (= val__ (bvor ((_ zero_extend 8) fsthalf1) (ite (< 8 16)
-                                              (bvshl ((_ zero_extend 8) sndhalf1) ((_ int2bv 16) 8))
+                                              (bvshl ((_ zero_extend 8) sndhalf1) ((_ int_to_bv 16) 8))
                                               #x0000)))))))))))))))
 (check-sat)
 (exit)

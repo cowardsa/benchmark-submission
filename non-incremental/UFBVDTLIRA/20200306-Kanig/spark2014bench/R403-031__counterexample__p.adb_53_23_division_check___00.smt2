@@ -168,7 +168,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 16)) (i Int))
-  (=> (and (<= 0 i) (< i 65536)) (= (nth_bv x ((_ int2bv 16) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 65536)) (= (nth_bv x ((_ int_to_bv 16) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 16) (_ BitVec 16) (_ BitVec 16)
   (_ BitVec 16)) Bool)
@@ -274,7 +274,7 @@ Target solver: CVC4
   (forall ((x1 (_ BitVec 16)))
   (! (=> (dynamic_invariant x1 true true true true)
      (= (pow21 x1) (ite (< (ubv_to_int x1) 16)
-                   (bvshl #x0001 ((_ int2bv 16) (ubv_to_int x1))) #x0000))) :pattern (
+                   (bvshl #x0001 ((_ int_to_bv 16) (ubv_to_int x1))) #x0000))) :pattern (
   (pow21 x1)) )))
 
 (declare-const attr__ATTRIBUTE_ADDRESS1 Int)
@@ -334,7 +334,7 @@ Target solver: CVC4
   (=> (= b2 (bvor res1 bits2))
   (=> (= b2 (bvadd res1 bits2))
   (=> (= b2 (bvmul (bvadd (bvmul #x0002 res_g1) bits_g1) (pow21 m2)))
-  (=> (ite (< 1 16) (= o (bvlshr res1 ((_ int2bv 16) 1))) (= o #x0000))
+  (=> (ite (< 1 16) (= o (bvlshr res1 ((_ int_to_bv 16) 1))) (= o #x0000))
   (=> (= res2 o)
   (=>
   (exists ((spark__branch Bool))

@@ -171,7 +171,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 16)) (i Int))
-  (=> (and (<= 0 i) (< i 65536)) (= (nth_bv x ((_ int2bv 16) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 65536)) (= (nth_bv x ((_ int_to_bv 16) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 16) (_ BitVec 16) (_ BitVec 16)
   (_ BitVec 16)) Bool)
@@ -326,7 +326,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv1 x ((_ int2bv 8) i)) (nth1 x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv1 x ((_ int_to_bv 8) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -410,7 +410,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv2 x ((_ int2bv 32) i)) (nth2 x i)))))
+  (= (nth_bv2 x ((_ int_to_bv 32) i)) (nth2 x i)))))
 
 (declare-fun eq_sub_bv2 ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -495,7 +495,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv3 x ((_ int2bv 64) i)) (nth3 x i)))))
+  (= (nth_bv3 x ((_ int_to_bv 64) i)) (nth3 x i)))))
 
 (declare-fun eq_sub_bv3 ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -835,7 +835,7 @@ Target solver: CVC4
   (= delta_speed (fp.add RNE drag (fp.mul RNE (fp.mul RNE factor (fp #b0 #b10000000010 #b0011100111010010111100011010100111111011111001110111)) (fp #b0 #b01111111001 #b0001000100010001000100010001000100010001000100010001)))))
 
 ;; n_bv__def_axiom
-  (assert (= n_bv ((_ int2bv 16) n)))
+  (assert (= n_bv ((_ int_to_bv 16) n)))
 
 ;; bound__def_axiom
   (assert
@@ -861,7 +861,7 @@ Target solver: CVC4
   (= (fp.add RNE drag (fp.mul RNE (fp.mul RNE factor (fp #b0 #b10000000010 #b0011100111010010111100011010100111111011111001110111)) (fp #b0 #b01111111001 #b0001000100010001000100010001000100010001000100010001))) 
   delta_speed)
   (=> (dynamic_invariant delta_speed true false true true)
-  (=> (= ((_ int2bv 16) n) n_bv)
+  (=> (= ((_ int_to_bv 16) n) n_bv)
   (=> (dynamic_invariant5 n_bv true false true true)
   (let ((o (fp.add RNE old_speed delta_speed)))
   (=> (fp.isFinite64 o)

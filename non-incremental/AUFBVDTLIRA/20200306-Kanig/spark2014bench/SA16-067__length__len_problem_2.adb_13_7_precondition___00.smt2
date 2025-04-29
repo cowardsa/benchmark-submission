@@ -405,7 +405,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv x ((_ int2bv 32) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 32) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -490,6 +490,6 @@ Target solver: CVC4
  ;; File "len_problem_2.adb", line 11, characters 0-0
   (not
   (=> (dynamic_invariant s true false true true)
-  (=> (< (length s) 255) (bvult ((_ int2bv 32) (length s)) #x000000FF)))))
+  (=> (< (length s) 255) (bvult ((_ int_to_bv 32) (length s)) #x000000FF)))))
 (check-sat)
 (exit)

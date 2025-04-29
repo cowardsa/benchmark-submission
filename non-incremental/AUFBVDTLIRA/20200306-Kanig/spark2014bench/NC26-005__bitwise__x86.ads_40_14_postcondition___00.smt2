@@ -167,7 +167,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -284,7 +284,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 16)) (i Int))
   (=> (and (<= 0 i) (< i 65536))
-  (= (nth_bv1 x ((_ int2bv 16) i)) (nth1 x i)))))
+  (= (nth_bv1 x ((_ int_to_bv 16) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 16) (_ BitVec 16) (_ BitVec 16)
   (_ BitVec 16)) Bool)
@@ -379,7 +379,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv2 x ((_ int2bv 64) i)) (nth2 x i)))))
+  (= (nth_bv2 x ((_ int_to_bv 64) i)) (nth2 x i)))))
 
 (declare-fun eq_sub_bv2 ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -604,7 +604,7 @@ Target solver: CVC4
   (=> (and (bvule #x0000000000000000 x) (bvule x #xFFFFFFFFFFFFFFFF))
   (or (= x o) (= (to_rep (select memory2 x)) (to_rep (select memory1 x)))))))
   (forall ((o1 (_ BitVec 16)))
-  (=> (ite (< 8 16) (= o1 (bvlshr val__ ((_ int2bv 16) 8))) (= o1 #x0000))
+  (=> (ite (< 8 16) (= o1 (bvlshr val__ ((_ int_to_bv 16) 8))) (= o1 #x0000))
   (let ((o2 (bvadd addr #x0000000000000001)))
   (forall ((memory3 (Array (_ BitVec 64) unsigned8)))
   (=> (= memory3 memory2)
@@ -629,7 +629,7 @@ Target solver: CVC4
                                                        (bvshl ((_ zero_extend 8) 
                                                        (readmem8
                                                        (bvadd addr #x0000000000000001)
-                                                       memory4)) ((_ int2bv 16) 8))
+                                                       memory4)) ((_ int_to_bv 16) 8))
                                                        #x0000)) val__))))))))))))))))))))))
 (check-sat)
 (exit)

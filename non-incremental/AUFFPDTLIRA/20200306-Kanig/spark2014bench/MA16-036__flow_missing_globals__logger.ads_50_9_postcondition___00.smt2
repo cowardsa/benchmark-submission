@@ -173,7 +173,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 16)) (i Int))
-  (=> (and (<= 0 i) (< i 65536)) (= (nth_bv x ((_ int2bv 16) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 65536)) (= (nth_bv x ((_ int_to_bv 16) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 16) (_ BitVec 16) (_ BitVec 16)
   (_ BitVec 16)) Bool)
@@ -1212,7 +1212,7 @@ Target solver: CVC4
                   (bvadd temp___210 #x0258) temp___210))) 1)))))
   (let ((o1 (- o 1)))
   (and (in_range_int o1)
-  (and (= ((_ int2bv 16) o1) tmp)
+  (and (= ((_ int_to_bv 16) o1) tmp)
   (and (dynamic_invariant3 tmp true false true true)
   (and (default_initial_assumption
   (of_array result__ (to_rep result____first) (to_rep result____last)) false)
@@ -1301,7 +1301,7 @@ Target solver: CVC4
   (= temp___259 (of_array
                 (concat1 (to_array temp___257) (first1 temp___257)
                 (last1 temp___257) (to_array temp___258) (first1 temp___258)
-                (last1 temp___258)) (first1 temp___257) ((_ int2bv 16) o4))))))))))
+                (last1 temp___258)) (first1 temp___257) ((_ int_to_bv 16) o4))))))))))
   (and
   (ite (bvule (first1 temp___259) (last1 temp___259))
   (and (bvule #x0000 tmp)
@@ -1327,7 +1327,7 @@ Target solver: CVC4
   (forall ((event_log__split_fields1 us_split_fields2))
   (log_size__function_guard (log_size event_log__split_fields1)
   event_log__split_fields1))
-  (= (last1 logger__log_content__result) ((_ int2bv 16) (- (log_size
+  (= (last1 logger__log_content__result) ((_ int_to_bv 16) (- (log_size
                                                            event_log__split_fields) 1))))))))
 (check-sat)
 (exit)

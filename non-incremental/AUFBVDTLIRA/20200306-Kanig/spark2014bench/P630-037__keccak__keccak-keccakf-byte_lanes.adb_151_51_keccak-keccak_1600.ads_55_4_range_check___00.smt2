@@ -242,7 +242,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -361,7 +361,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv1 x ((_ int2bv 64) i)) (nth1 x i)))))
+  (= (nth_bv1 x ((_ int_to_bv 64) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -1029,7 +1029,7 @@ Target solver: CVC4
   (and (in_range2 o9)
   (exists ((o10 byte))
   (and
-  (= (to_rep1 o10) ((_ extract 7 0) (bvand (bvlshr lane1 ((_ int2bv 64) o9)) #x00000000000000FF)))
+  (= (to_rep1 o10) ((_ extract 7 0) (bvand (bvlshr lane1 ((_ int_to_bv 64) o9)) #x00000000000000FF)))
   (exists ((o11 Int))
   (and (= (to_rep data__first) o11)
   (let ((o12 (+ o11 offset2)))
@@ -1046,7 +1046,7 @@ Target solver: CVC4
   (and (in_range2 o14)
   (exists ((o15 byte))
   (and
-  (= (to_rep1 o15) ((_ extract 7 0) (bvand (bvlshr lane1 ((_ int2bv 64) o14)) #x00000000000000FF)))
+  (= (to_rep1 o15) ((_ extract 7 0) (bvand (bvlshr lane1 ((_ int_to_bv 64) o14)) #x00000000000000FF)))
   (exists ((o16 Int))
   (and (= (to_rep data__first) o16)
   (let ((o17 (+ o16 offset2)))
@@ -1063,7 +1063,7 @@ Target solver: CVC4
   (and (in_range2 o19)
   (exists ((o20 byte))
   (and
-  (= (to_rep1 o20) ((_ extract 7 0) (bvand (bvlshr lane1 ((_ int2bv 64) o19)) #x00000000000000FF)))
+  (= (to_rep1 o20) ((_ extract 7 0) (bvand (bvlshr lane1 ((_ int_to_bv 64) o19)) #x00000000000000FF)))
   (exists ((o21 Int))
   (and (= (to_rep data__first) o21)
   (let ((o22 (+ o21 offset2)))
@@ -1080,7 +1080,7 @@ Target solver: CVC4
   (and (in_range2 o24)
   (exists ((o25 byte))
   (and
-  (= (to_rep1 o25) ((_ extract 7 0) (bvand (bvlshr lane1 ((_ int2bv 64) o24)) #x00000000000000FF)))
+  (= (to_rep1 o25) ((_ extract 7 0) (bvand (bvlshr lane1 ((_ int_to_bv 64) o24)) #x00000000000000FF)))
   (exists ((o26 Int))
   (and (= (to_rep data__first) o26)
   (let ((o27 (+ o26 offset2)))
@@ -1097,7 +1097,7 @@ Target solver: CVC4
   (and (in_range2 o29)
   (exists ((o30 byte))
   (and
-  (= (to_rep1 o30) ((_ extract 7 0) (bvand (bvlshr lane1 ((_ int2bv 64) o29)) #x00000000000000FF)))
+  (= (to_rep1 o30) ((_ extract 7 0) (bvand (bvlshr lane1 ((_ int_to_bv 64) o29)) #x00000000000000FF)))
   (exists ((o31 Int))
   (and (= (to_rep data__first) o31)
   (let ((o32 (+ o31 offset2)))
@@ -1114,7 +1114,7 @@ Target solver: CVC4
   (and (in_range2 o34)
   (exists ((o35 byte))
   (and
-  (= (to_rep1 o35) ((_ extract 7 0) (bvand (bvlshr lane1 ((_ int2bv 64) o34)) #x00000000000000FF)))
+  (= (to_rep1 o35) ((_ extract 7 0) (bvand (bvlshr lane1 ((_ int_to_bv 64) o34)) #x00000000000000FF)))
   (exists ((o36 Int))
   (and (= (to_rep data__first) o36)
   (let ((o37 (+ o36 offset2)))
@@ -1131,7 +1131,7 @@ Target solver: CVC4
   (and (in_range2 o39)
   (exists ((o40 byte))
   (and
-  (= (to_rep1 o40) ((_ extract 7 0) (bvand (bvlshr lane1 ((_ int2bv 64) o39)) #x00000000000000FF)))
+  (= (to_rep1 o40) ((_ extract 7 0) (bvand (bvlshr lane1 ((_ int_to_bv 64) o39)) #x00000000000000FF)))
   (exists ((o41 Int))
   (and (= (to_rep data__first) o41)
   (let ((o42 (+ o41 offset2)))
@@ -1148,7 +1148,7 @@ Target solver: CVC4
   (and (in_range2 o44)
   (exists ((o45 byte))
   (and
-  (= (to_rep1 o45) ((_ extract 7 0) (bvand (bvlshr lane1 ((_ int2bv 64) o44)) #x00000000000000FF)))
+  (= (to_rep1 o45) ((_ extract 7 0) (bvand (bvlshr lane1 ((_ int_to_bv 64) o44)) #x00000000000000FF)))
   (exists ((o46 Int))
   (and (= (to_rep data__first) o46)
   (let ((o47 (+ o46 offset2)))
@@ -1227,7 +1227,7 @@ Target solver: CVC4
   (=> (= temp___811 remaining_bytes2)
   (forall ((o10 byte))
   (=>
-  (= (to_rep1 o10) ((_ extract 7 0) (bvand (bvlshr lane2 ((_ int2bv 64) shift1)) #x00000000000000FF)))
+  (= (to_rep1 o10) ((_ extract 7 0) (bvand (bvlshr lane2 ((_ int_to_bv 64) shift1)) #x00000000000000FF)))
   (forall ((o11 Int))
   (=> (= (to_rep data__first) o11)
   (let ((o12 (+ o11 offset2)))

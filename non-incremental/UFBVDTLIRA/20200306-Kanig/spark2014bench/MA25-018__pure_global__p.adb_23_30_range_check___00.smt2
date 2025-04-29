@@ -170,7 +170,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv x ((_ int2bv 32) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 32) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -308,6 +308,6 @@ Target solver: CVC4
   (=> (in_range o)
   (=> (uint_in_range o)
   (forall ((l1 (_ BitVec 32)))
-  (=> (= l1 ((_ int2bv 32) o)) (in_range (ubv_to_int l1))))))))))))))
+  (=> (= l1 ((_ int_to_bv 32) o)) (in_range (ubv_to_int l1))))))))))))))
 (check-sat)
 (exit)

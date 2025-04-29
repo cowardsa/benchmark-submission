@@ -194,7 +194,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv x ((_ int2bv 32) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 32) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -698,7 +698,7 @@ Target solver: CVC4
   (assert
   (forall ((s Int))
   (! (=> (dynamic_invariant2 s true true true true)
-     (= (to_state s) ((_ int2bv 32) s))) :pattern ((to_state s)) )))
+     (= (to_state s) ((_ int_to_bv 32) s))) :pattern ((to_state s)) )))
 
 (declare-fun to_state1 (Int) (_ BitVec 32))
 
@@ -716,7 +716,7 @@ Target solver: CVC4
   (assert
   (forall ((s Int))
   (! (=> (dynamic_invariant s true true true true)
-     (= (to_state1 s) ((_ int2bv 32) s))) :pattern ((to_state1 s)) )))
+     (= (to_state1 s) ((_ int_to_bv 32) s))) :pattern ((to_state1 s)) )))
 
 (declare-const attr__ATTRIBUTE_ADDRESS1 Int)
 
@@ -838,7 +838,7 @@ Target solver: CVC4
   (let ((o (to_state1 j)))
   (and
   (and (to_state__function_guard1 o j)
-  (and (dynamic_invariant1 o true false true true) (= o ((_ int2bv 32) j))))
+  (and (dynamic_invariant1 o true false true true) (= o ((_ int_to_bv 32) j))))
   (and (and (<= (first1 initiator) j) (<= j (last1 initiator)))
   (exists ((o1 (_ BitVec 32)))
   (and (= (to_rep1 (select (to_array initiator) j)) o1)
@@ -859,7 +859,7 @@ Target solver: CVC4
   (= (to_rep1 (select (rec__random__generator__state g__split_fields) i)) o4)
   (exists ((o5 unsigned_32))
   (and
-  (= (to_rep1 o5) (bvadd (bvadd (bvxor o4 (bvmul (bvxor o3 (bvlshr o2 ((_ int2bv 32) 30))) #x0019660D)) o1) o))
+  (= (to_rep1 o5) (bvadd (bvadd (bvxor o4 (bvmul (bvxor o3 (bvlshr o2 ((_ int_to_bv 32) 30))) #x0019660D)) o1) o))
   (exists ((g__split_fields2 us_split_fields))
   (and
   (= g__split_fields2 (us_split_fieldsqtmk
@@ -910,7 +910,7 @@ Target solver: CVC4
   (let ((o (to_state i1)))
   (=>
   (and (to_state__function_guard o i1)
-  (and (dynamic_invariant1 o true false true true) (= o ((_ int2bv 32) i1))))
+  (and (dynamic_invariant1 o true false true true) (= o ((_ int_to_bv 32) i1))))
   (let ((temp___269 (- i1 1)))
   (=> (and (<= 0 temp___269) (<= temp___269 623))
   (forall ((o1 (_ BitVec 32)))

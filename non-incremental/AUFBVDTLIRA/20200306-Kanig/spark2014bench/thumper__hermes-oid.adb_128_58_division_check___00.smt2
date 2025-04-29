@@ -242,7 +242,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -1212,7 +1212,7 @@ Target solver: CVC4
   (=> (in_range7 o9)
   (=> (uint_in_range o9)
   (forall ((o10 octet))
-  (=> (= (to_rep5 o10) ((_ int2bv 8) o9))
+  (=> (= (to_rep5 o10) ((_ int_to_bv 8) o9))
   (=>
   (and (<= (to_rep result____first) result_index1)
   (<= result_index1 (to_rep result____last)))
@@ -1296,7 +1296,7 @@ Target solver: CVC4
   (let ((o18 (mod1 current_component3 128)))
   (=> (uint_in_range o18)
   (forall ((o19 octet))
-  (=> (= (to_rep5 o19) ((_ int2bv 8) o18))
+  (=> (= (to_rep5 o19) ((_ int_to_bv 8) o18))
   (=>
   (and (<= (to_rep result____first) result_index4)
   (<= result_index4 (to_rep result____last)))

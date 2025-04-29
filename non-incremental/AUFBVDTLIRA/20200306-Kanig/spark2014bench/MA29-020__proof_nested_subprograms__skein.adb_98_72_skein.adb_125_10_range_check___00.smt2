@@ -167,7 +167,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -284,7 +284,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 16)) (i Int))
   (=> (and (<= 0 i) (< i 65536))
-  (= (nth_bv1 x ((_ int2bv 16) i)) (nth1 x i)))))
+  (= (nth_bv1 x ((_ int_to_bv 16) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 16) (_ BitVec 16) (_ BitVec 16)
   (_ BitVec 16)) Bool)
@@ -378,7 +378,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv2 x ((_ int2bv 32) i)) (nth2 x i)))))
+  (= (nth_bv2 x ((_ int_to_bv 32) i)) (nth2 x i)))))
 
 (declare-fun eq_sub_bv2 ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -473,7 +473,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv3 x ((_ int2bv 64) i)) (nth3 x i)))))
+  (= (nth_bv3 x ((_ int_to_bv 64) i)) (nth3 x i)))))
 
 (declare-fun eq_sub_bv3 ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -2089,7 +2089,7 @@ Target solver: CVC4
                                      local_ctx__split_fields4) #x0000000000000000 o5)))
   (forall ((o6 byte))
   (=>
-  (= (to_rep6 o6) ((_ extract 7 0) (bvand (bvlshr c18b ((_ int2bv 64) 8)) #x00000000000000FF)))
+  (= (to_rep6 o6) ((_ extract 7 0) (bvand (bvlshr c18b ((_ int_to_bv 64) 8)) #x00000000000000FF)))
   (forall ((local_ctx__split_fields6 us_split_fields4))
   (=>
   (= local_ctx__split_fields6 (us_split_fieldsqtmk2
@@ -2101,7 +2101,7 @@ Target solver: CVC4
                                      local_ctx__split_fields5) #x0000000000000001 o6)))
   (forall ((o7 byte))
   (=>
-  (= (to_rep6 o7) ((_ extract 7 0) (bvand (bvlshr c18b ((_ int2bv 64) 16)) #x00000000000000FF)))
+  (= (to_rep6 o7) ((_ extract 7 0) (bvand (bvlshr c18b ((_ int_to_bv 64) 16)) #x00000000000000FF)))
   (forall ((local_ctx__split_fields7 us_split_fields4))
   (=>
   (= local_ctx__split_fields7 (us_split_fieldsqtmk2
@@ -2111,6 +2111,6 @@ Target solver: CVC4
                               local_ctx__split_fields6)
                               (store (rec__skein__skein_512_context__b
                                      local_ctx__split_fields6) #x0000000000000002 o7)))
-  (bvule ((_ zero_extend 56) #x00) (bvand (bvlshr c18b ((_ int2bv 64) 24)) #x00000000000000FF))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+  (bvule ((_ zero_extend 56) #x00) (bvand (bvlshr c18b ((_ int_to_bv 64) 24)) #x00000000000000FF))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
 (check-sat)
 (exit)

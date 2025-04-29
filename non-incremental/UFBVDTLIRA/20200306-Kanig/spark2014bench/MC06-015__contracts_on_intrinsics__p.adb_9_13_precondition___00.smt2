@@ -170,7 +170,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv x ((_ int2bv 32) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 32) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -301,7 +301,7 @@ Target solver: CVC4
      (=> (shift_right__function_guard result value amount)
      (and
      (= result (bvudiv value (ite (< amount 4294967296)
-                             (bvshl #x00000001 ((_ int2bv 32) amount))
+                             (bvshl #x00000001 ((_ int_to_bv 32) amount))
                              #x00000000)))
      (dynamic_invariant1 result true false true true))))) :pattern ((shift_right
                                                                     value

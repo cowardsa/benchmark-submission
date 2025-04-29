@@ -167,7 +167,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -680,7 +680,7 @@ Target solver: CVC4
      (=> (shift_right__function_guard result value count)
      (and
      (= result (bvudiv value (ite (< count 256)
-                             (bvshl #x01 ((_ int2bv 8) count)) #x00)))
+                             (bvshl #x01 ((_ int_to_bv 8) count)) #x00)))
      (dynamic_invariant2 result true false true true))))) :pattern ((shift_right
                                                                     value
                                                                     count)) ))))
@@ -761,7 +761,7 @@ Target solver: CVC4
   (=> (dynamic_invariant2 new_overflow false false true true)
   (=> (dynamic_invariant2 overflow_mask false false true true)
   (=>
-  (ite (< (- 8 distance) 8) (= o (bvshl #xFF ((_ int2bv 8) (- 8 distance))))
+  (ite (< (- 8 distance) 8) (= o (bvshl #xFF ((_ int_to_bv 8) (- 8 distance))))
   (= o #x00))
   (=> (= (last1 number__split_fields) r126b)
   (=> (in_range2 r126b)

@@ -167,7 +167,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -286,7 +286,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv1 x ((_ int2bv 64) i)) (nth1 x i)))))
+  (= (nth_bv1 x ((_ int_to_bv 64) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -499,7 +499,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv2 x ((_ int2bv 32) i)) (nth2 x i)))))
+  (= (nth_bv2 x ((_ int_to_bv 32) i)) (nth2 x i)))))
 
 (declare-fun eq_sub_bv2 ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -580,7 +580,7 @@ Target solver: CVC4
      (=> (readmem64__function_guard result addr x86__memory)
      (and
      (= result (bvor ((_ zero_extend 32) (readmem32 addr x86__memory)) (bvshl ((_ zero_extend 32) 
-     (readmem32 (bvadd addr #x0000000000000004) x86__memory)) ((_ int2bv 64) 32))))
+     (readmem32 (bvadd addr #x0000000000000004) x86__memory)) ((_ int_to_bv 64) 32))))
      (dynamic_invariant result true false true true))))))) :pattern (
   (readmem64 addr x86__memory)) ))))
 
@@ -676,7 +676,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 16)) (i Int))
   (=> (and (<= 0 i) (< i 65536))
-  (= (nth_bv3 x ((_ int2bv 16) i)) (nth3 x i)))))
+  (= (nth_bv3 x ((_ int_to_bv 16) i)) (nth3 x i)))))
 
 (declare-fun eq_sub_bv3 ((_ BitVec 16) (_ BitVec 16) (_ BitVec 16)
   (_ BitVec 16)) Bool)
@@ -762,7 +762,7 @@ Target solver: CVC4
      (= result (bvor ((_ zero_extend 8) (to_rep (select x86__memory addr1))) 
      (ite (< 8 16)
      (bvshl ((_ zero_extend 8) (to_rep
-                               (select x86__memory (bvadd addr1 #x0000000000000001)))) ((_ int2bv 16) 8))
+                               (select x86__memory (bvadd addr1 #x0000000000000001)))) ((_ int_to_bv 16) 8))
      #x0000))) (dynamic_invariant2 result true false true true))))) :pattern (
   (readmem16 addr1 x86__memory)) ))))
 
@@ -786,7 +786,7 @@ Target solver: CVC4
      (=> (readmem32__function_guard result addr1 x86__memory)
      (and
      (= result (bvor ((_ zero_extend 16) (readmem16 addr1 x86__memory)) (bvshl ((_ zero_extend 16) 
-     (readmem16 (bvadd addr1 #x0000000000000002) x86__memory)) ((_ int2bv 32) 16))))
+     (readmem16 (bvadd addr1 #x0000000000000002) x86__memory)) ((_ int_to_bv 32) 16))))
      (dynamic_invariant1 result true false true true))))))) :pattern (
   (readmem32 addr1 x86__memory)) ))))
 
@@ -820,7 +820,7 @@ Target solver: CVC4
   (readmem8__function_guard (readmem8 o2 memory5) o2 memory5))
   (=>
   (and
-  (= (readmem8 o1 memory4) ((_ extract 7 0) (bvand (bvlshr val__ ((_ int2bv 64) 8)) #x00000000000000FF)))
+  (= (readmem8 o1 memory4) ((_ extract 7 0) (bvand (bvlshr val__ ((_ int_to_bv 64) 8)) #x00000000000000FF)))
   (forall ((i (_ BitVec 64)))
   (=> (and (bvule #x0000000000000000 i) (bvule i #xFFFFFFFFFFFFFFFF))
   (=> (not (= i o1))
@@ -834,7 +834,7 @@ Target solver: CVC4
   (readmem8__function_guard (readmem8 o3 memory7) o3 memory7))
   (=>
   (and
-  (= (readmem8 o2 memory6) ((_ extract 7 0) (bvand (bvlshr val__ ((_ int2bv 64) 16)) #x00000000000000FF)))
+  (= (readmem8 o2 memory6) ((_ extract 7 0) (bvand (bvlshr val__ ((_ int_to_bv 64) 16)) #x00000000000000FF)))
   (forall ((i (_ BitVec 64)))
   (=> (and (bvule #x0000000000000000 i) (bvule i #xFFFFFFFFFFFFFFFF))
   (=> (not (= i o2))
@@ -848,7 +848,7 @@ Target solver: CVC4
   (readmem8__function_guard (readmem8 o4 memory9) o4 memory9))
   (=>
   (and
-  (= (readmem8 o3 memory8) ((_ extract 7 0) (bvand (bvlshr val__ ((_ int2bv 64) 24)) #x00000000000000FF)))
+  (= (readmem8 o3 memory8) ((_ extract 7 0) (bvand (bvlshr val__ ((_ int_to_bv 64) 24)) #x00000000000000FF)))
   (forall ((i (_ BitVec 64)))
   (=> (and (bvule #x0000000000000000 i) (bvule i #xFFFFFFFFFFFFFFFF))
   (=> (not (= i o3))
@@ -862,7 +862,7 @@ Target solver: CVC4
   (readmem8__function_guard (readmem8 o5 memory11) o5 memory11))
   (=>
   (and
-  (= (readmem8 o4 memory10) ((_ extract 7 0) (bvand (bvlshr val__ ((_ int2bv 64) 32)) #x00000000000000FF)))
+  (= (readmem8 o4 memory10) ((_ extract 7 0) (bvand (bvlshr val__ ((_ int_to_bv 64) 32)) #x00000000000000FF)))
   (forall ((i (_ BitVec 64)))
   (=> (and (bvule #x0000000000000000 i) (bvule i #xFFFFFFFFFFFFFFFF))
   (=> (not (= i o4))
@@ -876,7 +876,7 @@ Target solver: CVC4
   (readmem8__function_guard (readmem8 o6 memory13) o6 memory13))
   (=>
   (and
-  (= (readmem8 o5 memory12) ((_ extract 7 0) (bvand (bvlshr val__ ((_ int2bv 64) 40)) #x00000000000000FF)))
+  (= (readmem8 o5 memory12) ((_ extract 7 0) (bvand (bvlshr val__ ((_ int_to_bv 64) 40)) #x00000000000000FF)))
   (forall ((i (_ BitVec 64)))
   (=> (and (bvule #x0000000000000000 i) (bvule i #xFFFFFFFFFFFFFFFF))
   (=> (not (= i o5))
@@ -890,11 +890,11 @@ Target solver: CVC4
   (readmem8__function_guard (readmem8 o7 memory15) o7 memory15))
   (=>
   (and
-  (= (readmem8 o6 memory14) ((_ extract 7 0) (bvand (bvlshr val__ ((_ int2bv 64) 48)) #x00000000000000FF)))
+  (= (readmem8 o6 memory14) ((_ extract 7 0) (bvand (bvlshr val__ ((_ int_to_bv 64) 48)) #x00000000000000FF)))
   (forall ((i (_ BitVec 64)))
   (=> (and (bvule #x0000000000000000 i) (bvule i #xFFFFFFFFFFFFFFFF))
   (=> (not (= i o6))
   (= (to_rep (select memory14 i)) (to_rep (select memory13 i)))))))
-  (bvule ((_ zero_extend 56) #x00) (bvand (bvlshr val__ ((_ int2bv 64) 56)) #x00000000000000FF)))))))))))))))))))))))))))))))))))))))))))))))))
+  (bvule ((_ zero_extend 56) #x00) (bvand (bvlshr val__ ((_ int_to_bv 64) 56)) #x00000000000000FF)))))))))))))))))))))))))))))))))))))))))))))))))
 (check-sat)
 (exit)

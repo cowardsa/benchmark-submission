@@ -167,7 +167,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -284,7 +284,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 16)) (i Int))
   (=> (and (<= 0 i) (< i 65536))
-  (= (nth_bv1 x ((_ int2bv 16) i)) (nth1 x i)))))
+  (= (nth_bv1 x ((_ int_to_bv 16) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 16) (_ BitVec 16) (_ BitVec 16)
   (_ BitVec 16)) Bool)
@@ -1843,7 +1843,7 @@ Target solver: CVC4
   (forall ((o6 (_ BitVec 8)))
   (=> (= (to_rep5 (rec__decadriver__receiver_type__queue_head self__)) o6)
   (forall ((next_idx1 (_ BitVec 8)))
-  (=> (= next_idx1 (bvurem (bvadd o6 ((_ int2bv 8) o5)) #x02))
+  (=> (= next_idx1 (bvurem (bvadd o6 ((_ int_to_bv 8) o5)) #x02))
   (forall ((o7 Int))
   (=> (= (to_rep (rec__decadriver__receiver_type__rx_count self__)) o7)
   (in_range1 (+ o7 1)))))))))))))))))))))))))))))))))))))

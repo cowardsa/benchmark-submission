@@ -167,7 +167,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -236,10 +236,10 @@ Target solver: CVC4
   (=> (and (bvule #x00 v) (bvule v #xFF))
   (forall ((n Int))
   (=> (and (<= 0 n) (<= n 7))
-  (=> (= (bvand v (ite (< n 256) (bvshl #x01 ((_ int2bv 8) n)) #x00)) #x00)
-  (= (bvand (bvadd v (ite (< n 256) (bvshl #x01 ((_ int2bv 8) n)) #x00)) 
-  (ite (< n 256) (bvshl #x01 ((_ int2bv 8) n)) #x00)) (ite (< n 256)
-                                                      (bvshl #x01 ((_ int2bv 8) n))
+  (=> (= (bvand v (ite (< n 256) (bvshl #x01 ((_ int_to_bv 8) n)) #x00)) #x00)
+  (= (bvand (bvadd v (ite (< n 256) (bvshl #x01 ((_ int_to_bv 8) n)) #x00)) 
+  (ite (< n 256) (bvshl #x01 ((_ int_to_bv 8) n)) #x00)) (ite (< n 256)
+                                                      (bvshl #x01 ((_ int_to_bv 8) n))
                                                       #x00))))))))))))
 (check-sat)
 (exit)

@@ -167,7 +167,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -286,7 +286,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv1 x ((_ int2bv 64) i)) (nth1 x i)))))
+  (= (nth_bv1 x ((_ int_to_bv 64) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -476,39 +476,39 @@ Target solver: CVC4
   (=> (dynamic_invariant addr true false true true)
   (=> (dynamic_invariant val__ true false true true)
   (=>
-  (= (to_rep o) ((_ extract 7 0) (bvurem (bvand val__ #x00000000000000FF) ((_ int2bv 64) 256))))
+  (= (to_rep o) ((_ extract 7 0) (bvurem (bvand val__ #x00000000000000FF) ((_ int_to_bv 64) 256))))
   (=> (= memory1 (store memory addr o))
   (=>
-  (= (to_rep o1) ((_ extract 7 0) (bvurem (bvand (bvlshr val__ ((_ int2bv 64) 8)) #x00000000000000FF) ((_ int2bv 64) 256))))
+  (= (to_rep o1) ((_ extract 7 0) (bvurem (bvand (bvlshr val__ ((_ int_to_bv 64) 8)) #x00000000000000FF) ((_ int_to_bv 64) 256))))
   (=> (= memory2 (store memory1 (bvadd addr #x0000000000000001) o1))
   (=>
-  (= (to_rep o2) ((_ extract 7 0) (bvurem (bvand (bvlshr val__ ((_ int2bv 64) 16)) #x00000000000000FF) ((_ int2bv 64) 256))))
+  (= (to_rep o2) ((_ extract 7 0) (bvurem (bvand (bvlshr val__ ((_ int_to_bv 64) 16)) #x00000000000000FF) ((_ int_to_bv 64) 256))))
   (=> (= memory3 (store memory2 (bvadd addr #x0000000000000002) o2))
   (=>
-  (= (to_rep o3) ((_ extract 7 0) (bvurem (bvand (bvlshr val__ ((_ int2bv 64) 24)) #x00000000000000FF) ((_ int2bv 64) 256))))
+  (= (to_rep o3) ((_ extract 7 0) (bvurem (bvand (bvlshr val__ ((_ int_to_bv 64) 24)) #x00000000000000FF) ((_ int_to_bv 64) 256))))
   (=> (= memory4 (store memory3 (bvadd addr #x0000000000000003) o3))
   (=>
-  (= (to_rep o4) ((_ extract 7 0) (bvurem (bvand (bvlshr val__ ((_ int2bv 64) 32)) #x00000000000000FF) ((_ int2bv 64) 256))))
+  (= (to_rep o4) ((_ extract 7 0) (bvurem (bvand (bvlshr val__ ((_ int_to_bv 64) 32)) #x00000000000000FF) ((_ int_to_bv 64) 256))))
   (=> (= memory5 (store memory4 (bvadd addr #x0000000000000004) o4))
   (=>
-  (= (to_rep o5) ((_ extract 7 0) (bvurem (bvand (bvlshr val__ ((_ int2bv 64) 40)) #x00000000000000FF) ((_ int2bv 64) 256))))
+  (= (to_rep o5) ((_ extract 7 0) (bvurem (bvand (bvlshr val__ ((_ int_to_bv 64) 40)) #x00000000000000FF) ((_ int_to_bv 64) 256))))
   (=> (= memory6 (store memory5 (bvadd addr #x0000000000000005) o5))
   (=>
-  (= (to_rep o6) ((_ extract 7 0) (bvurem (bvand (bvlshr val__ ((_ int2bv 64) 48)) #x00000000000000FF) ((_ int2bv 64) 256))))
+  (= (to_rep o6) ((_ extract 7 0) (bvurem (bvand (bvlshr val__ ((_ int_to_bv 64) 48)) #x00000000000000FF) ((_ int_to_bv 64) 256))))
   (=> (= memory7 (store memory6 (bvadd addr #x0000000000000006) o6))
   (=>
-  (= (to_rep o7) ((_ extract 7 0) (bvurem (bvand (bvlshr val__ ((_ int2bv 64) 56)) #x00000000000000FF) ((_ int2bv 64) 256))))
+  (= (to_rep o7) ((_ extract 7 0) (bvurem (bvand (bvlshr val__ ((_ int_to_bv 64) 56)) #x00000000000000FF) ((_ int_to_bv 64) 256))))
   (=> (= memory8 (store memory7 (bvadd addr #x0000000000000007) o7))
   (= (bvor (bvor (bvor (bvor (bvor (bvor (bvor ((_ zero_extend 56) (to_rep
                                                                    (select memory8 
                                                                    addr))) (bvshl ((_ zero_extend 56) 
-  (to_rep (select memory8 (bvadd addr #x0000000000000001)))) ((_ int2bv 64) 8))) (bvshl ((_ zero_extend 56) 
-  (to_rep (select memory8 (bvadd addr #x0000000000000002)))) ((_ int2bv 64) 16))) (bvshl ((_ zero_extend 56) 
-  (to_rep (select memory8 (bvadd addr #x0000000000000003)))) ((_ int2bv 64) 24))) (bvshl ((_ zero_extend 56) 
-  (to_rep (select memory8 (bvadd addr #x0000000000000004)))) ((_ int2bv 64) 32))) (bvshl ((_ zero_extend 56) 
-  (to_rep (select memory8 (bvadd addr #x0000000000000005)))) ((_ int2bv 64) 40))) (bvshl ((_ zero_extend 56) 
-  (to_rep (select memory8 (bvadd addr #x0000000000000006)))) ((_ int2bv 64) 48))) (bvshl ((_ zero_extend 56) 
-  (to_rep (select memory8 (bvadd addr #x0000000000000007)))) ((_ int2bv 64) 56))) 
+  (to_rep (select memory8 (bvadd addr #x0000000000000001)))) ((_ int_to_bv 64) 8))) (bvshl ((_ zero_extend 56) 
+  (to_rep (select memory8 (bvadd addr #x0000000000000002)))) ((_ int_to_bv 64) 16))) (bvshl ((_ zero_extend 56) 
+  (to_rep (select memory8 (bvadd addr #x0000000000000003)))) ((_ int_to_bv 64) 24))) (bvshl ((_ zero_extend 56) 
+  (to_rep (select memory8 (bvadd addr #x0000000000000004)))) ((_ int_to_bv 64) 32))) (bvshl ((_ zero_extend 56) 
+  (to_rep (select memory8 (bvadd addr #x0000000000000005)))) ((_ int_to_bv 64) 40))) (bvshl ((_ zero_extend 56) 
+  (to_rep (select memory8 (bvadd addr #x0000000000000006)))) ((_ int_to_bv 64) 48))) (bvshl ((_ zero_extend 56) 
+  (to_rep (select memory8 (bvadd addr #x0000000000000007)))) ((_ int_to_bv 64) 56))) 
   val__))))))))))))))))))))))
 (check-sat)
 (exit)

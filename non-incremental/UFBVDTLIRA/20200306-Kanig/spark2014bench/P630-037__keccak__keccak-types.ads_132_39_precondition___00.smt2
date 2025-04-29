@@ -167,7 +167,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -313,7 +313,7 @@ Target solver: CVC4
      (and (dynamic_invariant1 value true true true true) (dynamic_invariant
      amount true true true true))
      (= (shift_left_2 value amount) (bvand (ite (< amount 8)
-                                           (bvshl value ((_ int2bv 8) amount))
+                                           (bvshl value ((_ int_to_bv 8) amount))
                                            #x00) #x03))) :pattern ((shift_left_2
                                                                    value
                                                                    amount)) ))))
@@ -345,7 +345,7 @@ Target solver: CVC4
      (and (dynamic_invariant1 value true true true true) (dynamic_invariant
      amount true true true true))
      (= (shift_right_2 value amount) (bvand (ite (< amount 8)
-                                            (bvlshr value ((_ int2bv 8) amount))
+                                            (bvlshr value ((_ int_to_bv 8) amount))
                                             #x00) #x03))) :pattern ((shift_right_2
                                                                     value
                                                                     amount)) ))))

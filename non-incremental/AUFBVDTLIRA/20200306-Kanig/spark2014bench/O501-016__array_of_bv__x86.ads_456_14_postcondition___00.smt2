@@ -167,7 +167,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -285,7 +285,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv1 x ((_ int2bv 32) i)) (nth1 x i)))))
+  (= (nth_bv1 x ((_ int_to_bv 32) i)) (nth1 x i)))))
 
 (declare-fun eq_sub_bv1 ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -380,7 +380,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv2 x ((_ int2bv 64) i)) (nth2 x i)))))
+  (= (nth_bv2 x ((_ int_to_bv 64) i)) (nth2 x i)))))
 
 (declare-fun eq_sub_bv2 ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -621,7 +621,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 16)) (i Int))
   (=> (and (<= 0 i) (< i 65536))
-  (= (nth_bv3 x ((_ int2bv 16) i)) (nth3 x i)))))
+  (= (nth_bv3 x ((_ int_to_bv 16) i)) (nth3 x i)))))
 
 (declare-fun eq_sub_bv3 ((_ BitVec 16) (_ BitVec 16) (_ BitVec 16)
   (_ BitVec 16)) Bool)
@@ -702,7 +702,7 @@ Target solver: CVC4
      (=> (readmem32__function_guard result addr x86__memory)
      (and
      (= result (bvor ((_ zero_extend 16) (readmem16 addr x86__memory)) (bvshl ((_ zero_extend 16) 
-     (readmem16 (bvadd addr #x0000000000000002) x86__memory)) ((_ int2bv 32) 16))))
+     (readmem16 (bvadd addr #x0000000000000002) x86__memory)) ((_ int_to_bv 32) 16))))
      (dynamic_invariant2 result true false true true))))))) :pattern (
   (readmem32 addr x86__memory)) ))))
 
@@ -746,7 +746,7 @@ Target solver: CVC4
      (= result (bvor ((_ zero_extend 8) (to_rep (select x86__memory addr1))) 
      (ite (< 8 16)
      (bvshl ((_ zero_extend 8) (to_rep
-                               (select x86__memory (bvadd addr1 #x0000000000000001)))) ((_ int2bv 16) 8))
+                               (select x86__memory (bvadd addr1 #x0000000000000001)))) ((_ int_to_bv 16) 8))
      #x0000))) (dynamic_invariant3 result true false true true))))) :pattern (
   (readmem16 addr1 x86__memory)) ))))
 
@@ -807,7 +807,7 @@ Target solver: CVC4
   (= o15 (to_rep (select memory o14)))))
   (forall ((result__1 (_ BitVec 64)))
   (=>
-  (= result__1 (bvor (bvor (bvor (bvor (bvor (bvor (bvor ((_ zero_extend 56) o15) (bvshl ((_ zero_extend 56) o13) ((_ int2bv 64) 8))) (bvshl ((_ zero_extend 56) o11) ((_ int2bv 64) 16))) (bvshl ((_ zero_extend 56) o9) ((_ int2bv 64) 24))) (bvshl ((_ zero_extend 56) o7) ((_ int2bv 64) 32))) (bvshl ((_ zero_extend 56) o5) ((_ int2bv 64) 40))) (bvshl ((_ zero_extend 56) o3) ((_ int2bv 64) 48))) (bvshl ((_ zero_extend 56) o1) ((_ int2bv 64) 56))))
+  (= result__1 (bvor (bvor (bvor (bvor (bvor (bvor (bvor ((_ zero_extend 56) o15) (bvshl ((_ zero_extend 56) o13) ((_ int_to_bv 64) 8))) (bvshl ((_ zero_extend 56) o11) ((_ int_to_bv 64) 16))) (bvshl ((_ zero_extend 56) o9) ((_ int_to_bv 64) 24))) (bvshl ((_ zero_extend 56) o7) ((_ int_to_bv 64) 32))) (bvshl ((_ zero_extend 56) o5) ((_ int_to_bv 64) 40))) (bvshl ((_ zero_extend 56) o3) ((_ int_to_bv 64) 48))) (bvshl ((_ zero_extend 56) o1) ((_ int_to_bv 64) 56))))
   (=>
   (forall ((memory1 (Array (_ BitVec 64) unsigned8)))
   (readmem32__function_guard (readmem32 addr memory1) addr memory1))
@@ -818,7 +818,7 @@ Target solver: CVC4
   (bvadd addr #x0000000000000004) memory1))
   (=>
   (= result__1 (bvor ((_ zero_extend 32) (readmem32 addr memory)) (bvshl ((_ zero_extend 32) 
-  (readmem32 (bvadd addr #x0000000000000004) memory)) ((_ int2bv 64) 32))))
+  (readmem32 (bvadd addr #x0000000000000004) memory)) ((_ int_to_bv 64) 32))))
   (forall ((x86__readmem64__result (_ BitVec 64)))
   (=> (= x86__readmem64__result result__1)
   (=>
@@ -830,6 +830,6 @@ Target solver: CVC4
   (readmem32 (bvadd addr #x0000000000000004) memory1)
   (bvadd addr #x0000000000000004) memory1))
   (= x86__readmem64__result (bvor ((_ zero_extend 32) (readmem32 addr memory)) (bvshl ((_ zero_extend 32) 
-  (readmem32 (bvadd addr #x0000000000000004) memory)) ((_ int2bv 64) 32))))))))))))))))))))))))))))))))))))))))))
+  (readmem32 (bvadd addr #x0000000000000004) memory)) ((_ int_to_bv 64) 32))))))))))))))))))))))))))))))))))))))))))
 (check-sat)
 (exit)

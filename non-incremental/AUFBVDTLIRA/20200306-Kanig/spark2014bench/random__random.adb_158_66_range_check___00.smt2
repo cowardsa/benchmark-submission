@@ -170,7 +170,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv x ((_ int2bv 32) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 32) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -545,7 +545,7 @@ Target solver: CVC4
 (declare-const attr__ATTRIBUTE_ADDRESS6 Int)
 
 ;; n__def_axiom
-  (assert (= n ((_ int2bv 32) (+ (- max1 min1) 1))))
+  (assert (= n ((_ int_to_bv 32) (+ (- max1 min1) 1))))
 
 ;; slop__def_axiom
   (assert (= slop (bvadd (bvurem #xFFFFFFFF n) #x00000001)))

@@ -240,7 +240,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -372,12 +372,12 @@ Target solver: CVC4
   (let ((o (mod2 havok_x 256)))
   (=> (uint_in_range o)
   (forall ((x (_ BitVec 8)))
-  (=> (= x ((_ int2bv 8) o))
+  (=> (= x ((_ int_to_bv 8) o))
   (=> (dynamic_invariant1 x true false true true)
   (let ((o1 (mod2 havok_y 256)))
   (=> (uint_in_range o1)
   (forall ((y (_ BitVec 8)))
-  (=> (= y ((_ int2bv 8) o1))
+  (=> (= y ((_ int_to_bv 8) o1))
   (=> (dynamic_invariant1 y true false true true)
   (forall ((spark__branch Bool))
   (=> (= spark__branch (ite (bvult (bvand x y) x) true false))

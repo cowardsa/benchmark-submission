@@ -170,7 +170,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 32)) (i Int))
   (=> (and (<= 0 i) (< i 4294967296))
-  (= (nth_bv x ((_ int2bv 32) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 32) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 32) (_ BitVec 32) (_ BitVec 32)
   (_ BitVec 32)) Bool)
@@ -247,12 +247,12 @@ Target solver: CVC4
      (forall ((n Int))
      (=> (and (<= 0 n) (<= n 31))
      (=>
-     (= (bvand v (ite (< n 4294967296) (bvshl #x00000001 ((_ int2bv 32) n))
+     (= (bvand v (ite (< n 4294967296) (bvshl #x00000001 ((_ int_to_bv 32) n))
                  #x00000000)) #x00000000)
      (= (bvand (bvadd v (ite (< n 4294967296)
-                        (bvshl #x00000001 ((_ int2bv 32) n)) #x00000000)) 
-     (ite (< n 4294967296) (bvshl #x00000001 ((_ int2bv 32) n)) #x00000000)) 
-     (ite (< n 4294967296) (bvshl #x00000001 ((_ int2bv 32) n)) #x00000000)))))))) :pattern (
+                        (bvshl #x00000001 ((_ int_to_bv 32) n)) #x00000000)) 
+     (ite (< n 4294967296) (bvshl #x00000001 ((_ int_to_bv 32) n)) #x00000000)) 
+     (ite (< n 4294967296) (bvshl #x00000001 ((_ int_to_bv 32) n)) #x00000000)))))))) :pattern (
   (axiom__ us_void_param)) )))
 
 (declare-const amount Int)
@@ -407,27 +407,27 @@ Target solver: CVC4
   (=>
   (let ((temp___606 (- i 1)))
   (ite (< temp___606 4294967296)
-  (= o (bvshl #x00000001 ((_ int2bv 32) temp___606))) (= o #x00000000)))
+  (= o (bvshl #x00000001 ((_ int_to_bv 32) temp___606))) (= o #x00000000)))
   (forall ((result__1 (_ BitVec 32)))
   (=> (= result__1 (bvadd result__ o))
   (forall ((o1 (_ BitVec 32)))
   (=>
   (let ((temp___611 (- i 1)))
   (ite (< temp___611 4294967296)
-  (= o1 (bvshl #x00000001 ((_ int2bv 32) temp___611))) (= o1 #x00000000)))
+  (= o1 (bvshl #x00000001 ((_ int_to_bv 32) temp___611))) (= o1 #x00000000)))
   (forall ((o2 (_ BitVec 32)))
   (=>
   (let ((temp___610 (- i 1)))
   (ite (< temp___610 4294967296)
-  (= o2 (bvshl #x00000001 ((_ int2bv 32) temp___610))) (= o2 #x00000000)))
+  (= o2 (bvshl #x00000001 ((_ int_to_bv 32) temp___610))) (= o2 #x00000000)))
   (forall ((result__2 (_ BitVec 32)) (i1 Int))
   (=>
   (= (bvand result__2 (let ((temp___612 (- i1 1)))
                       (ite (< temp___612 4294967296)
-                      (bvshl #x00000001 ((_ int2bv 32) temp___612))
+                      (bvshl #x00000001 ((_ int_to_bv 32) temp___612))
                       #x00000000))) (let ((temp___613 (- i1 1)))
                                     (ite (< temp___613 4294967296)
-                                    (bvshl #x00000001 ((_ int2bv 32) temp___613))
+                                    (bvshl #x00000001 ((_ int_to_bv 32) temp___613))
                                     #x00000000)))
   (=>
   (= (and (ite (and (dynamic_property 1 amount i1) (dynamic_invariant
@@ -440,25 +440,25 @@ Target solver: CVC4
   (=>
   (let ((temp___606 (- i2 1)))
   (ite (< temp___606 4294967296)
-  (= o3 (bvshl #x00000001 ((_ int2bv 32) temp___606))) (= o3 #x00000000)))
+  (= o3 (bvshl #x00000001 ((_ int_to_bv 32) temp___606))) (= o3 #x00000000)))
   (forall ((result__3 (_ BitVec 32)))
   (=> (= result__3 (bvadd result__2 o3))
   (forall ((o4 (_ BitVec 32)))
   (=>
   (let ((temp___611 (- i2 1)))
   (ite (< temp___611 4294967296)
-  (= o4 (bvshl #x00000001 ((_ int2bv 32) temp___611))) (= o4 #x00000000)))
+  (= o4 (bvshl #x00000001 ((_ int_to_bv 32) temp___611))) (= o4 #x00000000)))
   (forall ((o5 (_ BitVec 32)))
   (=>
   (let ((temp___610 (- i2 1)))
   (ite (< temp___610 4294967296)
-  (= o5 (bvshl #x00000001 ((_ int2bv 32) temp___610))) (= o5 #x00000000)))
+  (= o5 (bvshl #x00000001 ((_ int_to_bv 32) temp___610))) (= o5 #x00000000)))
   (= (bvand result__3 (let ((temp___612 (- i2 1)))
                       (ite (< temp___612 4294967296)
-                      (bvshl #x00000001 ((_ int2bv 32) temp___612))
+                      (bvshl #x00000001 ((_ int_to_bv 32) temp___612))
                       #x00000000))) (let ((temp___613 (- i2 1)))
                                     (ite (< temp___613 4294967296)
-                                    (bvshl #x00000001 ((_ int2bv 32) temp___613))
+                                    (bvshl #x00000001 ((_ int_to_bv 32) temp___613))
                                     #x00000000))))))))))))))))))))))))))))))))))))
 (check-sat)
 (exit)

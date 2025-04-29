@@ -226,7 +226,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv x ((_ int2bv 64) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 64) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -898,7 +898,7 @@ Target solver: CVC4
   (=> (and (<= (first1 powers) temp___275) (<= temp___275 (last1 powers)))
   (let ((k (to_rep (select (to_array powers) temp___275))))
   (let ((temp___276 (ite (< k 18446744073709551616)
-                    (bvshl #x0000000000000001 ((_ int2bv 64) k))
+                    (bvshl #x0000000000000001 ((_ int_to_bv 64) k))
                     #x0000000000000000)))
   (and (bvule #x0000000000000000 temp___276)
   (bvule temp___276 #xFFFFFFFFFFFFFFFF))))))

@@ -167,7 +167,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -244,10 +244,10 @@ Target solver: CVC4
      (forall ((n Int))
      (=> (and (<= 0 n) (<= n 7))
      (=>
-     (= (bvand v (ite (< n 256) (bvshl #x01 ((_ int2bv 8) n)) #x00)) #x00)
-     (= (bvand (bvadd v (ite (< n 256) (bvshl #x01 ((_ int2bv 8) n)) #x00)) 
-     (ite (< n 256) (bvshl #x01 ((_ int2bv 8) n)) #x00)) (ite (< n 256)
-                                                         (bvshl #x01 ((_ int2bv 8) n))
+     (= (bvand v (ite (< n 256) (bvshl #x01 ((_ int_to_bv 8) n)) #x00)) #x00)
+     (= (bvand (bvadd v (ite (< n 256) (bvshl #x01 ((_ int_to_bv 8) n)) #x00)) 
+     (ite (< n 256) (bvshl #x01 ((_ int_to_bv 8) n)) #x00)) (ite (< n 256)
+                                                         (bvshl #x01 ((_ int_to_bv 8) n))
                                                          #x00)))))))) :pattern (
   (axiom__ us_void_param)) )))
 
@@ -400,24 +400,24 @@ Target solver: CVC4
   (forall ((o (_ BitVec 8)))
   (=>
   (let ((temp___544 (- i 1)))
-  (ite (< temp___544 256) (= o (bvshl #x01 ((_ int2bv 8) temp___544)))
+  (ite (< temp___544 256) (= o (bvshl #x01 ((_ int_to_bv 8) temp___544)))
   (= o #x00)))
   (forall ((result__1 (_ BitVec 8)))
   (=> (= result__1 (bvadd result__ o))
   (forall ((o1 (_ BitVec 8)))
   (=>
   (let ((temp___549 (- i 1)))
-  (ite (< temp___549 256) (= o1 (bvshl #x01 ((_ int2bv 8) temp___549)))
+  (ite (< temp___549 256) (= o1 (bvshl #x01 ((_ int_to_bv 8) temp___549)))
   (= o1 #x00)))
   (forall ((o2 (_ BitVec 8)))
   (=>
   (let ((temp___548 (- i 1)))
-  (ite (< temp___548 256) (= o2 (bvshl #x01 ((_ int2bv 8) temp___548)))
+  (ite (< temp___548 256) (= o2 (bvshl #x01 ((_ int_to_bv 8) temp___548)))
   (= o2 #x00)))
   (= (bvand result__1 (let ((temp___550 (- i 1)))
                       (ite (< temp___550 256)
-                      (bvshl #x01 ((_ int2bv 8) temp___550)) #x00))) 
+                      (bvshl #x01 ((_ int_to_bv 8) temp___550)) #x00))) 
   (let ((temp___551 (- i 1)))
-  (ite (< temp___551 256) (bvshl #x01 ((_ int2bv 8) temp___551)) #x00)))))))))))))))))))))
+  (ite (< temp___551 256) (bvshl #x01 ((_ int_to_bv 8) temp___551)) #x00)))))))))))))))))))))
 (check-sat)
 (exit)

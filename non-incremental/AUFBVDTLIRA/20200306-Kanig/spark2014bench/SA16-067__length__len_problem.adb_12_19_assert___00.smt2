@@ -170,7 +170,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 16)) (i Int))
-  (=> (and (<= 0 i) (< i 65536)) (= (nth_bv x ((_ int2bv 16) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 65536)) (= (nth_bv x ((_ int_to_bv 16) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 16) (_ BitVec 16) (_ BitVec 16)
   (_ BitVec 16)) Bool)
@@ -604,6 +604,6 @@ Target solver: CVC4
   (=>
   (and (dynamic_property 65535 r1b (to_rep s__first) (to_rep s__last))
   (and (= (to_rep s__first) 65535) (= (to_rep s__last) r1b)))
-  (bvult ((_ int2bv 16) (length (to_rep s__first) (to_rep s__last))) #x00FF)))))))))))))))))
+  (bvult ((_ int_to_bv 16) (length (to_rep s__first) (to_rep s__last))) #x00FF)))))))))))))))))
 (check-sat)
 (exit)

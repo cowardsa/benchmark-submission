@@ -226,7 +226,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv x ((_ int2bv 64) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 64) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -896,7 +896,7 @@ Target solver: CVC4
   (=>
   (forall ((temp___301 Int))
   (=> (and (<= (first1 powers) temp___301) (<= temp___301 (last1 powers)))
-  (let ((temp___303 ((_ int2bv 64) (power 2
+  (let ((temp___303 ((_ int_to_bv 64) (power 2
                                    (to_rep
                                    (select (to_array powers) temp___301))))))
   (and (bvule #x0000000000000000 temp___303)
@@ -912,12 +912,12 @@ Target solver: CVC4
   (and
   (forall ((temp___324 Int))
   (=> (and (<= (first1 powers) temp___324) (<= temp___324 (last1 powers)))
-  (let ((temp___326 ((_ int2bv 64) (power 2
+  (let ((temp___326 ((_ int_to_bv 64) (power 2
                                    (to_rep
                                    (select (to_array powers) temp___324))))))
   (and (bvule #x0000000000000000 temp___326)
   (bvule temp___326 #xFFFFFFFFFFFFFFFF)))))
-  (let ((temp___316 ((_ int2bv 64) (power 2
+  (let ((temp___316 ((_ int_to_bv 64) (power 2
                                    (to_rep (select (to_array powers) c23b1))))))
   (and (bvule #x0000000000000000 temp___316)
   (bvule temp___316 #xFFFFFFFFFFFFFFFF))))

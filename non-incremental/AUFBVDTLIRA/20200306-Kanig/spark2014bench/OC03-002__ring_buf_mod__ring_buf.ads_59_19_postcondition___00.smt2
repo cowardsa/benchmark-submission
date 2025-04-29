@@ -168,7 +168,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 16)) (i Int))
-  (=> (and (<= 0 i) (< i 65536)) (= (nth_bv x ((_ int2bv 16) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 65536)) (= (nth_bv x ((_ int_to_bv 16) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 16) (_ BitVec 16) (_ BitVec 16)
   (_ BitVec 16)) Bool)
@@ -745,7 +745,7 @@ Target solver: CVC4
                      (to_rep1
                      (rec__ring_buf__ring_buffer__length
                      (us_split_fields1 r)))) 1))
-                     (let ((temp___228 (let ((temp___225 (bvsub (bvsub (bvadd #x0000 ((_ int2bv 16) 
+                     (let ((temp___228 (let ((temp___225 (bvsub (bvsub (bvadd #x0000 ((_ int_to_bv 16) 
                                        (to_rep1
                                        (rec__ring_buf__ring_buffer__length
                                        (us_split_fields1 r))))) (bvsub #xFFFF 
@@ -773,7 +773,7 @@ Target solver: CVC4
                      (last1 temp___227) (to_array temp___228)
                      (first1 temp___228) (last1 temp___228))
                      (first1 temp___227)
-                     ((_ int2bv 16) (- (+ (ubv_to_int (first1 temp___227)) (+ 
+                     ((_ int_to_bv 16) (- (+ (ubv_to_int (first1 temp___227)) (+ 
                      (length1 (ubv_to_int (first1 temp___227))
                      (ubv_to_int (last1 temp___227))) (length1
                                                   (ubv_to_int (first1 temp___228))
@@ -781,7 +781,7 @@ Target solver: CVC4
                      (let ((temp___232 (let ((temp___230 (bvsub (bvadd 
                                        (to_rep
                                        (rec__ring_buf__ring_buffer__first
-                                       (us_split_fields1 r))) ((_ int2bv 16) 
+                                       (us_split_fields1 r))) ((_ int_to_bv 16) 
                                        (to_rep1
                                        (rec__ring_buf__ring_buffer__length
                                        (us_split_fields1 r))))) #x0001)))

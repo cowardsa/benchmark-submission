@@ -226,7 +226,7 @@ Target solver: CVC4
   (assert
   (forall ((x (_ BitVec 64)) (i Int))
   (=> (and (<= 0 i) (< i 18446744073709551616))
-  (= (nth_bv x ((_ int2bv 64) i)) (nth x i)))))
+  (= (nth_bv x ((_ int_to_bv 64) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 64) (_ BitVec 64) (_ BitVec 64)
   (_ BitVec 64)) Bool)
@@ -896,7 +896,7 @@ Target solver: CVC4
   (=>
   (forall ((temp___301 Int))
   (=> (and (<= (first1 powers) temp___301) (<= temp___301 (last1 powers)))
-  (let ((temp___303 ((_ int2bv 64) (power 2
+  (let ((temp___303 ((_ int_to_bv 64) (power 2
                                    (to_rep
                                    (select (to_array powers) temp___301))))))
   (and (bvule #x0000000000000000 temp___303)
@@ -913,12 +913,12 @@ Target solver: CVC4
   (and
   (forall ((temp___324 Int))
   (=> (and (<= (first1 powers) temp___324) (<= temp___324 (last1 powers)))
-  (let ((temp___326 ((_ int2bv 64) (power 2
+  (let ((temp___326 ((_ int_to_bv 64) (power 2
                                    (to_rep
                                    (select (to_array powers) temp___324))))))
   (and (bvule #x0000000000000000 temp___326)
   (bvule temp___326 #xFFFFFFFFFFFFFFFF)))))
-  (let ((temp___316 ((_ int2bv 64) (power 2
+  (let ((temp___316 ((_ int_to_bv 64) (power 2
                                    (to_rep (select (to_array powers) c23b1))))))
   (and (bvule #x0000000000000000 temp___316)
   (bvule temp___316 #xFFFFFFFFFFFFFFFF))))
@@ -934,7 +934,7 @@ Target solver: CVC4
   (let ((o (power 2 temp___307)))
   (=> (in_range2 o)
   (=> (uint_in_range o)
-  (=> (not (bvugt ((_ int2bv 64) i) ((_ int2bv 64) o)))
+  (=> (not (bvugt ((_ int_to_bv 64) i) ((_ int_to_bv 64) o)))
   (=> (and (<= (first1 powers) c23b1) (<= c23b1 (last1 powers)))
   (forall ((o1 Int))
   (=> (= (to_rep (select (to_array powers) c23b1)) o1)
@@ -946,12 +946,12 @@ Target solver: CVC4
   (=>
   (forall ((temp___324 Int))
   (=> (and (<= (first1 powers) temp___324) (<= temp___324 (last1 powers)))
-  (let ((temp___326 ((_ int2bv 64) (power 2
+  (let ((temp___326 ((_ int_to_bv 64) (power 2
                                    (to_rep
                                    (select (to_array powers) temp___324))))))
   (and (bvule #x0000000000000000 temp___326)
   (bvule temp___326 #xFFFFFFFFFFFFFFFF)))))
-  (bvule #x0000000000000000 ((_ int2bv 64) (power 2
+  (bvule #x0000000000000000 ((_ int_to_bv 64) (power 2
                                            (to_rep
                                            (select (to_array powers) c23b2))))))))))))))))))))))))))))))))))))))
 (check-sat)

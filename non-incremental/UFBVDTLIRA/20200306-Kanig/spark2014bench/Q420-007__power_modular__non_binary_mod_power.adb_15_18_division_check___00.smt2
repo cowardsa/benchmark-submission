@@ -295,7 +295,7 @@ Target solver: CVC4
 ;; Nth_bv_is_nth2
   (assert
   (forall ((x (_ BitVec 8)) (i Int))
-  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int2bv 8) i)) (nth x i)))))
+  (=> (and (<= 0 i) (< i 256)) (= (nth_bv x ((_ int_to_bv 8) i)) (nth x i)))))
 
 (declare-fun eq_sub_bv ((_ BitVec 8) (_ BitVec 8) (_ BitVec 8)
   (_ BitVec 8)) Bool)
@@ -524,7 +524,7 @@ Target solver: CVC4
   (forall ((x1 (_ BitVec 8)))
   (=> (= x1 (power1 x 4))
   (forall ((y1 (_ BitVec 8)))
-  (=> (= y1 ((_ int2bv 8) (mod1 (power (ubv_to_int y) 4) 5)))
+  (=> (= y1 ((_ int_to_bv 8) (mod1 (power (ubv_to_int y) 4) 5)))
   (=> (in_range (power z 4)) (not (= 5 0))))))))))))))))))))))))
 (check-sat)
 (exit)
