@@ -48,7 +48,10 @@ fi
 
 VERSION=$(grep -oP "^\(set-info :smt-lib-version \K.*(?=\))" "$BENCHMARK")
 info "SMT-LIB" "$VERSION"
-[ "$VERSION" != "2.6" ] && print_error "Unsupported SMT-LIB version: $VERSION"
+if !  ([ "$VERSION" != "2.6" ] || [ "$VERSION" != "2.7" ]) ;
+then
+    print_error "Unsupported SMT-LIB version: $VERSION"
+fi
 
 SOURCE=$(grep -l -m 1 "(set-info :source " "$BENCHMARK")
 [ -z "$SOURCE" ] && print_error "No source given."
