@@ -168,22 +168,22 @@ Publications: https://github.com/awslabs/LibMLKEM
 
 ;; to_int
 (define-fun to_int1 ((x (_ BitVec 8))) Int
-  (ite (bvsge x (_ bv0 8)) (bv2nat x) (- (- 256 (bv2nat x)))))
+  (ite (bvsge x (_ bv0 8)) (ubv_to_int x) (- (- 256 (ubv_to_int x)))))
 
 ;; lsr_bv_is_lsr
 (assert
   (forall ((x (_ BitVec 8)) (n (_ BitVec 8)))
-    (= (bvlshr x n) (lsr x (bv2nat n)))))
+    (= (bvlshr x n) (lsr x (ubv_to_int n)))))
 
 ;; asr_bv_is_asr
 (assert
   (forall ((x (_ BitVec 8)) (n (_ BitVec 8)))
-    (= (bvashr x n) (asr x (bv2nat n)))))
+    (= (bvashr x n) (asr x (ubv_to_int n)))))
 
 ;; lsl_bv_is_lsl
 (assert
   (forall ((x (_ BitVec 8)) (n (_ BitVec 8)))
-    (= (bvshl x n) (lsl x (bv2nat n)))))
+    (= (bvshl x n) (lsl x (ubv_to_int n)))))
 
 ;; nth_bv
 (declare-fun nth_bv ((_ BitVec 8)
@@ -197,7 +197,7 @@ Publications: https://github.com/awslabs/LibMLKEM
 ;; Nth_bv_is_nth
 (assert
   (forall ((x (_ BitVec 8)) (i (_ BitVec 8)))
-    (= (nth x (bv2nat i)) (nth_bv x i))))
+    (= (nth x (ubv_to_int i)) (nth_bv x i))))
 
 ;; Nth_bv_is_nth2
 (assert
@@ -258,22 +258,22 @@ Publications: https://github.com/awslabs/LibMLKEM
 
 ;; to_int
 (define-fun to_int2 ((x (_ BitVec 16))) Int
-  (ite (bvsge x (_ bv0 16)) (bv2nat x) (- (- 65536 (bv2nat x)))))
+  (ite (bvsge x (_ bv0 16)) (ubv_to_int x) (- (- 65536 (ubv_to_int x)))))
 
 ;; lsr_bv_is_lsr
 (assert
   (forall ((x (_ BitVec 16)) (n (_ BitVec 16)))
-    (= (bvlshr x n) (lsr1 x (bv2nat n)))))
+    (= (bvlshr x n) (lsr1 x (ubv_to_int n)))))
 
 ;; asr_bv_is_asr
 (assert
   (forall ((x (_ BitVec 16)) (n (_ BitVec 16)))
-    (= (bvashr x n) (asr1 x (bv2nat n)))))
+    (= (bvashr x n) (asr1 x (ubv_to_int n)))))
 
 ;; lsl_bv_is_lsl
 (assert
   (forall ((x (_ BitVec 16)) (n (_ BitVec 16)))
-    (= (bvshl x n) (lsl1 x (bv2nat n)))))
+    (= (bvshl x n) (lsl1 x (ubv_to_int n)))))
 
 ;; nth_bv
 (declare-fun nth_bv1 ((_ BitVec 16)
@@ -287,7 +287,7 @@ Publications: https://github.com/awslabs/LibMLKEM
 ;; Nth_bv_is_nth
 (assert
   (forall ((x (_ BitVec 16)) (i (_ BitVec 16)))
-    (= (nth1 x (bv2nat i)) (nth_bv1 x i))))
+    (= (nth1 x (ubv_to_int i)) (nth_bv1 x i))))
 
 ;; Nth_bv_is_nth2
 (assert
@@ -1415,7 +1415,7 @@ Publications: https://github.com/awslabs/LibMLKEM
                                                           (and
                                                             (<= 0 temp___2984)
                                                             (<= temp___2984 252)))
-                                                        (= (bv2nat k1) (+ 
+                                                        (= (ubv_to_int k1) (+ 
                                                         (power
                                                           2
                                                           i) j)))))))))))))))))))))))))))))))

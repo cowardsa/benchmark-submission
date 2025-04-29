@@ -107,22 +107,22 @@ Publications: https://github.com/awslabs/LibMLKEM
 
 ;; to_int
 (define-fun to_int1 ((x (_ BitVec 16))) Int
-  (ite (bvsge x (_ bv0 16)) (bv2nat x) (- (- 65536 (bv2nat x)))))
+  (ite (bvsge x (_ bv0 16)) (ubv_to_int x) (- (- 65536 (ubv_to_int x)))))
 
 ;; lsr_bv_is_lsr
 (assert
   (forall ((x (_ BitVec 16)) (n (_ BitVec 16)))
-    (= (bvlshr x n) (lsr x (bv2nat n)))))
+    (= (bvlshr x n) (lsr x (ubv_to_int n)))))
 
 ;; asr_bv_is_asr
 (assert
   (forall ((x (_ BitVec 16)) (n (_ BitVec 16)))
-    (= (bvashr x n) (asr x (bv2nat n)))))
+    (= (bvashr x n) (asr x (ubv_to_int n)))))
 
 ;; lsl_bv_is_lsl
 (assert
   (forall ((x (_ BitVec 16)) (n (_ BitVec 16)))
-    (= (bvshl x n) (lsl x (bv2nat n)))))
+    (= (bvshl x n) (lsl x (ubv_to_int n)))))
 
 ;; nth_bv
 (declare-fun nth_bv ((_ BitVec 16)
@@ -136,7 +136,7 @@ Publications: https://github.com/awslabs/LibMLKEM
 ;; Nth_bv_is_nth
 (assert
   (forall ((x (_ BitVec 16)) (i (_ BitVec 16)))
-    (= (nth x (bv2nat i)) (nth_bv x i))))
+    (= (nth x (ubv_to_int i)) (nth_bv x i))))
 
 ;; Nth_bv_is_nth2
 (assert
@@ -297,7 +297,7 @@ Publications: https://github.com/awslabs/LibMLKEM
              (oadd__function_guard result param__left param__right)
              (and
                (= result ((_ int2bv 16) (mod2
-                                          (+ (bv2nat param__left) (bv2nat param__right))
+                                          (+ (ubv_to_int param__left) (ubv_to_int param__right))
                                           3329)))
                (in_range result))))) :pattern ((oadd
                                                  param__left
@@ -322,7 +322,7 @@ Publications: https://github.com/awslabs/LibMLKEM
              (osubtract__function_guard result param__left param__right)
              (and
                (= result ((_ int2bv 16) (mod2
-                                          (- (bv2nat param__left) (bv2nat param__right))
+                                          (- (ubv_to_int param__left) (ubv_to_int param__right))
                                           3329)))
                (in_range result))))) :pattern ((osubtract
                                                  param__left
@@ -347,7 +347,7 @@ Publications: https://github.com/awslabs/LibMLKEM
              (omultiply__function_guard result param__left param__right)
              (and
                (= result ((_ int2bv 16) (mod2
-                                          (* (bv2nat param__left) (bv2nat param__right))
+                                          (* (ubv_to_int param__left) (ubv_to_int param__right))
                                           3329)))
                (in_range result))))) :pattern ((omultiply
                                                  param__left
@@ -534,7 +534,7 @@ Publications: https://github.com/awslabs/LibMLKEM
                                                   (in_range o3)
                                                   (= o3 ((_ int2bv 16) 
                                                   (mod2
-                                                    (* (bv2nat o2) (bv2nat o1))
+                                                    (* (ubv_to_int o2) (ubv_to_int o1))
                                                     3329)))))
                                               (forall ((t3 (_ BitVec 16)))
                                                 (=>
@@ -560,7 +560,7 @@ Publications: https://github.com/awslabs/LibMLKEM
                                                                 (in_range o5)
                                                                 (= o5 ((_ int2bv 16) 
                                                                 (mod2
-                                                                  (- (bv2nat o4) (bv2nat t3))
+                                                                  (- (ubv_to_int o4) (ubv_to_int t3))
                                                                   3329)))))
                                                             (forall ((o6 t))
                                                               (=>
@@ -603,7 +603,7 @@ Publications: https://github.com/awslabs/LibMLKEM
                                                                     o9)
                                                                     (= o9 ((_ int2bv 16) 
                                                                     (mod2
-                                                                    (+ (bv2nat o8) (bv2nat t3))
+                                                                    (+ (ubv_to_int o8) (ubv_to_int t3))
                                                                     3329)))))
                                                                     (forall 
                                                                     ((o10 t))

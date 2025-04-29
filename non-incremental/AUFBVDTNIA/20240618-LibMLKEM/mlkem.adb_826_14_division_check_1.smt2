@@ -201,22 +201,22 @@ Publications: https://github.com/awslabs/LibMLKEM
 
 ;; to_int
 (define-fun to_int1 ((x (_ BitVec 16))) Int
-  (ite (bvsge x (_ bv0 16)) (bv2nat x) (- (- 65536 (bv2nat x)))))
+  (ite (bvsge x (_ bv0 16)) (ubv_to_int x) (- (- 65536 (ubv_to_int x)))))
 
 ;; lsr_bv_is_lsr
 (assert
   (forall ((x (_ BitVec 16)) (n (_ BitVec 16)))
-    (= (bvlshr x n) (lsr x (bv2nat n)))))
+    (= (bvlshr x n) (lsr x (ubv_to_int n)))))
 
 ;; asr_bv_is_asr
 (assert
   (forall ((x (_ BitVec 16)) (n (_ BitVec 16)))
-    (= (bvashr x n) (asr x (bv2nat n)))))
+    (= (bvashr x n) (asr x (ubv_to_int n)))))
 
 ;; lsl_bv_is_lsl
 (assert
   (forall ((x (_ BitVec 16)) (n (_ BitVec 16)))
-    (= (bvshl x n) (lsl x (bv2nat n)))))
+    (= (bvshl x n) (lsl x (ubv_to_int n)))))
 
 ;; nth_bv
 (declare-fun nth_bv ((_ BitVec 16)
@@ -230,7 +230,7 @@ Publications: https://github.com/awslabs/LibMLKEM
 ;; Nth_bv_is_nth
 (assert
   (forall ((x (_ BitVec 16)) (i (_ BitVec 16)))
-    (= (nth x (bv2nat i)) (nth_bv x i))))
+    (= (nth x (ubv_to_int i)) (nth_bv x i))))
 
 ;; Nth_bv_is_nth2
 (assert
@@ -299,7 +299,7 @@ Publications: https://github.com/awslabs/LibMLKEM
       (=>
         (in_range1 t1)
         (forall ((t2 Int))
-          (=> (= t2 (+ (* 3329 (bv2nat y)) 512)) (not (= 1024 0)))))))))
+          (=> (= t2 (+ (* 3329 (ubv_to_int y)) 512)) (not (= 1024 0)))))))))
 
 (check-sat)
 (exit)

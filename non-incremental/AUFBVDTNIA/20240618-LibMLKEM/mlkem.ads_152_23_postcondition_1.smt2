@@ -201,22 +201,22 @@ Publications: https://github.com/awslabs/LibMLKEM
 
 ;; to_int
 (define-fun to_int1 ((x (_ BitVec 16))) Int
-  (ite (bvsge x (_ bv0 16)) (bv2nat x) (- (- 65536 (bv2nat x)))))
+  (ite (bvsge x (_ bv0 16)) (ubv_to_int x) (- (- 65536 (ubv_to_int x)))))
 
 ;; lsr_bv_is_lsr
 (assert
   (forall ((x (_ BitVec 16)) (n (_ BitVec 16)))
-    (= (bvlshr x n) (lsr x (bv2nat n)))))
+    (= (bvlshr x n) (lsr x (ubv_to_int n)))))
 
 ;; asr_bv_is_asr
 (assert
   (forall ((x (_ BitVec 16)) (n (_ BitVec 16)))
-    (= (bvashr x n) (asr x (bv2nat n)))))
+    (= (bvashr x n) (asr x (ubv_to_int n)))))
 
 ;; lsl_bv_is_lsl
 (assert
   (forall ((x (_ BitVec 16)) (n (_ BitVec 16)))
-    (= (bvshl x n) (lsl x (bv2nat n)))))
+    (= (bvshl x n) (lsl x (ubv_to_int n)))))
 
 ;; nth_bv
 (declare-fun nth_bv ((_ BitVec 16)
@@ -230,7 +230,7 @@ Publications: https://github.com/awslabs/LibMLKEM
 ;; Nth_bv_is_nth
 (assert
   (forall ((x (_ BitVec 16)) (i (_ BitVec 16)))
-    (= (nth x (bv2nat i)) (nth_bv x i))))
+    (= (nth x (ubv_to_int i)) (nth_bv x i))))
 
 ;; Nth_bv_is_nth2
 (assert
@@ -317,7 +317,7 @@ Publications: https://github.com/awslabs/LibMLKEM
             (in_range1 reduce)
             (forall ((r1 Int))
               (=>
-                (= r1 (+ (bv2nat left) (bv2nat right)))
+                (= r1 (+ (ubv_to_int left) (ubv_to_int right)))
                 (=>
                   (and (<= 0 r1) (<= r1 6656))
                   (forall ((reduce1 Int))
@@ -336,7 +336,7 @@ Publications: https://github.com/awslabs/LibMLKEM
                                     (and (<= 0 r2) (< r2 3329))
                                     (=>
                                       (= r2 (mod2
-                                              (+ (bv2nat left) (bv2nat 
+                                              (+ (ubv_to_int left) (ubv_to_int 
                                               right))
                                               3329))
                                       (=>
@@ -346,7 +346,7 @@ Publications: https://github.com/awslabs/LibMLKEM
                                             (= mlkem__zq__Oadd__result ((_ int2bv 16) r2))
                                             (= mlkem__zq__Oadd__result ((_ int2bv 16) 
                                             (mod2
-                                              (+ (bv2nat left) (bv2nat 
+                                              (+ (ubv_to_int left) (ubv_to_int 
                                               right))
                                               3329))))))))))))))))))))))))))
 
