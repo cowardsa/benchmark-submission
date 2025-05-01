@@ -1,4 +1,3 @@
-;; produced by cvc4_16_smtcomp.drv ;;
 (set-info :smt-lib-version 2.7)
 (set-logic AUFBVDTNIA)
 (set-info :source |
